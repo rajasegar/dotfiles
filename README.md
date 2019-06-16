@@ -17,7 +17,7 @@ Install tmux through ruby, You need ruby 2.4.5 or higher version
 ```sh
 gem install tmuxinator
 ```
-#### bash completiong
+#### bash completion
 
 Add the following to your ~/.bashrc:
 
@@ -27,6 +27,8 @@ source ~/.bin/tmuxinator.bash
 
 
 ### fzf
+https://github.com/junegunn/fzf
+
 Install fzf through git
 
 ```sh
