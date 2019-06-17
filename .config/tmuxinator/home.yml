@@ -54,3 +54,34 @@ windows:
       panes:
         - vim
         -
+  - blogposts:
+      layout: main-horizontal
+      root: ~/Dropbox/org
+      panes:
+        - vim large-codebase.md
+        - cd .
+
+  - eslint-plugin-ember:
+     layout: main-vertical
+     root: ~/Documents/www/emberjs/eslint-plugin-ember
+     panes:
+       - vim
+         cd . && nvm use 10.15.0
+  - 3xcodemods:
+      layout: main-vertical
+      root: ~/Documents/www/emberjs/ember-3x-codemods
+      panes:
+        - vim
+        - cd ~/Documents/www/emberjs/ember-3x-codemods && nvm use 10.15.0
+  - jscodeshift-docs:
+      layout: main-vertical
+      root: ~/Documents/www/js/jscodeshift-docs
+      panes:
+        - vim
+        - 
+  - bootstrap-pug:
+      layout: main-vertical
+      root: ~/Documents/www/bootstrap-pug
+      panes:
+        - vim
+        -
