@@ -62,7 +62,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'mattn/emmet-vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -70,7 +69,6 @@ Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-surround'
 Plugin 'w0rp/ale'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'valloric/youcompleteme'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'honza/vim-snippets'
@@ -80,6 +78,12 @@ Plugin 'tpope/vim-repeat'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'AndrewRadev/ember_tools.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'beloglazov/vim-online-thesaurus'
+Plugin 'digitaltoad/vim-pug'
 Plugin 'rajasegar/vim-search-web'
 call vundle#end()
 
@@ -117,7 +121,7 @@ nnoremap <leader>feR :source %<CR>
 
 " FZF mappings
 nnoremap <silent> <leader>/ :Ag!<CR>
-"nnoremap <space>pf :FZF -m<CR>
+nnoremap <space>ff :FZF -m<CR>
 nnoremap <space>pf :GFiles<CR>
 
 
@@ -190,9 +194,6 @@ command! -bang -nargs=* Ag
   \                         : fzf#vim#with_preview( 'right:50%:hidden', '?'),
   \                 <bang>0)
 
-autocmd VimEnter,Colorscheme * :hi LineNr ctermbg=NONE
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 autocmd Filetype help nnoremap <CR> <C-]>
 autocmd Filetype help nnoremap <BS> <C-T>
 
@@ -208,3 +209,18 @@ endif
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+let vim_markdown_preview_toggle=2
+let vim_markdown_preview_browser='Google Chrome'
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+"let g:netrw_browse_split = 3
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+let g:netrw_list_hide = &wildignore
+let g:netrw_preview = 1
+
+let g:tern_map_keys = 1
+
+
+nnoremap gb :bn<cr>
