@@ -118,6 +118,9 @@ nnoremap <leader>ec :lclose<CR>
 
 nnoremap <leader>fed :tabe ~/.vimrc<CR>
 nnoremap <leader>feR :source %<CR>
+nnoremap <leader>bb :Buffers<CR>
+nnoremap <leader>bs :tabe scratch<CR>
+nnoremap <space>fr :History<CR>
 
 " FZF mappings
 nnoremap <silent> <leader>/ :Ag!<CR>
