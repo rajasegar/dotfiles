@@ -1,6 +1,8 @@
 # dotfiles
 My dotfiles repo
 
+Managed with [rcm](http://thoughtbot.github.io/rcm/rcm.7.html)
+
 ## Tools you need
 
 ### vim
