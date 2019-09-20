@@ -8,6 +8,21 @@ Managed with [rcm](http://thoughtbot.github.io/rcm/rcm.7.html)
 ### vim
 You need vim 8.0 or newer version
 
+or 
+
+### NeoVim
+
+
+### vim-plug
+For managing vim plugins
+
+Install vim-plug using :
+
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
+
 ### tmux
 https://github.com/tmux/tmux/wiki
 

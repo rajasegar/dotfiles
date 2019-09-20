@@ -43,7 +43,7 @@ windows:
   - editor:
       layout: main-vertical
       panes:
-        - nvim -O ~/.vimrc ~/.tmux.conf ~/.config/tmuxinator/home.yml
+        - nvim -o ~/.vimrc ~/.tmux.conf ~/.config/tmuxinator/home.yml
         - 
   - dotfiles:
       root: ~/.dotfiles
