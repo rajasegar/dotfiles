@@ -18,10 +18,10 @@ For managing vim plugins
 
 Install vim-plug using :
 
+```sh
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-
+```
 
 ### tmux
 https://github.com/tmux/tmux/wiki

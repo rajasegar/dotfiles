@@ -229,3 +229,6 @@ nnoremap gb :bn<cr>
 map <Leader>vp :VimuxPromptCommand<CR>
 " Run last command executed by VimuxRunCommand
 map <Leader>vl :VimuxRunLastCommand<CR>
+
+"Disabling conceal for code fences requires an additional setting:
+let g:vim_markdown_conceal_code_blocks = 0
