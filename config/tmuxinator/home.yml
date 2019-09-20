@@ -42,46 +42,18 @@ root: ~/
 windows:
   - editor:
       layout: main-vertical
-      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-      # synchronize: after
       panes:
-        - vim
+        - nvim -O ~/.vimrc ~/.tmux.conf ~/.config/tmuxinator/home.yml
         - 
-  - ember-x-tabs:
-      root: ~/Public/www/ember-x-tabs
-      layout: main-vertical
+  - dotfiles:
+      root: ~/.dotfiles
+      layout: even-horizontal
       panes:
-        - vim
-        -
-  - blogposts:
-      layout: main-horizontal
-      root: ~/Dropbox/org
-      panes:
-        - vim large-codebase.md
-        - cd .
-
-  - eslint-plugin-ember:
-     layout: main-vertical
-     root: ~/Documents/www/emberjs/eslint-plugin-ember
-     panes:
-       - vim
-         cd . && nvm use 10.15.0
-  - 3xcodemods:
-      layout: main-vertical
-      root: ~/Documents/www/emberjs/ember-3x-codemods
-      panes:
-        - vim
-        - cd ~/Documents/www/emberjs/ember-3x-codemods && nvm use 10.15.0
-  - jscodeshift-docs:
-      layout: main-vertical
-      root: ~/Documents/www/js/jscodeshift-docs
-      panes:
-        - vim
+        - nvim README.md
         - 
-  - bootstrap-pug:
-      layout: main-vertical
-      root: ~/Documents/www/bootstrap-pug
+  - cybertron:
+      root: ~/Documents/www/rails/cybertron
+      layout: even-horizontal
       panes:
-        - vim
+        - nvim README.md
         -

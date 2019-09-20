@@ -91,7 +91,7 @@ Plugin 'digitaltoad/vim-pug'
 Plugin 'rajasegar/vim-search-web'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'scrooloose/vim-slumlord'
-Plugin 'aklt/plantuml-syntax'
+Plugin 'benmills/vimux'
 call vundle#end()
 
 
@@ -228,7 +228,7 @@ endif
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-"let vim_markdown_preview_toggle=2
+"let vim_markdown_preview_toggle=3
 let vim_markdown_preview_browser='Google Chrome'
 
 let g:netrw_banner = 0
@@ -243,3 +243,9 @@ let g:tern_map_keys = 1
 
 
 nnoremap gb :bn<cr>
+
+
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
