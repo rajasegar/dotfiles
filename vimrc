@@ -33,8 +33,6 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoread
-" let Vundle manage Vundle, required
-set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=/usr/local/opt/fzf
 set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip
 set title
@@ -50,49 +48,35 @@ set colorcolumn=80
 
 map Y y$
  
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
- 
-"------------------------------------------------------------
-" To automatically refresh file changes
 
-call vundle#begin()
+call plug#begin('~/.local/share/nvim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-airline/vim-airline'
-Plugin 'yggdroot/indentline'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'tpope/vim-sensible'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-surround'
-Plugin 'w0rp/ale'
-Plugin 'altercation/vim-colors-solarized'
-"Plugin 'valloric/youcompleteme'
-Plugin 'ternjs/tern_for_vim'
-Plugin 'honza/vim-snippets'
-"Plugin 'SirVer/ultisnips'
-Plugin 'junegunn/fzf.vim'
-Plugin 'tpope/vim-repeat'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'AndrewRadev/ember_tools.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'heavenshell/vim-jsdoc'
-Plugin 'beloglazov/vim-online-thesaurus'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'rajasegar/vim-search-web'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'scrooloose/vim-slumlord'
-Plugin 'benmills/vimux'
-call vundle#end()
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'mattn/emmet-vim', { 'for': ['html','css'] }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'vim-airline/vim-airline'
+Plug 'yggdroot/indentline'
+Plug 'pangloss/vim-javascript', { 'for': 'js' }
+Plug 'mxw/vim-jsx', { 'for': 'jsx' }
+Plug 'tpope/vim-sensible'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'w0rp/ale'
+Plug 'altercation/vim-colors-solarized'
+Plug 'ternjs/tern_for_vim'
+Plug 'honza/vim-snippets'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-repeat'
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'hbs' }
+Plug 'AndrewRadev/ember_tools.vim'
+Plug 'plasticboy/vim-markdown', { 'for': 'md' }
+Plug 'heavenshell/vim-jsdoc'
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+Plug 'rajasegar/vim-search-web'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'benmills/vimux'
+call plug#end()
 
 
 
@@ -144,11 +128,7 @@ set background=dark
 
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
-"let g:solarized_termcolors=256
-"let g:solarized_bold=1
-"let g:solarized_italic=1
-"let g:solarized_underline=1
-colorscheme solarized 
+colorscheme desert 
 
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
