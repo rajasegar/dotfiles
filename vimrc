@@ -64,18 +64,20 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'altercation/vim-colors-solarized'
-Plug 'ternjs/tern_for_vim'
+Plug 'ternjs/tern_for_vim', { 'for': 'js' }
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-repeat'
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'hbs' }
 Plug 'AndrewRadev/ember_tools.vim'
 Plug 'plasticboy/vim-markdown', { 'for': 'md' }
-Plug 'heavenshell/vim-jsdoc'
+Plug 'heavenshell/vim-jsdoc', { 'for': 'js' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'rajasegar/vim-search-web'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
+Plug 'mhinz/vim-startify'
+Plug 'takac/vim-hardtime'
 call plug#end()
 
 
@@ -121,14 +123,14 @@ nnoremap <space>ff :FZF -m<CR>
 nnoremap <space>pf :GFiles<CR>
 
 
-map <space>pt :NERDTreeFind<CR>
+map <space>pt :NERDTreeToggle<CR>
 
 syntax enable
 set background=dark
 
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
-colorscheme desert 
+colorscheme solarized 
 
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
@@ -163,13 +165,6 @@ let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_solarized_bg='dark'
-
-"let g:indent_guides_guide_size = 1
-"let g:indent_guides_color_change_percent = 100
-"let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-"let g:indent_guides_auto_colors = 0
-
 
 
 " Ale config
@@ -208,9 +203,6 @@ endif
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-"let vim_markdown_preview_toggle=3
-let vim_markdown_preview_browser='Google Chrome'
-
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 "let g:netrw_browse_split = 3
@@ -232,3 +224,6 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 
 "Disabling conceal for code fences requires an additional setting:
 let g:vim_markdown_conceal_code_blocks = 0
+
+"Enable hard time
+let g:hardtime_default_on = 1

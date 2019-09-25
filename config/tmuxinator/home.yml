@@ -57,3 +57,9 @@ windows:
       panes:
         - nvim README.md
         -
+  - codeshift:
+      root: ~/Documents/www/rails/codeshift
+      layout: even-horizontal
+      panes:
+        - nvim README.md
+        -
