@@ -11,12 +11,13 @@ You need vim 8.0 or newer version
 or 
 
 ### NeoVim
+Install [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 
 ### vim-plug
 For managing vim plugins
 
-Install vim-plug using :
+Install [vim-plug](https://github.com/junegunn/vim-plug) using :
 
 ```sh
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
@@ -25,6 +26,9 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 
 ### tmux
 https://github.com/tmux/tmux/wiki
+
+### tmux-powerline
+https://github.com/erikw/tmux-powerline
 
 ### tumxinator
 https://github.com/tmuxinator/tmuxinator
