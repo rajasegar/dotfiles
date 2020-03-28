@@ -5,12 +5,16 @@ Managed with [rcm](http://thoughtbot.github.io/rcm/rcm.7.html)
 
 ## Installation
 
-1. Checkout this repo using
+1. Go to the root
 ```
-$ git clone https://github.com/rajasegar/dotfiles
+$ cd
+```
+2. Checkout this repo into `.dotfiles` directory
+```
+$ git clone https://github.com/rajasegar/dotfiles .dotfiles
 ```
 
-2. Run  rcup -v to update the dotfiles
+3. Run  rcup -v to install the dotfiles
 ```
 $ rcup -v
 ```
