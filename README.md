@@ -3,6 +3,18 @@ My dotfiles repo
 
 Managed with [rcm](http://thoughtbot.github.io/rcm/rcm.7.html)
 
+## Installation
+
+1. Checkout this repo using
+```
+$ git clone https://github.com/rajasegar/dotfiles
+```
+
+2. Run  rcup -v to update the dotfiles
+```
+$ rcup -v
+```
+
 ## Tools you need
 
 ### vim
