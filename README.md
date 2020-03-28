@@ -4,6 +4,7 @@ My dotfiles repo
 Managed with [rcm](http://thoughtbot.github.io/rcm/rcm.7.html)
 
 ## Installation
+Before doing the below steps, install the tools you need FIRST.
 
 1. Go to the root
 ```
@@ -14,7 +15,7 @@ $ cd
 $ git clone https://github.com/rajasegar/dotfiles .dotfiles
 ```
 
-3. Run  rcup -v to install the dotfiles
+3. Run `rcup` to install the dotfiles
 ```
 $ rcup -v
 ```
