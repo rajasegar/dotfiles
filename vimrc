@@ -43,8 +43,6 @@ set foldlevelstart=20
 set cursorline
 set relativenumber
 set thesaurus+=~/thesaurus.txt
-set colorcolumn=80
-"set iskeyword+=-
 
 map Y y$
  
@@ -77,7 +75,6 @@ Plug 'rajasegar/vim-search-web'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'mhinz/vim-startify'
-Plug 'takac/vim-hardtime'
 call plug#end()
 
 
@@ -130,7 +127,7 @@ set background=dark
 
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
-colorscheme solarized 
+"colorscheme solarized 
 
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
@@ -225,5 +222,3 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 "Disabling conceal for code fences requires an additional setting:
 let g:vim_markdown_conceal_code_blocks = 0
 
-"Enable hard time
-let g:hardtime_default_on = 1
