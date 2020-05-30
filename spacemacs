@@ -32,9 +32,8 @@ values."
    dotspacemacs-configuration-layers
    '(
      (ruby :variables ruby-version-manager 'rvm)
-     react
-     typescript
-     javascript
+     prettier
+     (javascript :variables javascript-fmt-tool 'prettier)
      markdown
      html
      ;; ----------------------------------------------------------------
@@ -350,7 +349,6 @@ you should place your code here."
   ;; Turn off creating lock files
   (setq create-lockfiles nil)
 
-  ;; (setq flycheck-javascript-eslint-executable "/usr/local/bin/eslint")
 
   (defun my/use-eslint-from-node-modules ()
     (let* ((root (locate-dominating-file
@@ -364,19 +362,11 @@ you should place your code here."
 
   (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
-  (add-hook 'js2-mode-hook
-            (defun my-js2-mode-setup ()
-              (flycheck-mode t)
-              (flycheck-select-checker 'javascript-eslint)))
-
-  (setq flycheck-disabled-checkers '(javascript-jshint))
-
-
   ;; (setq plantuml-jar-path (expand-file-name "~/plantuml.jar"))
 
 
-  (add-hook 'js2-mode-hook 'prettier-js-mode)
-  (add-hook 'web-mode-hook 'prettier-js-mode)
+  (add-hook 'js2-mode-hook  (lambda ()
+                              (add-hook 'before-save-hook 'prettier-js nil 'make-it-local)))
 
   ;; Setting up org-capture
   (setq org-default-notes-file "~/Dropbox/org/")

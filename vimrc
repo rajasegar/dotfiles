@@ -75,6 +75,7 @@ Plug 'rajasegar/vim-search-web'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'mhinz/vim-startify'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 
