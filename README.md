@@ -3,6 +3,12 @@ My dotfiles repo
 
 Managed with [rcm](http://thoughtbot.github.io/rcm/rcm.7.html)
 
+Install rcm using https://github.com/thoughtbot/rcm
+```
+brew tap thoughtbot/formulae
+brew install rcm
+```
+
 ## Installation
 Before doing the below steps, install the tools you need FIRST.
 
