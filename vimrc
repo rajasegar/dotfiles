@@ -62,7 +62,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'altercation/vim-colors-solarized'
-Plug 'ternjs/tern_for_vim', { 'for': 'js' }
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-repeat'
@@ -209,7 +208,6 @@ let g:netrw_winsize = 25
 let g:netrw_list_hide = &wildignore
 let g:netrw_preview = 1
 
-let g:tern_map_keys = 1
 
 
 nnoremap gb :bn<cr>
