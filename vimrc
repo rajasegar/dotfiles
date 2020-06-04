@@ -166,17 +166,9 @@ let g:airline_solarized_bg='dark'
 
 " Ale config
 let g:ale_fixers = {  'javascript': ['eslint', 'prettier']  }
+"let g:ale_fixers = {  'javascript': ['eslint']  }
 let g:ale_fix_on_save = 1
 let g:ale_linters = {'javascript': ['eslint']}
-
-
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger = "<nop>" 
-"inoremap <expr> <CR> pumvisible() ? "<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>" : "\<CR>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 
 
 command! -bang -nargs=* Ag
@@ -220,4 +212,25 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 
 "Disabling conceal for code fences requires an additional setting:
 let g:vim_markdown_conceal_code_blocks = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Splits and Tabbed Files
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set splitbelow splitright
+
+" Remap splits navigation to just CTRL + hjkl
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Make adjusing split sizes a bit more friendly
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
+
+" Change 2 split windows from vert to horiz or horiz to vert
+map <Leader>th <C-w>t<C-w>H
+map <Leader>tk <C-w>t<C-w>K
 
