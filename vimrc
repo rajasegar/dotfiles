@@ -33,7 +33,7 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoread
-set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
 set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip
 set title
 set clipboard=unnamed
@@ -43,6 +43,7 @@ set foldlevelstart=20
 set cursorline
 set relativenumber
 set thesaurus+=~/thesaurus.txt
+set encoding=UTF-8
 
 map Y y$
  
@@ -63,7 +64,7 @@ Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'joshdick/onedark.vim'
 Plug 'honza/vim-snippets'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tpope/vim-repeat'
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'hbs' }
 Plug 'AndrewRadev/ember_tools.vim'
@@ -234,4 +235,4 @@ map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>K
 
 " change vim-wiki syntax
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
