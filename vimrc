@@ -33,7 +33,7 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoread
-set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
 set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip
 set title
 set clipboard=unnamed
@@ -43,6 +43,7 @@ set foldlevelstart=20
 set cursorline
 set relativenumber
 set thesaurus+=~/thesaurus.txt
+set encoding=UTF-8
 
 map Y y$
  
@@ -61,9 +62,9 @@ Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
-Plug 'altercation/vim-colors-solarized'
+Plug 'joshdick/onedark.vim'
 Plug 'honza/vim-snippets'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tpope/vim-repeat'
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'hbs' }
 Plug 'AndrewRadev/ember_tools.vim'
@@ -75,6 +76,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'mhinz/vim-startify'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 
@@ -84,7 +86,7 @@ vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
 nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 
 let mapleader = " "
-nmap <silent> <space>ww :wincmd w<CR>
+"nmap <silent> <space>ww :wincmd w<CR>
 nmap <silent> <space><tab> :bn<CR>
 nmap <silent> <space>bd :bdelete<CR>
 nmap <silent> <space>fs :w<CR>
@@ -125,9 +127,7 @@ map <space>pt :NERDTreeToggle<CR>
 syntax enable
 set background=dark
 
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
-"colorscheme solarized 
+colorscheme onedark 
 
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
@@ -234,3 +234,5 @@ noremap <silent> <C-Down> :resize -3<CR>
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>K
 
+" change vim-wiki syntax
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
