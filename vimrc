@@ -112,15 +112,18 @@ nnoremap <leader>ec :lclose<CR>
 
 nnoremap <leader>fed :tabe ~/.vimrc<CR>
 nnoremap <leader>feR :source %<CR>
-nnoremap <leader>bb :Buffers<CR>
+"nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>bs :tabe scratch<CR>
 nnoremap <space>fr :History<CR>
 
 " FZF mappings
 nnoremap <silent> <leader>/ :Ag!<CR>
-nnoremap <space>ff :FZF -m<CR>
-nnoremap <space>pf :GFiles<CR>
+"nnoremap <space>ff :FZF -m<CR>
+nnoremap <space>ff :find <Space>
+"nnoremap <space>pf :GFiles<CR>
 
+
+nnoremap <leader>bb :b <Space>
 
 map <space>pt :NERDTreeToggle<CR>
 
@@ -202,7 +205,8 @@ let g:netrw_preview = 1
 
 
 
-nnoremap gb :bn<cr>
+nnoremap ]b :bn<cr>
+nnoremap [b :bp<cr>
 
 
 " Prompt for a command to run
@@ -236,3 +240,20 @@ map <Leader>tk <C-w>t<C-w>K
 
 " change vim-wiki syntax
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+" Disable temporary wiki
+let g:vimwiki_global_ext = 0
+
+function! VimwikiFindIncompleteTasks()
+  lvimgrep /- \[ \]/ %:p
+  lopen
+endfunction
+
+function! VimwikiFindAllIncompleteTasks()
+  VimwikiSearch /- \[ \]/
+  lopen
+endfunction
+
+nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
+nmap <Leader>wx :call VimwikiFindIncompleteTasks()<CR>
+
+nnoremap <leader>Pr :PnpmRun <Space>
