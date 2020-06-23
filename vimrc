@@ -65,6 +65,7 @@ Plug 'w0rp/ale'
 Plug 'joshdick/onedark.vim'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-repeat'
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'hbs' }
 Plug 'AndrewRadev/ember_tools.vim'
@@ -75,8 +76,11 @@ Plug 'rajasegar/vim-search-web'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'mhinz/vim-startify'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vimwiki/vimwiki'
+Plug 'ryanoasis/vim-devicons'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'rajasegar/vim-pnpm'
 call plug#end()
 
 
