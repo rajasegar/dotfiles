@@ -33,7 +33,11 @@ values."
    '(
      (ruby :variables ruby-version-manager 'rvm)
      prettier
-     (javascript :variables javascript-fmt-tool 'prettier)
+     (javascript :variables
+                 javascript-fmt-tool 'prettier
+                 javascript-backend 'tide)
+     (typescript :variables
+                 typescript-backend 'tide)
      markdown
      html
      ;; ----------------------------------------------------------------
@@ -57,6 +61,13 @@ values."
      plantuml
      shell-scripts
      osx
+     (ranger :variables
+              ranger-show-preview t)
+     emms
+     twitter
+     elfeed
+     neotree
+     tide
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -144,7 +155,7 @@ values."
                                :size 14
                                :weight normal
                                :width normal
-                               :powerline-scale 1.0)
+                               :powerline-scale 0.8)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -267,7 +278,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'relative
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -309,6 +320,7 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+  (add-to-list 'exec-path "/Users/user/.nvm/versions/node/v12.7.0/bin" t)
   )
 
 (defun dotspacemacs/user-config ()
@@ -349,7 +361,6 @@ you should place your code here."
   ;; Turn off creating lock files
   (setq create-lockfiles nil)
 
-
   (defun my/use-eslint-from-node-modules ()
     (let* ((root (locate-dominating-file
                   (or (buffer-file-name) default-directory)
@@ -365,8 +376,8 @@ you should place your code here."
   ;; (setq plantuml-jar-path (expand-file-name "~/plantuml.jar"))
 
 
-  (add-hook 'js2-mode-hook  (lambda ()
-                              (add-hook 'before-save-hook 'prettier-js nil 'make-it-local)))
+  ;; (add-hook 'js2-mode-hook  (lambda ()
+                              ;; (add-hook 'before-save-hook 'prettier-js nil 'make-it-local)))
 
   ;; Setting up org-capture
   (setq org-default-notes-file "~/Dropbox/org/")
@@ -444,6 +455,21 @@ you should place your code here."
     (persp-add-buffer (current-buffer))
     )
 
+  ;; Setup emms
+  (setq exec-path (append exec-path '("/usr/local/bin")))
+  (add-to-list 'load-path "~/.emacs.d/site-lisp/emms/lisp")
+  (require 'emms-setup)
+  (require 'emms-player-mplayer)
+  (emms-standard)
+  (emms-default-players)
+  (define-emms-simple-player mplayer '(file url)
+    (regexp-opt '(".ogg" ".mp3" ".wav" ".mpg" ".mpeg" ".wmv" ".wma"
+                  ".mov" ".avi" ".divx" ".ogm" ".asf" ".mkv" "http://" "mms://"
+                  ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
+    "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
+
+
+
 
   )
 
@@ -469,3 +495,33 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(elfeed-feeds
+   (quote
+    ("https://www.sitepoint.com/javascript/feed/" "https://www.reddit.com/r/javascript/.rss?format=xml" "https://css-tricks.com/feed/" "https://laurakalbag.com/index.xml")))
+ '(js-indent-level 2)
+ '(markdown-command "/usr/local/bin/markdown")
+ '(org-agenda-files
+   (quote
+    ("~/Dropbox/org/freshdesk.org" "~/Dropbox/org/rajasegar.org")))
+ '(package-selected-packages
+   (quote
+    (ranger esxml nov mw-thesaurus reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl transient lv treepy graphql prettier-js org-mime ghub org-category-capture let-alist vue-mode edit-indirect ssass-mode vue-html-mode insert-shebang fish-mode company-shell intero hlint-refactor hindent helm-hoogle haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode prodigy xkcd sql-indent flyspell-correct-helm flyspell-correct auto-dictionary winum unfill fuzzy flycheck-elm elm-mode plantuml-mode emoji-cheat-sheet-plus company-emoji xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help tide typescript-mode vmd-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode smeargle orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor diff-hl company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme)))
+ '(ranger-show-literal nil)
+ '(standard-indent 2))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
