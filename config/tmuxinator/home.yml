@@ -45,21 +45,33 @@ windows:
       panes:
         - vim -o ~/.vimrc ~/.tmux.conf ~/.config/tmuxinator/home.yml
         - 
-  - dotfiles:
-      root: ~/.dotfiles
+  - cmus:
+      root: ~/Music/Favs
+      panes:
+        - cmus
+  - mpg123:
+      root: ~/Music/Favs
+      panes:
+        - mpg123 *.mp3
+  - ranger:
+      root: ~/Public/www/
+      panes:
+        - ranger
+  - ember-voca:
+      root: ~/Public/www/ember-voca
       layout: even-horizontal
       panes:
-        - nvim README.md
-        - 
-  - cybertron:
-      root: ~/Documents/www/rails/cybertron
-      layout: even-horizontal
-      panes:
-        - nvim README.md
+        - vim README.md
         -
-  - codeshift:
-      root: ~/Documents/www/rails/codeshift
+  - vim-pnpm:
+      root: ~/Public/www/vim-pnpm
       layout: even-horizontal
       panes:
-        - nvim README.md
+        - vim README.md
+        -
+  - gab:
+      root: ~/Public/www/gab
+      layout: even-horizontal
+      panes:
+        - vim README.md
         -
