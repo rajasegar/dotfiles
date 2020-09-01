@@ -220,6 +220,8 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 
 "Disabling conceal for code fences requires an additional setting:
 let g:vim_markdown_conceal_code_blocks = 0
+"Disabling conceal for other things
+let g:vim_markdown_conceal = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Splits and Tabbed Files
