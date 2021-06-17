@@ -1,9 +1,13 @@
+;;; package --- my init.el
+
+;;; Commentary:
 ;; Helpful links:
 ;; 
 ;; - https://sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
 ;; - https://dev.to/huytd/emacs-from-scratch-1cg6
 ;; - https://sam217pa.github.io/2016/09/13/from-helm-to-ivy/#fnref:2
 
+;;; Code:
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq delete-old-versions -1 )
@@ -86,44 +90,23 @@
   :ensure t
   :init (global-flycheck-mode))
 
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :init
-;;   (setq lsp-auto-guess-root t)
-;;   (setq lsp-prefer-flymake nil)
-;;   :config
-;;   (add-hook 'js2-mode-hook #'lsp)
-;;   (add-hook 'rjsx-mode-hook #'lsp))
+;; Org mode enhancements
+(use-package org-bullets
+  :ensure t
+  :init (org-mode))
 
-;; (use-package lsp-ui
-;;   :ensure t
-;;   :requires lsp-mode flycheck
-;;   :config
-;;   (setq lsp-ui-doc-enable t
-;;   	lsp-ui-doc-use-childframe nil
-;;   	lsp-ui-doc-position 'top
-;;   	lsp-ui-doc-include-signature t
-;;   	lsp-ui-sideline-enable nil
-;;   	lsp-ui-flycheck-enable t
-;;   	lsp-ui-flycheck-list-position 'right
-;;   	lsp-ui-flycheck-live-reporting t
-;;   	lsp-ui-peek-enable t
-;;   	lsp-ui-peek-list-width 60
-;;   	lsp-ui-peek-peek-height 25)
-;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
-;; (use-package company-lsp
-;;   :ensure t
-;;   :commands company-lsp)
+;; Powerline
+(use-package powerline
+  :ensure t)
+(powerline-default-theme)
+(use-package airline-themes
+  :ensure t)
+(load-theme 'airline-dark t)
 
 (use-package company
   :ensure t
   :init
   (add-hook 'after-init-hook 'global-company-mode))
-
-;; Elixir
-(use-package elixir-mode
-  :ensure t)
 
 ;; Javascript
 (use-package js2-mode 
@@ -177,6 +160,16 @@
 
 ;; Magit
 (use-package magit :ensure t)
+(use-package git-gutter :ensure t)
+(global-git-gutter-mode +1)
+
+;; Startup screen with dashboard
+(use-package page-break-lines
+  :ensure t)
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
 
 ;; Project management
 (use-package projectile
@@ -265,9 +258,9 @@
    "wh"  'windmove-left
    "wk"  'windmove-up
    "wj"  'windmove-down
-   "w\""  'split-window-below
-   "w%"  'split-window-right
-   "wx"  'delete-window
+   "w-"  'split-window-below
+   "w/"  'split-window-right
+   "wd"  'delete-window
 
    "a" '(:ignore t :which-key "Applications")
    "ar" 'ranger
@@ -295,10 +288,10 @@
    "df" 'js-doc-insert-function-doc
    "dm" 'js-doc-insert-file-doc
 
-   "fed" '(find-file-existing "~/.emacs.d/init.el")
    "fs" 'save-buffer
    "ff" 'counsel-find-file
    "fr" 'counsel-recentf
+   "fer" '(load user-init-file)
 
    "qr" '(kill-emacs 123)
    "qq" '(kill-emacs)
@@ -313,7 +306,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(linum-relative olivetti which-key use-package ranger prettier-js multi-term js2-mode general exec-path-from-shell evil doom-themes counsel-projectile)))
+   '(airline-themes linum-relative olivetti which-key use-package ranger prettier-js multi-term js2-mode general exec-path-from-shell evil doom-themes counsel-projectile)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
