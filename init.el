@@ -90,6 +90,28 @@
 (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
 (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
 
+(defun neotree-project-dir ()
+    "Open NeoTree using the git root."
+    (interactive)
+    (let ((project-dir (projectile-project-root))
+          (file-name (buffer-file-name)))
+      (neotree-toggle)
+      (if project-dir
+          (if (neo-global--window-exists-p)
+              (progn
+                (neotree-dir project-dir)
+                (neotree-find file-name)))
+        (message "Could not find git project root."))))
+
+(global-set-key [f8] 'neotree-project-dir)
+
+;; Ignore files in neotree
+(setq neo-hidden-regexp-list
+    '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" ;; defaults
+      ;; add yours:
+      "node_modules"))
+
+
 ;; Which Key
 (use-package which-key
   :ensure t
@@ -120,6 +142,12 @@
   :ensure t
   :init
   (add-hook 'after-init-hook 'global-company-mode))
+
+;; yaml
+(use-package yaml-mode
+  :ensure t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
 ;; Javascript
 (use-package js2-mode 
@@ -215,6 +243,23 @@
   :config
   (global-evil-surround-mode 1))
 
+;; EMMS
+(use-package emms
+  :ensure t)
+(setq exec-path (append exec-path '("/usr/local/bin")))
+
+(require 'emms-setup)
+(require 'emms-player-mplayer)
+(emms-standard)
+(emms-default-players)
+(define-emms-simple-player mplayer '(file url)
+  (regexp-opt '(".ogg" ".mp3" ".wav" ".mpg" ".mpeg" ".wmv" ".wma"
+                ".mov" ".avi" ".divx" ".ogm" ".asf" ".mkv" "http://" "mms://"
+                ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
+  "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
+(emms-play-directory "~/Music/Favs")
+
+
 ; Edit this config
 (defun edit-emacs-configuration ()
   (interactive)
@@ -308,6 +353,16 @@
 
    "qr" '(kill-emacs 123)
    "qq" '(kill-emacs)
+
+   "am" '(:ignore t :which-key "Music")
+   "amed" 'emms-play-directory
+   "ameb" 'emms-browser
+   "ameo" 'emms-show
+   "amn" 'emms-next
+   "amp" 'emms-previous
+   "a SPC" 'emms-pause
+   "a RET" 'emms-smart-browse
+   "a e" 'emms
    )
   (general-define-key
    :states '(visual)
