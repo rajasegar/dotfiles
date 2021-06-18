@@ -11,7 +11,7 @@
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq delete-old-versions -1 )
-; (setq inhibit-startup-screen t )
+(setq inhibit-startup-screen t )
 (setq ring-bell-function 'ignore )
 (setq coding-system-for-read 'utf-8 )
 (setq coding-system-for-write 'utf-8 )
@@ -19,6 +19,9 @@
 (setq default-fill-column 80)
 (setq initial-scratch-message "")
 (setq word-wrap t)
+
+;; Enable copy paste
+(setq x-select-enable-clipboard t)
 
 ;; https://github.com/danielmai/.emacs.d/blob/master/config.org
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -258,6 +261,7 @@
                 ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
   "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
 (emms-play-directory "~/Music/Favs")
+(emms-random)
 
 
 ; Edit this config
@@ -306,10 +310,12 @@
    "p" 'projectile-command-map
    "pp" 'projectile-persp-switch-project
    "pf" 'counsel-projectile-find-file
+   "pt" 'neotree-project-dir
 
    "b" '(:ignore t :which-key "Buffers")
    "bb"  'ivy-switch-buffer
-   "bd" 'kill-buffer
+   "bd" 'kill-this-buffer
+   "be" 'eval-buffer
 
    "w" '(:ignore t :which-key "Window")
    "wl"  'windmove-right
@@ -323,6 +329,7 @@
    "a" '(:ignore t :which-key "Applications")
    "ar" 'ranger
    "ad" 'deer
+   "at" 'eshell
 
    "s" '(:ignore t :which-key "Search")
    "sc" 'evil-ex-nohighlight
@@ -363,6 +370,7 @@
    "a SPC" 'emms-pause
    "a RET" 'emms-smart-browse
    "a e" 'emms
+   "ar" 'emms-random
    )
   (general-define-key
    :states '(visual)
