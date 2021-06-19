@@ -170,18 +170,34 @@
   :ensure t
   :init
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
-  
+
+
 ;; Javascript
 (use-package js2-mode 
   :ensure t
   :init
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
-(use-package rjsx-mode
+
+;; LSP
+(use-package lsp-mode
   :ensure t
   :init
-  (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode)))
+  (setq lsp-keymap-prefix "SPC l")
+  :hook (
+	 (js2-mode . lsp-deferred)
+	 (web-mode . lsp-deferred)
+	 (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp-deferred)
+
+;; TSX
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+
+;; JSX
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+
 (use-package add-node-modules-path
   :ensure t)
+
 (use-package prettier-js
   :ensure t
   :init
@@ -189,7 +205,8 @@
   (add-hook 'js2-mode-hook 'add-node-modules-path)
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'add-node-modules-path)
-  (add-hook 'web-mode-hook 'prettier-js-mode))
+  (add-hook 'web-mode-hook 'add-node-modules-path)
+  )
 
 ;; Markdown
 (use-package markdown-mode
@@ -200,23 +217,12 @@
 	 ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
-;; Multi-Term
-(use-package multi-term
-  :ensure t
-  :init
-  (setq multi-term-program "/bin/zsh"))
-
 ;; Ivy & friends
 (use-package ivy
   :ensure t)
 (use-package counsel
   :ensure t)
 
-;; Ranger
-(use-package ranger 
-  :ensure t
-  :init
-  (setq ranger-show-hidden t))
 
 ;; Code commenting
 (use-package evil-nerd-commenter :ensure t)
