@@ -1,6 +1,8 @@
 ;;; package --- my init.el
 
 ;;; Commentary:
+;; Got this config from this url and tweaking for my taste
+;; http://www.petecorey.com/blog/2019/07/01/building-my-own-spacemacs/
 ;; Helpful links:
 ;; 
 ;; - https://sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
@@ -152,6 +154,23 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
+;; json
+(use-package json-mode
+  :ensure t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode)))
+
+;; Skewer
+(use-package simple-httpd
+  :ensure t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+
+(use-package skewer-mode
+  :ensure t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+  
 ;; Javascript
 (use-package js2-mode 
   :ensure t
