@@ -62,9 +62,18 @@
 ;; Vim mode
 (use-package evil
   :ensure t
+  :init
+  (setq evil-want-keybinding nil)
   :config
   (evil-mode 1)
   (setq-default evil-escape-delay 0.2))
+
+;; evil-collection
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
 
 ;; Minimal UI
 (scroll-bar-mode -1)
@@ -289,6 +298,17 @@
 (emms-play-directory "~/Music/Favs")
 (emms-random)
 
+;; elfeed
+(use-package elfeed
+  :ensure t)
+
+(setq elfeed-feeds
+      '("https://css-tricks.com/feed/"
+	"https://dev.to/feed"
+	"https://hnrss.org/frontpage"
+	"https://www.smashingmagazine.com/feed"
+	"https://alistapart.com/main/feed/"
+	))
 
 ; Edit this config
 (defun edit-emacs-configuration ()
