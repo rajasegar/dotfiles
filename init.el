@@ -96,14 +96,6 @@
   :ensure t)
 (global-set-key [f8] 'neotree-toggle)
 
-(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
-(evil-define-key 'normal neotree-mode-map (kbd "j") 'neotree-next-line)
-(evil-define-key 'normal neotree-mode-map (kbd "k") 'neotree-previous-line)
-(evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
-(evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
-
 (defun neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
