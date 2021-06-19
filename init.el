@@ -178,11 +178,13 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
 
+;; Web mode
+(use-package web-mode
+  :ensure t)
+
 ;; LSP
 (use-package lsp-mode
   :ensure t
-  :init
-  (setq lsp-keymap-prefix "SPC l")
   :hook (
 	 (js2-mode . lsp-deferred)
 	 (web-mode . lsp-deferred)
@@ -205,8 +207,7 @@
   (add-hook 'js2-mode-hook 'add-node-modules-path)
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'add-node-modules-path)
-  (add-hook 'web-mode-hook 'add-node-modules-path)
-  )
+  (add-hook 'web-mode-hook 'add-node-modules-path))
 
 ;; Markdown
 (use-package markdown-mode
@@ -321,7 +322,7 @@
    "C-u" 'scroll-down-command
    "C-d" 'scroll-up-command)
   (general-define-key
-   :states '(normal visual insert emacs)
+   :states '(normal visual emacs)
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
    "'"   'multi-term
@@ -387,9 +388,9 @@
    "qq" '(kill-emacs)
 
    "am" '(:ignore t :which-key "Music")
-   "amed" 'emms-play-directory
-   "ameb" 'emms-browser
-   "ameo" 'emms-show
+   "amd" 'emms-play-directory
+   "amb" 'emms-browser
+   "amo" 'emms-show
    "amn" 'emms-next
    "amp" 'emms-previous
    "a SPC" 'emms-pause
