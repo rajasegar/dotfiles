@@ -327,10 +327,10 @@
    :non-normal-prefix "C-SPC"
    "'"   'multi-term
    "/"   'counsel-rg
-   ":"   'counsel-M-x
+   "SPC" 'counsel-M-x
    "."   'edit-emacs-configuration
    "\""  'split-window-below
-   "%"  'split-window-right
+   "%"   'split-window-right
    "TAB" 'toggle-buffers
 
    "p" 'projectile-command-map
@@ -351,10 +351,9 @@
    "w-"  'split-window-below
    "w/"  'split-window-right
    "wd"  'delete-window
+   "ww"  'evil-window-next
 
    "a" '(:ignore t :which-key "Applications")
-   "ar" 'ranger
-   "ad" 'deer
    "at" 'eshell
 
    "s" '(:ignore t :which-key "Search")
