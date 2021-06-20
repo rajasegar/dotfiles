@@ -131,6 +131,13 @@
   :ensure t
   :init (global-flycheck-mode))
 
+;; org load languages
+(org-babel-do-load-languages 'org-babel-load-languages
+    '((shell . t)))
+
+(setq org-agenda-files (list "~/Dropbox/org/freshdesk.org" "~/Dropbox/org/rajasegar.org"))
+(setq org-default-notes-file "~/Dropbox/org/tasks.org")
+
 ;; Org mode enhancements
 (use-package org-bullets
   :ensure t
@@ -148,6 +155,7 @@
   :ensure t
   :init
   (add-hook 'after-init-hook 'global-company-mode))
+(setq company-idle-delay 0.0)
 
 ;; yaml
 (use-package yaml-mode
@@ -171,8 +179,7 @@
   :ensure t
   :init
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
-
-
+  
 ;; Javascript
 (use-package js2-mode 
   :ensure t
@@ -191,6 +198,10 @@
 	 (web-mode . lsp-deferred)
 	 (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp-deferred)
+;; LSP performance
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
 
 ;; TSX
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
@@ -208,7 +219,7 @@
   (add-hook 'js2-mode-hook 'add-node-modules-path)
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'add-node-modules-path)
-  (add-hook 'web-mode-hook 'add-node-modules-path))
+  (add-hook 'web-mode-hook 'prettier-js-mode))
 
 ;; Markdown
 (use-package markdown-mode
@@ -287,8 +298,8 @@
                 ".mov" ".avi" ".divx" ".ogm" ".asf" ".mkv" "http://" "mms://"
                 ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
   "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
-(emms-play-directory "~/Music/Favs")
-(emms-random)
+(require 'emms-history)
+(emms-history-load)
 
 ;; elfeed
 (use-package elfeed
@@ -326,7 +337,7 @@
   (general-define-key
    "M-x" 'counsel-M-x)
   (general-define-key
-   :states '(normal visual emacs)
+   :states '(normal visual)
    ;; "/" 'swiper
    "gcc" 'evilnc-comment-or-uncomment-lines)
   (general-define-key
@@ -393,7 +404,6 @@
    "fs" 'save-buffer
    "ff" 'counsel-find-file
    "fr" 'counsel-recentf
-   "fer" '(load user-init-file)
 
    "qr" '(kill-emacs 123)
    "qq" '(kill-emacs)
@@ -407,7 +417,15 @@
    "a SPC" 'emms-pause
    "a RET" 'emms-smart-browse
    "a e" 'emms
-   "ar" 'emms-random
+   "amr" 'emms-random
+   "ar" 'elfeed
+
+   "c" '(:ignore t :which-key "Comment")
+   "cl" 'comment-line
+
+   "o" '(:ignore t : which-key "Org-Mode")
+   "oa" 'org-agenda
+   "oc" 'org-capture
    )
   (general-define-key
    :states '(visual)
