@@ -315,12 +315,29 @@
 
 ; Edit this config
 (defun edit-emacs-configuration ()
+  "Edit Emacs configuration."
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
 (defun toggle-buffers ()
+  "Toggle buffers."
   (interactive)
   (switch-to-buffer nil))
+
+(defun switch-to-dashboard ()
+ "Switch to dashboard buffer."
+  (interactive)
+  (switch-to-buffer dashboard-buffer-name))
+
+(defun switch-git-personal ()
+  "Switch to personal Github profile."
+  (interactive)
+  (shell-command "ssh-add -D && ssh-add ~/.ssh/id_rsa && ssh -T git@github.com"))
+
+(defun switch-git-work ()
+  "Switch to work Github profile."
+  (interactive)
+  (shell-command "ssh-add -D && ssh-add ~/.ssh/id_ed25519 && ssh -T git@github.com"))
 
 ;; Keybindings
 (use-package key-chord
@@ -365,6 +382,7 @@
    "bb"  'ivy-switch-buffer
    "bd" 'kill-this-buffer
    "be" 'eval-buffer
+   "bh" 'switch-to-dashboard
 
    "w" '(:ignore t :which-key "Window")
    "wl"  'windmove-right
@@ -396,6 +414,8 @@
    "g" '(:ignore t :which-key "Code?")
    "gc" 'evilnc-comment-or-uncomment-lines
    "gs" 'magit-status
+   "gh" 'switch-git-personal
+   "gw" 'switch-git-work
 
    "d" '(:ignore t :which-key "Comments")
    "df" 'js-doc-insert-function-doc
