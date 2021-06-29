@@ -22,6 +22,10 @@
 (setq initial-scratch-message "")
 (setq word-wrap t)
 
+;; Tab settings
+(setq indent-tabs-mode nil)
+(setq tab-width 2)
+
 ;; Enable copy paste
 (setq x-select-enable-clipboard t)
 
@@ -188,7 +192,11 @@
 
 ;; Web mode
 (use-package web-mode
-  :ensure t)
+  :ensure t
+  :custom
+  (web-mode-markup-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-code-indent-offset 2))
 
 ;; LSP
 (use-package lsp-mode
@@ -220,6 +228,17 @@
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'add-node-modules-path)
   (add-hook 'web-mode-hook 'prettier-js-mode))
+
+;; Slime
+(use-package slime
+  :ensure t)
+(setq inferior-lisp-program "sbcl")
+;; Mac OSX owns C-up and C-down, so arrange for history
+;; navigation to do something useful via C-c p and C-c n.
+(eval-after-load 'slime
+  `(progn
+     (define-key slime-prefix-map "p" 'slime-repl-backward-input)
+     (define-key slime-prefix-map "n" 'slime-reply-forward-input)))
 
 ;; Markdown
 (use-package markdown-mode
@@ -372,11 +391,22 @@
    "\""  'split-window-below
    "%"   'split-window-right
    "TAB" 'toggle-buffers
+   
+   "T" 'counsel-load-theme
 
-   "p" 'projectile-command-map
-   "pp" 'projectile-persp-switch-project
-   "pf" 'counsel-projectile-find-file
-   "pt" 'neotree-project-dir
+   "a RET" 'emms-smart-browse
+   "a SPC" 'emms-pause
+   "a e" 'emms
+   "a" '(:ignore t :which-key "Applications")
+   "am" '(:ignore t :which-key "Music")
+   "amb" 'emms-browser
+   "amd" 'emms-play-directory
+   "amn" 'emms-next
+   "amo" 'emms-show
+   "amp" 'emms-previous
+   "amr" 'emms-random
+   "ar" 'elfeed
+   "at" 'eshell
 
    "b" '(:ignore t :which-key "Buffers")
    "bb"  'ivy-switch-buffer
@@ -384,68 +414,56 @@
    "be" 'eval-buffer
    "bh" 'switch-to-dashboard
 
-   "w" '(:ignore t :which-key "Window")
-   "wl"  'windmove-right
-   "wh"  'windmove-left
-   "wk"  'windmove-up
-   "wj"  'windmove-down
-   "w-"  'split-window-below
-   "w/"  'split-window-right
-   "wd"  'delete-window
-   "ww"  'evil-window-next
-
-   "a" '(:ignore t :which-key "Applications")
-   "at" 'eshell
-
-   "s" '(:ignore t :which-key "Search")
-   "sc" 'evil-ex-nohighlight
-   "sl" 'ivy-resume
-
-   "t" '(:ignore t :which-key "Toggles")
-   "tn" 'display-line-numbers-mode
-   "tl" 'toggle-truncate-lines
-
-   "T" 'counsel-load-theme
-   
-   "x" '(:ignore t :which-key "Text")
-   "xl" '(:ignore t :which-key "Lines")
-   "xls" 'sort-lines
-   
-   "g" '(:ignore t :which-key "Code?")
-   "gc" 'evilnc-comment-or-uncomment-lines
-   "gs" 'magit-status
-   "gh" 'switch-git-personal
-   "gw" 'switch-git-work
+   "c" '(:ignore t :which-key "Comment")
+   "cl" 'comment-line
 
    "d" '(:ignore t :which-key "Comments")
    "df" 'js-doc-insert-function-doc
    "dm" 'js-doc-insert-file-doc
 
-   "fs" 'save-buffer
    "ff" 'counsel-find-file
    "fr" 'counsel-recentf
+   "fs" 'save-buffer
 
-   "qr" '(kill-emacs 123)
-   "qq" '(kill-emacs)
-
-   "am" '(:ignore t :which-key "Music")
-   "amd" 'emms-play-directory
-   "amb" 'emms-browser
-   "amo" 'emms-show
-   "amn" 'emms-next
-   "amp" 'emms-previous
-   "a SPC" 'emms-pause
-   "a RET" 'emms-smart-browse
-   "a e" 'emms
-   "amr" 'emms-random
-   "ar" 'elfeed
-
-   "c" '(:ignore t :which-key "Comment")
-   "cl" 'comment-line
-
+   "g" '(:ignore t :which-key "Code?")
+   "gc" 'evilnc-comment-or-uncomment-lines
+   "gh" 'switch-git-personal
+   "gs" 'magit-status
+   "gw" 'switch-git-work
+   
    "o" '(:ignore t : which-key "Org-Mode")
    "oa" 'org-agenda
    "oc" 'org-capture
+
+   "p" 'projectile-command-map
+   "pf" 'counsel-projectile-find-file
+   "pp" 'projectile-persp-switch-project
+   "pt" 'neotree-project-dir
+
+   "qq" '(kill-emacs)
+   "qr" '(kill-emacs 123)
+
+   "s" '(:ignore t :which-key "Slime")
+   "ss" 'slime
+   "sl" 'slime-load-file
+
+   "t" '(:ignore t :which-key "Toggles")
+   "tl" 'toggle-truncate-lines
+   "tn" 'display-line-numbers-mode
+
+   "w" '(:ignore t :which-key "Window")
+   "w-"  'split-window-below
+   "w/"  'split-window-right
+   "wd"  'delete-window
+   "wh"  'windmove-left
+   "wj"  'windmove-down
+   "wk"  'windmove-up
+   "wl"  'windmove-right
+   "ww"  'evil-window-next
+
+   "x" '(:ignore t :which-key "Text")
+   "xl" '(:ignore t :which-key "Lines")
+   "xls" 'sort-lines
    )
   (general-define-key
    :states '(visual)
