@@ -332,6 +332,17 @@
 	"https://alistapart.com/main/feed/"
 	))
 
+;; plantuml
+(use-package plantuml-mode
+  :ensure t)
+;; Sample jar configuration
+(setq plantuml-jar-path "~/plantuml.jar")
+(setq org-plantuml-jar-path "~/plantuml.jar")
+(setq plantuml-default-exec-mode 'jar)
+;; Enable plantuml for org-mode
+(add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+(org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+
 ; Edit this config
 (defun edit-emacs-configuration ()
   "Edit Emacs configuration."
