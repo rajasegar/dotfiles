@@ -343,6 +343,13 @@
 (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
 (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
+;; emmet-mode
+(use-package emmet-mode
+  :ensure t
+  :init
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'css-mode-hook 'emmet-mode))
+
 ; Edit this config
 (defun edit-emacs-configuration ()
   "Edit Emacs configuration."
