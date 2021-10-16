@@ -25,6 +25,10 @@
 ;; Tab settings
 (setq indent-tabs-mode nil)
 (setq tab-width 2)
+(setq js-indent-level 2)
+
+;; Eshell case insensitive glob
+(setq eshell-cmpl-ignore-case t)
 
 ;; Enable copy paste
 (setq x-select-enable-clipboard t)
@@ -350,6 +354,15 @@
   (add-hook 'sgml-mode-hook 'emmet-mode)
   (add-hook 'css-mode-hook 'emmet-mode))
 
+(use-package perspective
+  :demand t
+  :custom
+  (persp-initial-frame-name "Main")
+  :config
+  ;; Running `persp-mode' multiple times resets the perspective list...
+  (unless (equal persp-mode t)
+    (persp-mode)))
+
 ; Edit this config
 (defun edit-emacs-configuration ()
   "Edit Emacs configuration."
@@ -375,6 +388,11 @@
   "Switch to work Github profile."
   (interactive)
   (shell-command "ssh-add -D && ssh-add ~/.ssh/id_ed25519 && ssh -T git@github.com"))
+
+(defun open-new-eshell ()
+  "Open new eshell instance everytime"
+  (interactive)
+  (eshell 'N))
 
 ;; Keybindings
 (use-package key-chord
@@ -424,7 +442,7 @@
    "amp" 'emms-previous
    "amr" 'emms-random
    "ar" 'elfeed
-   "at" 'eshell
+   "at" 'open-new-eshell
 
    "b" '(:ignore t :which-key "Buffers")
    "bb"  'ivy-switch-buffer
@@ -449,9 +467,15 @@
    "gs" 'magit-status
    "gw" 'switch-git-work
    
+   "l" '(:ignore t :whick-key "Perspective")
+   "ll" 'persp-switch
+   "ln" 'persp-next
+   "lp" 'persp-prev
+
    "o" '(:ignore t : which-key "Org-Mode")
    "oa" 'org-agenda
    "oc" 'org-capture
+   "ot" 'org-toggle-link-display
 
    "p" 'projectile-command-map
    "pf" 'counsel-projectile-find-file
