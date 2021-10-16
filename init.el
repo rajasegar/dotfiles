@@ -101,7 +101,12 @@
 
 ;; Neotree
 (use-package neotree
-  :ensure t)
+  :ensure t
+  :config
+  ;; Disable line-numbers minor mode for neotree
+  (add-hook 'neo-after-create-hook
+            (lambda (&rest _) (display-line-numbers-mode -1))))
+
 (global-set-key [f8] 'neotree-toggle)
 
 (defun neotree-project-dir ()
