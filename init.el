@@ -107,8 +107,6 @@
   (add-hook 'neo-after-create-hook
             (lambda (&rest _) (display-line-numbers-mode -1))))
 
-(global-set-key [f8] 'neotree-toggle)
-
 (defun neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
@@ -122,14 +120,25 @@
                 (neotree-find file-name)))
         (message "Could not find git project root."))))
 
-(global-set-key [f8] 'neotree-project-dir)
-
 ;; Ignore files in neotree
 (setq neo-hidden-regexp-list
     '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" ;; defaults
       ;; add yours:
       "node_modules"))
 
+;; all-the-icons
+(use-package all-the-icons
+  :ensure t)
+
+;; all-the-icons-dired
+(use-package all-the-icons-dired
+  :ensure t)
+
+;; Use icons in neotree
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+;; Use icons in dired mode
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 ;; Which Key
 (use-package which-key
@@ -476,6 +485,7 @@
    "ll" 'persp-switch
    "ln" 'persp-next
    "lp" 'persp-prev
+   "lk" 'persp-kill
 
    "o" '(:ignore t : which-key "Org-Mode")
    "oa" 'org-agenda
