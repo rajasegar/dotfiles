@@ -116,7 +116,6 @@
   ;; Disable line-numbers minor mode for neotree
   (add-hook 'neo-after-create-hook
             (lambda (&rest _) (display-line-numbers-mode -1))))
-(global-set-key [f8] 'neotree-toggle)
 
 (defun neotree-project-dir ()
     "Open NeoTree using the git root."
@@ -131,17 +130,25 @@
                 (neotree-find file-name)))
         (message "Could not find git project root."))))
 
-(global-set-key [f8] 'neotree-project-dir)
-
 ;; Ignore files in neotree
 (setq neo-hidden-regexp-list
     '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" ;; defaults
       ;; add yours:
       "node_modules"))
 
-;; Icons for netore
+;; all-the-icons
+(use-package all-the-icons
+  :ensure t)
+
+;; all-the-icons-dired
+(use-package all-the-icons-dired
+  :ensure t)
+
+;; Use icons in neotree
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
+;; Use icons in dired mode
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 ;; Which Key
 (use-package which-key
@@ -400,13 +407,6 @@
   (interactive)
   (eshell 'N))
 
-(defun beautify-json ()
-  (interactive)
-  (let ((b (if mark-active (min (point) (mark)) (point-min)))
-        (e (if mark-active (max (point) (mark)) (point-max))))
-    (shell-command-on-region b e
-     "python -mjson.tool" (current-buffer) t)))
-
 ;; Keybindings
 (use-package key-chord
   :ensure t
@@ -485,7 +485,6 @@
    "ln" 'persp-next
    "lp" 'persp-prev
    "lk" 'persp-kill
-   
    "o" '(:ignore t : which-key "Org-Mode")
    "oa" 'org-agenda
    "oc" 'org-capture
