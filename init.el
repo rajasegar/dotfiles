@@ -22,8 +22,12 @@
 (setq initial-scratch-message "")
 (setq word-wrap t)
 
+;; Start full screen and maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; Tab settings
 (setq indent-tabs-mode nil)
+(setq evil-indent-convert-tabs nil)
 (setq tab-width 2)
 (setq js-indent-level 2)
 
@@ -48,6 +52,11 @@
 ;; Set relative line numbers
 (setq display-line-numbers-type 'relative)
 
+;; Disable line numbers for some modes
+(dolist (mode '(term-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
 ;; Package Management
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -64,8 +73,9 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+    (exec-path-from-shell-initialize))
+
+(exec-path-from-shell-copy-env "PATH")
 
 ;; Vim mode
 (use-package evil
@@ -90,8 +100,8 @@
 (menu-bar-mode   -1)
 
 ;; Font
-(add-to-list 'default-frame-alist '(font . "Monaco-14" ))
-(set-face-attribute 'default t :font "Monaco-14" )
+(add-to-list 'default-frame-alist '(font . "Monaco-16" ))
+(set-face-attribute 'default t :font "Monaco-16" )
 
 ;; Themes
 (use-package doom-themes
@@ -106,7 +116,6 @@
   ;; Disable line-numbers minor mode for neotree
   (add-hook 'neo-after-create-hook
             (lambda (&rest _) (display-line-numbers-mode -1))))
-
 (global-set-key [f8] 'neotree-toggle)
 
 (defun neotree-project-dir ()
@@ -129,6 +138,9 @@
     '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" ;; defaults
       ;; add yours:
       "node_modules"))
+
+;; Icons for netore
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
 
 ;; Which Key
@@ -158,11 +170,13 @@
 
 ;; Powerline
 (use-package powerline
-  :ensure t)
-(powerline-default-theme)
+  :ensure t
+  :config
+    (powerline-default-theme))
 (use-package airline-themes
-  :ensure t)
-(load-theme 'airline-dark t)
+  :ensure t
+  :config
+    (load-theme 'airline-dark t))
 
 (use-package company
   :ensure t
@@ -183,15 +197,15 @@
   (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode)))
 
 ;; Skewer
-(use-package simple-httpd
-  :ensure t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+;; (use-package simple-httpd
+;;   :ensure t
+;;   :init
+;;   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
 
-(use-package skewer-mode
-  :ensure t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+;; (use-package skewer-mode
+;;   :ensure t
+;;   :init
+;;   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
   
 ;; Javascript
 (use-package js2-mode 
@@ -203,29 +217,27 @@
 (use-package web-mode
   :ensure t
   :custom
-  (web-mode-markup-indent-offset 2)
-  (web-mode-css-indent-offset 2)
-  (web-mode-code-indent-offset 2))
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  :init
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode)))
 
 ;; LSP
 (use-package lsp-mode
   :ensure t
   :hook (
 	 (js2-mode . lsp-deferred)
+	 (typescript-mode . lsp-deferred)
 	 (web-mode . lsp-deferred)
 	 (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp-deferred)
 ;; LSP performance
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
-
-
-;; TSX
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-
-;; JSX
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-
+(setq lsp-disabled-clients '(eslint))
 (use-package add-node-modules-path
   :ensure t)
 
@@ -239,15 +251,16 @@
   (add-hook 'web-mode-hook 'prettier-js-mode))
 
 ;; Slime
-(use-package slime
-  :ensure t)
-(setq inferior-lisp-program "sbcl")
+;; (use-package slime
+;;   :ensure t)
+;; (setq inferior-lisp-program "sbcl")
+
 ;; Mac OSX owns C-up and C-down, so arrange for history
 ;; navigation to do something useful via C-c p and C-c n.
-(eval-after-load 'slime
-  `(progn
-     (define-key slime-prefix-map "p" 'slime-repl-backward-input)
-     (define-key slime-prefix-map "n" 'slime-reply-forward-input)))
+;; (eval-after-load 'slime
+;;   `(progn
+;;      (define-key slime-prefix-map "p" 'slime-repl-backward-input)
+;;      (define-key slime-prefix-map "n" 'slime-reply-forward-input)))
 
 ;; Markdown
 (use-package markdown-mode
@@ -264,18 +277,14 @@
 (use-package counsel
   :ensure t)
 
-
-;; Code commenting
-(use-package evil-nerd-commenter :ensure t)
-
 ;; Magit
-(use-package magit :ensure t)
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status)))
 (use-package git-gutter :ensure t)
 (global-git-gutter-mode +1)
 
 ;; Startup screen with dashboard
-(use-package page-break-lines
-  :ensure t)
 (use-package dashboard
   :ensure t
   :config
@@ -303,6 +312,7 @@
   :ensure t
   :config
   (persp-mode))
+
 (use-package persp-projectile
   :ensure t)
 
@@ -312,26 +322,10 @@
   :config
   (global-evil-surround-mode 1))
 
-;; EMMS
-(use-package emms
-  :ensure t)
-(setq exec-path (append exec-path '("/usr/local/bin")))
-
-(require 'emms-setup)
-(require 'emms-player-mplayer)
-(emms-standard)
-(emms-default-players)
-(define-emms-simple-player mplayer '(file url)
-  (regexp-opt '(".ogg" ".mp3" ".wav" ".mpg" ".mpeg" ".wmv" ".wma"
-                ".mov" ".avi" ".divx" ".ogm" ".asf" ".mkv" "http://" "mms://"
-                ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
-  "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
-(require 'emms-history)
-(emms-history-load)
-
 ;; elfeed
 (use-package elfeed
-  :ensure t)
+  :ensure t
+  :bind (("C-c e" . elfeed)))
 
 (setq elfeed-feeds
       '("https://css-tricks.com/feed/"
@@ -343,7 +337,10 @@
 
 ;; plantuml
 (use-package plantuml-mode
-  :ensure t)
+  :ensure t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.pum\\'" . plantuml-mode)))
+
 ;; Sample jar configuration
 (setq plantuml-jar-path "~/plantuml.jar")
 (setq org-plantuml-jar-path "~/plantuml.jar")
@@ -359,14 +356,18 @@
   (add-hook 'sgml-mode-hook 'emmet-mode)
   (add-hook 'css-mode-hook 'emmet-mode))
 
-(use-package perspective
-  :demand t
-  :custom
-  (persp-initial-frame-name "Main")
-  :config
-  ;; Running `persp-mode' multiple times resets the perspective list...
-  (unless (equal persp-mode t)
-    (persp-mode)))
+;; all the icons
+(use-package all-the-icons)
+(load "~/.emacs.d/elpa/all-the-icons-dired-20211007.1729/all-the-icons-dired-20211007.1729.el")
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+
+;; human readable file sizes
+(setq dired-listing-switches "-aoglh")
+
+;; rainbow delimiters
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 ; Edit this config
 (defun edit-emacs-configuration ()
@@ -478,16 +479,16 @@
    "gh" 'switch-git-personal
    "gs" 'magit-status
    "gw" 'switch-git-work
-   
+
    "l" '(:ignore t :whick-key "Perspective")
    "ll" 'persp-switch
    "ln" 'persp-next
    "lp" 'persp-prev
-
+   "lk" 'persp-kill
+   
    "o" '(:ignore t : which-key "Org-Mode")
    "oa" 'org-agenda
    "oc" 'org-capture
-   "ot" 'org-toggle-link-display
 
    "p" 'projectile-command-map
    "pf" 'counsel-projectile-find-file
