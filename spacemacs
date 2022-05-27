@@ -468,7 +468,20 @@ you should place your code here."
                   ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
     "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
 
-
+  ;; Setup emms key bindings
+  (global-set-key [(f7)] 'emms-smart-browse)
+  (spacemacs/declare-prefix "am" "music")
+  (spacemacs/declare-prefix "ame" "EMMS")
+  (spacemacs/set-leader-keys
+    "amed" 'emms-play-directory
+    "ameb" 'emms-browser
+    "ameo" 'emms-show
+    "amn" 'emms-next
+    "amp" 'emms-previous
+    "a SPC" 'emms-pause
+    "a RET" 'emms-smart-browse
+    "a e" 'emms
+    )
 
 
   )
