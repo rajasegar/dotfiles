@@ -43,6 +43,13 @@ set relativenumber
 set thesaurus+=~/thesaurus.txt
 set encoding=UTF-8
 
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+
 map Y y$
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -59,7 +66,7 @@ Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
-Plug 'joshdick/onedark.vim'
+Plug 'navarasu/onedark.nvim'
 Plug 'tpope/vim-repeat'
 Plug 'plasticboy/vim-markdown', { 'for': 'md' }
 Plug 'christoomey/vim-tmux-navigator'
@@ -86,20 +93,19 @@ nnoremap <C-l> :bnext<CR>
 nnoremap <C-h> :bprev<CR>
 
 " fugitive git mappings
-nnoremap <space>gs :Gstatus<CR> 
-nnoremap <space>gp :Gpush<CR>
-nnoremap <space>gf :Gpull<CR>
-nnoremap <space>gb :Gblame<CR>
+nnoremap <space>gs :Git<CR> 
+nnoremap <space>gp :Git push<CR>
+nnoremap <space>gf :Git pull<CR>
+nnoremap <space>gb :Git blame<CR>
 nnoremap <space>gc :Git checkout<Space>
-nnoremap <space>gu :Gpush -u origin <Space>
-nnoremap <space>gl :Glog<CR>
+nnoremap <space>gu :Git push -u origin <Space>
+nnoremap <space>gl :Git log<CR>
 
 nnoremap <leader>el :lopen<CR>
 nnoremap <leader>ec :lclose<CR>
 
 nnoremap <leader>fed :tabe ~/.vimrc<CR>
 nnoremap <leader>feR :source %<CR>
-nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>bs :tabe scratch<CR>
 nnoremap <space>fr :History<CR>
 
@@ -107,13 +113,13 @@ nnoremap <space>fr :History<CR>
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff :Telescope find_files<cr>
 nnoremap <leader>fg :Telescope live_grep<cr>
-nnoremap <leader>fb :Telescope buffers<cr>
+nnoremap <leader>bb :Telescope buffers<cr>
 nnoremap <leader>fh :Telescope help_tags<cr>
 
 map <space>pt :NERDTreeToggle<CR>
 
 syntax enable
-set background=dark
+"set background=dark
 
 colorscheme onedark 
 
@@ -124,21 +130,22 @@ let NERDTreeMapActivateNode = "l"
 let NERDTreeMapCloseDir = "h"
 let NERDTreeIgnore=['node_modules','bower_components','tmp']
 
-"NERDTree File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='.  a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'.  a:extension .'$#'
-endfunction
 
-call NERDTreeHighlightFile('hbs', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+"NERDTree File highlighting
+"function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+"  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='.  a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+"  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'.  a:extension .'$#'
+"endfunction
+
+"call NERDTreeHighlightFile('hbs', 'green', 'none', 'green', '#151515')
+"call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+"call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+"call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 
 
 
@@ -221,7 +228,3 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
