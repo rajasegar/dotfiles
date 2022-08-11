@@ -163,6 +163,10 @@
   :ensure t
   :init (org-mode))
 
+;; Org tempo
+(use-package org-tempo
+  :ensure t)
+
 ;; Powerline
 (use-package powerline
   :ensure t
