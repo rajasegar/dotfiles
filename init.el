@@ -141,23 +141,6 @@
 (org-babel-do-load-languages 'org-babel-load-languages
     '((shell . t)))
 
-;; (use-package lsp-ui
-;;   :ensure t
-;;   :requires lsp-mode flycheck
-;;   :config
-;;   (setq lsp-ui-doc-enable t
-;;   	lsp-ui-doc-use-childframe nil
-;;   	lsp-ui-doc-position 'top
-;;   	lsp-ui-doc-include-signature t
-;;   	lsp-ui-sideline-enable nil
-;;   	lsp-ui-flycheck-enable t
-;;   	lsp-ui-flycheck-list-position 'right
-;;   	lsp-ui-flycheck-live-reporting t
-;;   	lsp-ui-peek-enable t
-;;   	lsp-ui-peek-list-width 60
-;;   	lsp-ui-peek-peek-height 25)
-;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
 ;; Org mode enhancements
 (use-package org-bullets
   :ensure t
@@ -194,39 +177,24 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode)))
 
-;; ;; epub
-;; (use-package nov
-;;   :ensure t
-;;   :init
-;;   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
-
-;; ;; visual-fill-column for epub files
-;; (use-package visual-fill-column
-;;   :ensure t
-;;   :init
-;;   (add-hook 'visual-line-mode-hook #'visual-fill-column-mode))
-
 (setq nov-text-width t)
 (setq visual-fill-column-center-text t)
 (add-hook 'nov-mode-hook 'visual-line-mode)
 (add-hook 'nov-mode-hook 'visual-fill-column-mode)
 
-;; Skewer
-;; (use-package simple-httpd
-;;   :ensure t
-;;   :init
-;;   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
-
-;; (use-package skewer-mode
-;;   :ensure t
-;;   :init
-;;   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
-  
 ;; Javascript
 (use-package js2-mode 
   :ensure t
   :init
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+
+;; Tree-sitter
+(use-package tree-sitter
+	:ensure t)
+(use-package tree-sitter-langs
+	:ensure t)
+(add-hook 'js2-mode-hook #'tree-sitter-hl-mode)
+
 (use-package rjsx-mode
   :ensure t
   :init
@@ -234,19 +202,11 @@
   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode)))
 
-;; LSP
-(use-package lsp-mode
-  :ensure t
-  :hook (
-	 (js2-mode . lsp-deferred)
-	 (typescript-mode . lsp-deferred)
-	 (web-mode . lsp-deferred)
-	 (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp-deferred)
-;; LSP performance
-(setq gc-cons-threshold 100000000)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
-(setq lsp-disabled-clients '(eslint))
+;; eglot
+(use-package eglot
+	:ensure t)
+(add-hook 'js2-mode-hook 'eglot-ensure)
+
 (use-package add-node-modules-path
   :ensure t)
 
