@@ -28,24 +28,22 @@ $ rcup -v
 
 ## Tools you need
 
-### vim
-You need vim 8.0 or newer version
-
-or 
-
 ### NeoVim
 Install [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 
-### vim-plug
-For managing vim plugins
+### packer.nvim
+For managing Neovim plugins
 
-Install [vim-plug](https://github.com/junegunn/vim-plug) using :
 
-```sh
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+To get started, first clone this repository to somewhere on your `packpath`, e.g.:
+
+> Unix, Linux Installation
+```shell
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
+
 
 ### tmux
 https://github.com/tmux/tmux/wiki
