@@ -36,7 +36,7 @@ Install [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 For managing Neovim plugins
 
 
-To get started, first clone this repository to somewhere on your `packpath`, e.g.:
+To get started, first clone this [repository](https://github.com/wbthomason/packer.nvim) to somewhere on your `packpath`, e.g.:
 
 > Unix, Linux Installation
 ```shell
