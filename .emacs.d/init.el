@@ -187,9 +187,11 @@
 
 (use-package company
   :ensure t
-  :init
-  (add-hook 'after-init-hook 'global-company-mode))
-(setq company-idle-delay 0.0)
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
 
 ;; yaml
 (use-package yaml-mode
@@ -203,17 +205,6 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode)))
 
-;; Skewer
-;; (use-package simple-httpd
-;;   :ensure t
-;;   :init
-;;   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
-
-;; (use-package skewer-mode
-;;   :ensure t
-;;   :init
-;;   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
-  
 ;; Javascript
 (use-package js2-mode 
   :ensure t
@@ -232,6 +223,7 @@
   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode)))
 
+
 ;; LSP
 (use-package lsp-mode
   :ensure t
@@ -239,14 +231,29 @@
 	 (js2-mode . lsp-deferred)
 	 (typescript-mode . lsp-deferred)
 	 (web-mode . lsp-deferred)
+	 (css-mode . lsp-deferred)
 	 (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp-deferred)
+  :commands lsp-deferred
+  :config
+  (lsp-enable-which-key-integration t))
+
 ;; LSP performance
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 (setq lsp-disabled-clients '(eslint))
 (use-package add-node-modules-path
   :ensure t)
+
+(use-package lsp-ui
+  :ensure t
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-position 'bottom))
+
+;; Svelte
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-language-id-configuration
+    '(".*\\.svelte$" . "svelte")))
 
 (use-package prettier-js
   :ensure t
@@ -329,19 +336,6 @@
   :config
   (global-evil-surround-mode 1))
 
-;; elfeed
-(use-package elfeed
-  :ensure t
-  :bind (("C-c e" . elfeed)))
-
-(setq elfeed-feeds
-      '("https://css-tricks.com/feed/"
-	"https://dev.to/feed"
-	"https://hnrss.org/frontpage"
-	"https://www.smashingmagazine.com/feed"
-	"https://alistapart.com/main/feed/"
-	))
-
 ;; plantuml
 (use-package plantuml-mode
   :ensure t
@@ -362,11 +356,6 @@
   :init
   (add-hook 'sgml-mode-hook 'emmet-mode)
   (add-hook 'css-mode-hook 'emmet-mode))
-
-;; all the icons
-(use-package all-the-icons)
-(load "~/.emacs.d/elpa/all-the-icons-dired-20211007.1729/all-the-icons-dired-20211007.1729.el")
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 ;; human readable file sizes
 (setq dired-listing-switches "-aoglh")
