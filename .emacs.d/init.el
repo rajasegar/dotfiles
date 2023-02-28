@@ -54,7 +54,8 @@
 
 ;; Disable line numbers for some modes
 (dolist (mode '(term-mode-hook
-                eshell-mode-hook))
+                eshell-mode-hook
+                org-present-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Package Management
@@ -364,6 +365,40 @@
 (use-package rainbow-delimiters
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
+
+;; Visual fill column for center alignment
+(use-package visual-fill-column
+  :ensure t)
+
+;; Configure fill width
+(setq visual-fill-column-width 110)
+(setq-default visual-fill-column-center-text t)
+
+;; Org present
+(use-package org-present
+  :ensure t)
+
+;; Turn off actual image width for org mode
+(setq org-image-actual-width nil)
+
+(eval-after-load "org-present"
+  '(progn
+     (add-hook 'org-present-mode-hook
+               (lambda ()
+                 (org-present-big)
+                 (org-display-inline-images)
+                 (org-present-hide-cursor)
+                 (org-present-read-only)
+                 (visual-fill-column-mode 1)
+                 (visual-line-mode 1)))
+     (add-hook 'org-present-mode-quit-hook
+               (lambda ()
+                 (org-present-small)
+                 (org-remove-inline-images)
+                 (org-present-show-cursor)
+                 (org-present-read-write)
+                 (visual-fill-column-mode 0)
+                 (visual-line-mode 0)))))
 
 ; Edit this config
 (defun edit-emacs-configuration ()
