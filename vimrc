@@ -6,7 +6,6 @@ filetype indent plugin on
 " Enable syntax highlighting
 syntax on
  
- 
 set nocompatible
 set hidden
 set noswapfile
@@ -33,7 +32,6 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoread
-set rtp+=~/.fzf
 set wildignore+=*/tmp/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip
 set title
 set clipboard=unnamed
@@ -45,8 +43,14 @@ set relativenumber
 set thesaurus+=~/thesaurus.txt
 set encoding=UTF-8
 
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+
 map Y y$
- 
 
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -62,35 +66,33 @@ Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
-Plug 'joshdick/onedark.vim'
-Plug 'honza/vim-snippets'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'navarasu/onedark.nvim'
 Plug 'tpope/vim-repeat'
-Plug 'mustache/vim-mustache-handlebars', { 'for': 'hbs' }
-Plug 'AndrewRadev/ember_tools.vim'
 Plug 'plasticboy/vim-markdown', { 'for': 'md' }
-Plug 'heavenshell/vim-jsdoc', { 'for': 'js' }
-Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
-Plug 'rajasegar/vim-search-web'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'mhinz/vim-startify'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'vimwiki/vimwiki'
 Plug 'ryanoasis/vim-devicons'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'rajasegar/vim-pnpm'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'aklt/plantuml-syntax'
+Plug 'tyru/open-browser.vim'
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'jamessan/vim-gnupg'
+Plug 'ziglang/zig.vim'
 call plug#end()
 
-
+set completeopt=menu,menuone,noselect
 
 " On OSX
 vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
 nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 
 let mapleader = " "
-"nmap <silent> <space>ww :wincmd w<CR>
+nmap <silent> <space>ww :wincmd w<CR>
 nmap <silent> <space><tab> :bn<CR>
 nmap <silent> <space>bd :bdelete<CR>
 nmap <silent> <space>fs :w<CR>
@@ -101,38 +103,33 @@ nnoremap <C-l> :bnext<CR>
 nnoremap <C-h> :bprev<CR>
 
 " fugitive git mappings
-
-nnoremap <space>gs :Gstatus<CR> 
-nnoremap <space>gp :Gpush<CR>
-nnoremap <space>gf :Gpull<CR>
-nnoremap <space>gb :Gblame<CR>
+nnoremap <space>gs :Git<CR> 
+nnoremap <space>gp :Git push<CR>
+nnoremap <space>gf :Git pull<CR>
+nnoremap <space>gb :Git blame<CR>
 nnoremap <space>gc :Git checkout<Space>
-nnoremap <space>gu :Gpush -u origin <Space>
-nnoremap <space>gl :Glog<CR>
-
+nnoremap <space>gu :Git push -u origin <Space>
+nnoremap <space>gl :Git log<CR>
 
 nnoremap <leader>el :lopen<CR>
 nnoremap <leader>ec :lclose<CR>
 
 nnoremap <leader>fed :tabe ~/.vimrc<CR>
 nnoremap <leader>feR :source %<CR>
-"nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>bs :tabe scratch<CR>
 nnoremap <space>fr :History<CR>
 
-" FZF mappings
-nnoremap <silent> <leader>/ :Ag!<CR>
-"nnoremap <space>ff :FZF -m<CR>
-nnoremap <space>ff :find <Space>
-"nnoremap <space>pf :GFiles<CR>
 
-
-nnoremap <leader>bb :b <Space>
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff :Telescope find_files<cr>
+nnoremap <leader>fg :Telescope live_grep<cr>
+nnoremap <leader>bb :Telescope buffers<cr>
+nnoremap <leader>fh :Telescope help_tags<cr>
 
 map <space>pt :NERDTreeToggle<CR>
 
 syntax enable
-set background=dark
+"set background=dark
 
 colorscheme onedark 
 
@@ -143,21 +140,22 @@ let NERDTreeMapActivateNode = "l"
 let NERDTreeMapCloseDir = "h"
 let NERDTreeIgnore=['node_modules','bower_components','tmp']
 
+
 "NERDTree File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='.  a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
   exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'.  a:extension .'$#'
 endfunction
 
-call NERDTreeHighlightFile('hbs', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('hbs', 'green', 'none', 'green', '#282c34')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#282c34')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#282c34')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#282c34')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#282c34')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#282c34')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#282c34')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#282c34')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#282c34')
 
 
 
@@ -173,16 +171,9 @@ let g:airline_solarized_bg='dark'
 
 " Ale config
 let g:ale_fixers = {  'javascript': ['eslint', 'prettier']  }
-"let g:ale_fixers = {  'javascript': ['eslint']  }
 let g:ale_fix_on_save = 1
 let g:ale_linters = {'javascript': ['eslint']}
 
-
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview( {'options': '--literal --delimiter : --nth 4..'},'up:60%')
-  \                         : fzf#vim#with_preview( 'right:50%:hidden', '?'),
-  \                 <bang>0)
 
 autocmd Filetype help nnoremap <CR> <C-]>
 autocmd Filetype help nnoremap <BS> <C-T>
@@ -207,11 +198,8 @@ let g:netrw_winsize = 25
 let g:netrw_list_hide = &wildignore
 let g:netrw_preview = 1
 
-
-
 nnoremap ]b :bn<cr>
 nnoremap [b :bp<cr>
-
 
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>
@@ -244,22 +232,30 @@ noremap <silent> <C-Down> :resize -3<CR>
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>K
 
-" change vim-wiki syntax
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-" Disable temporary wiki
-let g:vimwiki_global_ext = 0
+" CoC extensions
+let g:coc_global_extensions = ['coc-tsserver', 'coc-html', 'coc-css']
 
-function! VimwikiFindIncompleteTasks()
-  lvimgrep /- \[ \]/ %:p
-  lopen
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-function! VimwikiFindAllIncompleteTasks()
-  VimwikiSearch /- \[ \]/
-  lopen
-endfunction
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-nmap <Leader>wa :call VimwikiFindAllIncompleteTasks()<CR>
-nmap <Leader>wx :call VimwikiFindIncompleteTasks()<CR>
-
-nnoremap <leader>Pr :PnpmRun <Space>
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)

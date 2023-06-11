@@ -41,37 +41,11 @@ root: ~/
 
 windows:
   - editor:
-      layout: main-vertical
+      layout: even-horizontal
       panes:
-        - vim -o ~/.vimrc ~/.tmux.conf ~/.config/tmuxinator/home.yml
+        - nvim -o ~/.vimrc ~/.tmux.conf ~/.config/tmuxinator/home.yml
         - 
-  - cmus:
-      root: ~/Music/Favs
+  - crayons-playground:
+      root: ~/www/crayons-playground
       panes:
-        - cmus
-  - mpg123:
-      root: ~/Music/Favs
-      panes:
-        - mpg123 *.mp3
-  - ranger:
-      root: ~/Public/www/
-      panes:
-        - ranger
-  - ember-voca:
-      root: ~/Public/www/ember-voca
-      layout: even-horizontal
-      panes:
-        - vim README.md
-        -
-  - vim-pnpm:
-      root: ~/Public/www/vim-pnpm
-      layout: even-horizontal
-      panes:
-        - vim README.md
-        -
-  - gab:
-      root: ~/Public/www/gab
-      layout: even-horizontal
-      panes:
-        - vim README.md
-        -
+        - nvim README.md
