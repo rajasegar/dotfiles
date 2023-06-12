@@ -43,7 +43,7 @@ windows:
   - editor:
       layout: even-horizontal
       panes:
-        - nvim -o ~/.vimrc ~/.tmux.conf ~/.config/tmuxinator/home.yml
+        - nvim ~/.config/nvim/init.lua ~/.tmux.conf ~/.config/tmuxinator/home.yml
         - 
   - crayons-playground:
       root: ~/www/crayons-playground
