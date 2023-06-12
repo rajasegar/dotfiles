@@ -48,10 +48,11 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 ### tmux
 https://github.com/tmux/tmux/wiki
 
-### tmux-powerline
-https://github.com/erikw/tmux-powerline
+### tpm
+Tmux plugin manager
+https://github.com/tmux-plugins/tpm
 
-### tumxinator
+### tmuxinator
 https://github.com/tmuxinator/tmuxinator
 
 Install tmux through ruby, You need ruby 2.4.5 or higher version
@@ -78,3 +79,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
+## Fonts
+Download Hack Nerd Font from here
+[Nerd fonts](https://www.nerdfonts.com/font-downloads)

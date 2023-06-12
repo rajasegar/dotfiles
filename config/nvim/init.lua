@@ -43,6 +43,9 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
+  -- barbar
+  use 'romgrk/barbar.nvim'
+
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
@@ -553,6 +556,33 @@ vim.api.nvim_create_autocmd('FileType', {
   command = 'nmap <buffer> q gq',
   pattern = { 'fugitiveblame', 'fugitive' },
 })
+
+-- Barbar key mappings
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- Move to previous/next
+map('n', '[b', '<Cmd>BufferPrevious<CR>', opts)
+map('n', ']b', '<Cmd>BufferNext<CR>', opts)
+-- Re-order to previous/next
+map('n', '<Space>b<', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<Space>b>', '<Cmd>BufferMoveNext<CR>', opts)
+-- Goto buffer in position...
+map('n', '<Space>b1', '<Cmd>BufferGoto 1<CR>', opts)
+map('n', '<Space>b2', '<Cmd>BufferGoto 2<CR>', opts)
+map('n', '<Space>b0', '<Cmd>BufferLast<CR>', opts)
+-- Close buffer
+map('n', '<Space>bd', '<Cmd>BufferClose<CR>', opts)
+-- Wipeout buffer
+--                 :BufferWipeout
+-- Close commands
+--                 :BufferCloseAllButCurrent
+--                 :BufferCloseAllButPinned
+--                 :BufferCloseAllButCurrentOrPinned
+--                 :BufferCloseBuffersLeft
+--                 :BufferCloseBuffersRight
+-- Magic buffer-picking mode
+map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
 
 
 -- The line beneath this is called `modeline`. See `:help modeline`
