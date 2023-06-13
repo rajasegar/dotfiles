@@ -118,6 +118,9 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- No swap file
 vim.o.swapfile = false
 
+-- Expand tabs
+vim.o.expandtab = true
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
