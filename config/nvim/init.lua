@@ -79,6 +79,23 @@ require('packer').startup(function(use)
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'MunifTanjim/prettier.nvim'
 
+  -- Smart yank
+  use 'ibhagwan/smartyank.nvim'
+
+  -- Octo
+  use {
+    'pwntester/octo.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function ()
+      require"octo".setup()
+    end
+  }
+
+
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -576,16 +593,8 @@ map('n', '<Space>b2', '<Cmd>BufferGoto 2<CR>', opts)
 map('n', '<Space>b0', '<Cmd>BufferLast<CR>', opts)
 -- Close buffer
 map('n', '<Space>bd', '<Cmd>BufferClose<CR>', opts)
--- Wipeout buffer
---                 :BufferWipeout
--- Close commands
---                 :BufferCloseAllButCurrent
---                 :BufferCloseAllButPinned
---                 :BufferCloseAllButCurrentOrPinned
---                 :BufferCloseBuffersLeft
---                 :BufferCloseBuffersRight
--- Magic buffer-picking mode
-map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
+-- Pick buffer
+map('n', 'gb', '<Cmd>BufferPick<CR>', opts)
 
 
 -- The line beneath this is called `modeline`. See `:help modeline`

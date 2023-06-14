@@ -41,9 +41,10 @@ root: ~/
 
 windows:
   - editor:
+      root: ~/.dotfiles
       layout: even-horizontal
       panes:
-        - nvim ~/.config/nvim/init.lua ~/.tmux.conf ~/.config/tmuxinator/home.yml
+        - nvim config/nvim/init.lua
         - 
   - unity-frontend:
       root: ~/Code/unity_frontend
