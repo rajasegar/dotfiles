@@ -43,9 +43,21 @@ windows:
   - editor:
       layout: even-horizontal
       panes:
-        - nvim -o ~/.vimrc ~/.tmux.conf ~/.config/tmuxinator/home.yml
+        - nvim -o ~/.config/nvim/init.lua ~/.tmux.conf ~/.config/tmuxinator/home.yml
         - 
-  - crayons-playground:
-      root: ~/www/crayons-playground
+  - unity-frontend:
+      root: ~/Code/unity_frontend
+      layout: even-horizontal
+      panes:
+        - nvim README.md
+        - 
+  - helpkit-ember:
+      root: ~/Code/helpkit-ember
+      layout: even-horizontal
+      panes:
+        - nvim README.md
+  - ai-first:
+      root: ~/Code/ai-first
+      layout: even-horizontal
       panes:
         - nvim README.md
