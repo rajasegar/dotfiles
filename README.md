@@ -28,32 +28,31 @@ $ rcup -v
 
 ## Tools you need
 
-### vim
-You need vim 8.0 or newer version
-
-or 
-
 ### NeoVim
 Install [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 
-### vim-plug
-For managing vim plugins
+### packer.nvim
+For managing Neovim plugins
 
-Install [vim-plug](https://github.com/junegunn/vim-plug) using :
 
-```sh
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+To get started, first clone this [repository](https://github.com/wbthomason/packer.nvim) to somewhere on your `packpath`, e.g.:
+
+> Unix, Linux Installation
+```shell
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
+
 
 ### tmux
 https://github.com/tmux/tmux/wiki
 
-### tmux-powerline
-https://github.com/erikw/tmux-powerline
+### tpm
+Tmux plugin manager
+https://github.com/tmux-plugins/tpm
 
-### tumxinator
+### tmuxinator
 https://github.com/tmuxinator/tmuxinator
 
 Install tmux through ruby, You need ruby 2.4.5 or higher version
@@ -80,3 +79,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
+## Fonts
+Download Hack Nerd Font from here
+[Nerd fonts](https://www.nerdfonts.com/font-downloads)

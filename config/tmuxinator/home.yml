@@ -43,7 +43,7 @@ windows:
   - editor:
       layout: even-horizontal
       panes:
-        - nvim -o ~/.config/nvim/init.lua ~/.tmux.conf ~/.config/tmuxinator/home.yml
+        - nvim ~/.config/nvim/init.lua ~/.tmux.conf ~/.config/tmuxinator/home.yml
         - 
   - unity-frontend:
       root: ~/Code/unity_frontend
