@@ -51,7 +51,6 @@ require('lazy').setup({
 
   { -- Additional text objects via treesitter
     'nvim-treesitter/nvim-treesitter-textobjects',
-    after = 'nvim-treesitter',
   },
 
   -- barbar
@@ -84,7 +83,7 @@ require('lazy').setup({
   },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
 
   { "nvim-tree/nvim-web-devicons", lazy = true },
 
@@ -128,6 +127,16 @@ require('lazy').setup({
       require"octo".setup()
     end
   },
+
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = { },
+  }
   
 })
 
@@ -569,21 +578,46 @@ vim.api.nvim_create_autocmd('FileType', {
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
--- Move to previous/next
-map('n', '[b', '<Cmd>BufferPrevious<CR>', opts)
-map('n', ']b', '<Cmd>BufferNext<CR>', opts)
--- Re-order to previous/next
-map('n', '<Space>b<', '<Cmd>BufferMovePrevious<CR>', opts)
-map('n', '<Space>b>', '<Cmd>BufferMoveNext<CR>', opts)
--- Goto buffer in position...
-map('n', '<Space>b1', '<Cmd>BufferGoto 1<CR>', opts)
-map('n', '<Space>b2', '<Cmd>BufferGoto 2<CR>', opts)
-map('n', '<Space>b0', '<Cmd>BufferLast<CR>', opts)
--- Close buffer
-map('n', '<Space>bd', '<Cmd>BufferClose<CR>', opts)
--- Pick buffer
-map('n', 'gb', '<Cmd>BufferPick<CR>', opts)
+local nmap = function(keys, func, desc)
+  vim.keymap.set('n', keys, func, { noremap = true, silent = true, desc = desc })
+end
 
+-- Move to previous/next
+nmap('[b', '<Cmd>BufferPrevious<CR>', 'Go to previous buffer')
+nmap(']b', '<Cmd>BufferNext<CR>', 'Go to next buffer')
+-- Re-order to previous/next
+nmap('<Space>b<', '<Cmd>BufferMovePrevious<CR>', 'Move previous buffer')
+nmap('<Space>b>', '<Cmd>BufferMoveNext<CR>', 'Move next buffer')
+-- Goto buffer in position...
+nmap('<Space>b1', '<Cmd>BufferGoto 1<CR>', 'Go to buffer 1')
+nmap('<Space>b2', '<Cmd>BufferGoto 2<CR>', 'Go to buffer 2')
+nmap('<Space>b0', '<Cmd>BufferLast<CR>', 'Go to buffer 3')
+-- Close buffer
+nmap('<Space>bd', '<Cmd>BufferClose<CR>', 'Delete Buffer')
+-- Pick buffer
+nmap('gb', '<Cmd>BufferPick<CR>', 'Pick buffer')
+
+-- Octo key mappings
+nmap('<Space>o','Octo')
+nmap('<Space>op','Pull Requests')
+nmap('<Space>opl','<Cmd>Octo pr list<CR>', 'List pull requests')
+
+nmap('<Space>oi','Issues')
+nmap('<Space>oil','<Cmd>Octo issue list<CR>', 'List issues')
+nmap('<Space>oin','<Cmd>Octo issue create<CR>', 'New issue')
+nmap('<Space>oib','<Cmd>Octo issue browser<CR>', 'Open current issue in the browser')
+nmap('<Space>oiu','<Cmd>Octo issue url<CR>', 'Copies the URL of the current issue to the system clipboard')
+
+local autocmd = function(keys, func, pattern)
+  vim.api.nvim_create_autocmd('FileType', {
+    command = "nmap <buffer> " .. keys .. " " .. func,
+    pattern = pattern,
+  })
+end
+
+autocmd('b','<Cmd>Octo issue browser<CR>', { 'octo' })
+autocmd('u','<Cmd>Octo issue url<CR>', { 'octo' })
+autocmd('q','<Cmd>BufferClose<CR>', { 'octo' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
