@@ -38,7 +38,12 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     -- load cmp on InsertEnter
     event = "InsertEnter",
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    dependencies = { 'hrsh7th/cmp-nvim-lsp', 
+      {
+        'L3MON4D3/LuaSnip',
+        dependencies = { "rafamadriz/friendly-snippets" }
+      }, 
+      'saadparwaiz1/cmp_luasnip' },
   },
 
   -- Highlight, edit, and navigate code
@@ -57,8 +62,10 @@ require('lazy').setup({
   'romgrk/barbar.nvim',
 
   -- Git related plugins
+  {
   'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
+    cmd = "Git"
+  },
   'lewis6991/gitsigns.nvim',
 
   {
@@ -72,7 +79,14 @@ require('lazy').setup({
   },
   'nvim-lualine/lualine.nvim', -- Fancier statusline
   'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
+  {
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
+    event = "BufReadPost",
+    config = function()
+      -- Enable Comment.nvim
+      require('Comment').setup()
+    end,
+  },
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
@@ -118,6 +132,7 @@ require('lazy').setup({
   -- Octo
   {
     'pwntester/octo.nvim',
+    cmd = "Octo",
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
@@ -215,8 +230,6 @@ require('lualine').setup {
   },
 }
 
--- Enable Comment.nvim
-require('Comment').setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
@@ -481,6 +494,10 @@ cmp.setup {
   },
 }
 
+
+-- load snippets from path/of/your/nvim/config/my-cool-snippets
+require("luasnip.loaders.from_vscode").lazy_load()
+
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -610,14 +627,17 @@ nmap('<Space>oiu','<Cmd>Octo issue url<CR>', 'Copies the URL of the current issu
 
 local autocmd = function(keys, func, pattern)
   vim.api.nvim_create_autocmd('FileType', {
-    command = "nmap <buffer> " .. keys .. " " .. func,
+    command = "nmap <buffer> " .. keys .. " " .. "<Cmd>" .. func .. "<CR>",
     pattern = pattern,
   })
 end
 
-autocmd('b','<Cmd>Octo issue browser<CR>', { 'octo' })
-autocmd('u','<Cmd>Octo issue url<CR>', { 'octo' })
-autocmd('q','<Cmd>BufferClose<CR>', { 'octo' })
+autocmd('b','Octo issue browser', { 'octo' })
+autocmd('u','Octo issue url', { 'octo' })
+autocmd('q','BufferClose', { 'octo' })
+
+autocmd('f','Git pull', { 'fugitive' })
+autocmd('p','Git push', { 'fugitive' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
