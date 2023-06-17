@@ -156,6 +156,17 @@ require('lazy').setup({
   {
     "preservim/vimux",
     cmd = "VimuxPromptCommand"
+  },
+
+  -- nvim-surround
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+        require("nvim-surround").setup({
+        })
+    end
   }
   
 })
@@ -481,6 +492,41 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+local s = luasnip.snippet
+local t = luasnip.text_node
+local i = luasnip.insert_node
+local f = luasnip.function_node
+local function copy(args)
+	return args[1]
+end
+
+luasnip.add_snippets("javascript", {  
+  s("e-is",
+    {
+      t("import { service } from '@ember/service';")
+    }
+  ),
+  s("fn", {
+		-- Simple static text.
+		t("//Parameters: "),
+		-- function, first parameter is the function, second the Placeholders
+		-- whose text it gets as input.
+		f(copy, 2),
+		t({ "", "function " }),
+		-- Placeholder/Insert.
+		i(1),
+		t("("),
+		-- Placeholder with initial text.
+		i(2, "int foo"),
+		-- Linebreak
+		t({ ") {", "\t" }),
+		-- Last Placeholder, exit Point of the snippet.
+		i(0),
+		t({ "", "}" }),
+	}),
+
+})
 
 
 -- load snippets from path/of/your/nvim/config/my-cool-snippets
