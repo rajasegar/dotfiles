@@ -266,23 +266,6 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
--- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer]' })
-
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
@@ -346,11 +329,6 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -503,10 +481,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 
-
--- Edit config
-vim.keymap.set('n', '<leader>.', ":tabe ~/.config/nvim/init.lua<CR>", { silent = true })
-
 -- setup glimmer for Ember templates
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.glimmer = {
@@ -577,21 +551,7 @@ prettier.setup({
   },
 })
 
--- Fugitive key mappings
-local keymap = vim.keymap.set
-keymap('n','<Leader>gs', ':Git<CR>') 
-keymap('n','<Leader>gp', ':Git push<CR>')
-keymap('n','<Leader>gf', ':Git pull<CR>')
-keymap('n','<Leader>gb', ':Git blame<CR>')
-keymap('n','<Leader>gc', ':Git checkout<Space>')
-keymap('n','<Leader>gu', ':Git push -u origin <Space>')
-keymap('n','<Leader>gl', ':Git log<CR>')
-vim.api.nvim_create_autocmd('FileType', {
-  command = 'nmap <buffer> q gq',
-  pattern = { 'fugitiveblame', 'fugitive' },
-})
 
--- Barbar key mappings
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
@@ -599,6 +559,52 @@ local nmap = function(keys, func, desc)
   vim.keymap.set('n', keys, func, { noremap = true, silent = true, desc = desc })
 end
 
+local autocmd = function(keys, func, pattern)
+  vim.api.nvim_create_autocmd('FileType', {
+    command = "nmap <buffer> " .. keys .. " " .. "<Cmd>" .. func .. "<CR>",
+    pattern = pattern,
+  })
+end
+
+
+-- Edit config
+nmap('<leader>.', ":tabe ~/.config/nvim/init.lua<CR>", 'Edit Neovim config')
+
+-- Diagnostic keymaps
+nmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostics')
+nmap(']d', vim.diagnostic.goto_next, 'Go to next diagnostics')
+nmap('<leader>e', vim.diagnostic.open_float, 'Open floating diagnostics')
+nmap('<leader>q', vim.diagnostic.setloclist, 'Set location list')
+
+-- Fugitive key mappings
+nmap('<Leader>gs', ':Git<CR>', 'Git') 
+nmap('<Leader>gp', ':Git push<CR>', 'Git push')
+nmap('<Leader>gf', ':Git pull<CR>', 'Git pull')
+nmap('<Leader>gb', ':Git blame<CR>', 'Git blame')
+nmap('<Leader>gc', ':Git checkout<Space>', 'Git checkout')
+nmap('<Leader>gu', ':Git push -u origin <Space>', 'Git push origin')
+nmap('<Leader>gl', ':Git log<CR>', 'Git log')
+
+autocmd('q','q', { 'fugitiveblame', 'fugitive' })
+
+-- Telescope key mappings
+nmap('<leader>?', ':Telescope oldfiles<cr>' , '[?] Find recently opened files')
+nmap('<leader><space>', ':Telescope buffers<cr>', '[ ] Find existing buffers')
+nmap('<leader>/', function()
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, '[/] Fuzzily search in current buffer]')
+
+nmap('<leader>sf', ':Telescope find_files<cr>', '[S]earch [F]iles')
+nmap('<leader>sh', ':Telescope help_tags<cr>', '[S]earch [H]elp')
+nmap('<leader>sw', ':Telescope grep_string<cr>', '[S]earch current [W]ord')
+nmap('<leader>sg', ':Telescope live_grep<cr>', '[S]earch by [G]rep')
+nmap('<leader>sd', ':Telescope diagnostics<cr>', '[S]earch [D]iagnostics')
+
+-- Barbar key mappings
 -- Move to previous/next
 nmap('[b', '<Cmd>BufferPrevious<CR>', 'Go to previous buffer')
 nmap(']b', '<Cmd>BufferNext<CR>', 'Go to next buffer')
@@ -624,13 +630,6 @@ nmap('<Space>oil','<Cmd>Octo issue list<CR>', 'List issues')
 nmap('<Space>oin','<Cmd>Octo issue create<CR>', 'New issue')
 nmap('<Space>oib','<Cmd>Octo issue browser<CR>', 'Open current issue in the browser')
 nmap('<Space>oiu','<Cmd>Octo issue url<CR>', 'Copies the URL of the current issue to the system clipboard')
-
-local autocmd = function(keys, func, pattern)
-  vim.api.nvim_create_autocmd('FileType', {
-    command = "nmap <buffer> " .. keys .. " " .. "<Cmd>" .. func .. "<CR>",
-    pattern = pattern,
-  })
-end
 
 autocmd('b','Octo issue browser', { 'octo' })
 autocmd('u','Octo issue url', { 'octo' })
