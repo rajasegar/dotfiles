@@ -151,6 +151,11 @@ require('lazy').setup({
       vim.o.timeoutlen = 300
     end,
     opts = { },
+  },
+
+  {
+    "preservim/vimux",
+    cmd = "VimuxPromptCommand"
   }
   
 })
@@ -619,6 +624,11 @@ nmap('<Space>b0', '<Cmd>BufferLast<CR>', 'Go to buffer 3')
 nmap('<Space>bd', '<Cmd>BufferClose<CR>', 'Delete Buffer')
 -- Pick buffer
 nmap('gb', '<Cmd>BufferPick<CR>', 'Pick buffer')
+
+-- vimux mappings
+nmap('<Leader>v', 'Vimux')
+nmap('<Leader>vr', '<Cmd>VimuxPromptCommand<CR>', 'Vimux Prompt Command')
+nmap('<Leader>vl', '<Cmd>VimuxRunLastCommand<CR>', 'Vimux Run Last Command')
 
 -- Octo key mappings
 nmap('<Space>o','Octo')
