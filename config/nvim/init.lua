@@ -166,6 +166,11 @@ require('lazy').setup({
 -- No swap file
 vim.o.swapfile = false
 
+-- set tabstop
+vim.o.tabstop = 2
+--set shiftwidth
+vim.o.shiftwidth = 2
+
 -- Expand tabs
 vim.o.expandtab = true
 
