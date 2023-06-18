@@ -168,6 +168,18 @@ require('lazy').setup({
         })
     end
   },
+
+  -- symbols outline
+  {
+    'simrat39/symbols-outline.nvim',
+    event = "VeryLazy"
+  },
+
+  -- colorizer
+  {
+    'norcalli/nvim-colorizer.lua',
+    event = "VeryLazy"
+  }
 })
 
 -- [[ Setting options ]]
@@ -219,6 +231,9 @@ vim.o.cursorline = true
 -- Set relative line number
 vim.o.relativenumber = true
 
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -256,6 +271,8 @@ require('lualine').setup {
 require('indent_blankline').setup {
   char = '┊',
   show_trailing_blankline_indent = false,
+  show_current_context = true,
+  show_current_context_start = true,
 }
 
 -- Gitsigns
@@ -528,9 +545,6 @@ luasnip.add_snippets("javascript", {
 -- load snippets from path/of/your/nvim/config/my-cool-snippets
 require("luasnip.loaders.from_vscode").lazy_load()
 
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 
 -- setup glimmer for Ember templates
@@ -602,6 +616,12 @@ prettier.setup({
     config_precedence = "prefer-file", -- or "cli-override" or "file-override"
   },
 })
+
+-- Symbols outline
+require("symbols-outline").setup()
+
+-- Colorizer
+require'colorizer'.setup()
 
 
 local map = vim.api.nvim_set_keymap
