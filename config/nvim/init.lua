@@ -542,8 +542,9 @@ luasnip.add_snippets("javascript", {
 })
 
 
+luasnip.log.set_loglevel("debug")
 -- load snippets from path/of/your/nvim/config/my-cool-snippets
-require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/Public/www/crayons-snippets" })
 
 
 
