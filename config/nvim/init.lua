@@ -179,6 +179,18 @@ require('lazy').setup({
   {
     'norcalli/nvim-colorizer.lua',
     event = "VeryLazy"
+  },
+
+  -- rainbow parens
+  {
+    'HiPhish/nvim-ts-rainbow2',
+    event = "VeryLazy"
+  },
+
+  -- rest.nvim
+  {
+    'rest-nvim/rest.nvim',
+    event = "VeryLazy"
   }
 })
 
@@ -307,7 +319,7 @@ pcall(require('telescope').load_extension, 'fzf')
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = {  'lua', 'javascript', 'html', 'css', 'json', 'typescript', 'vim', 'glimmer', 'tsx', 'svelte' },
+  ensure_installed = {  'lua', 'javascript', 'html', 'css', 'json', 'typescript', 'vim', 'glimmer', 'tsx', 'svelte', 'http' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -364,6 +376,13 @@ require('nvim-treesitter.configs').setup {
       },
     },
   },
+  rainbow = {
+    enable = true,
+    -- Which query to use for finding delimiters
+    query = 'rainbow-parens',
+    -- Highlight the entire buffer all at once
+    strategy = require('ts-rainbow').strategy.global,
+  }
 }
 
 
@@ -624,6 +643,45 @@ require("symbols-outline").setup()
 -- Colorizer
 require'colorizer'.setup()
 
+-- rest.nvim
+require("rest-nvim").setup({
+      -- Open request results in a horizontal split
+      result_split_horizontal = false,
+      -- Keep the http file buffer above|left when split horizontal|vertical
+      result_split_in_place = false,
+      -- Skip SSL verification, useful for unknown certificates
+      skip_ssl_verification = false,
+      -- Encode URL before making request
+      encode_url = true,
+      -- Highlight request on run
+      highlight = {
+        enabled = true,
+        timeout = 150,
+      },
+      result = {
+        -- toggle showing URL, HTTP info, headers at top the of result window
+        show_url = true,
+        -- show the generated curl command in case you want to launch
+        -- the same request via the terminal (can be verbose)
+        show_curl_command = false,
+        show_http_info = true,
+        show_headers = true,
+        -- executables or functions for formatting response body [optional]
+        -- set them to false if you want to disable them
+        formatters = {
+          json = "jq",
+          html = function(body)
+            return vim.fn.system({"tidy", "-i", "-q", "-"}, body)
+          end
+        },
+      },
+      -- Jump to request line on run
+      jump_to_request = false,
+      env_file = '.env',
+      custom_dynamic_variables = {},
+      yank_dry_run = true,
+    })
+
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
@@ -697,6 +755,13 @@ nmap('gb', '<Cmd>BufferPick<CR>', 'Pick buffer')
 nmap('<Leader>v', 'Vimux')
 nmap('<Leader>vr', '<Cmd>VimuxPromptCommand<CR>', 'Vimux Prompt Command')
 nmap('<Leader>vl', '<Cmd>VimuxRunLastCommand<CR>', 'Vimux Run Last Command')
+
+-- rest.nvim mappings
+nmap('<Leader>r', 'REST')
+nmap('<Leader>rr', '<Plug>RestNvim','Run the request under the cursor')
+nmap('<Leader>rp', '<Plug>RestNvimPreview','Preview the request curl command')
+nmap('<Leader>rl', '<Plug>RestNvimLast','Re-run the last request')
+autocmd('q','q', { 'httpResult' })
 
 -- Octo key mappings
 nmap('<Space>o','Octo')
