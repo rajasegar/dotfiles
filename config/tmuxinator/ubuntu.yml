@@ -44,7 +44,7 @@ windows:
       root: ~/.dotfiles
       layout: even-horizontal
       panes:
-        - nvim config/nvim/init.lua
+        - nvim config/nvim/init.lua config/tmuxinator/ubuntu.yml
         - 
   - crayons-snippets:
       root: ~/Public/www/crayons-snippets
