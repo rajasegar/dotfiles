@@ -46,6 +46,12 @@ windows:
       panes:
         - nvim config/nvim/init.lua config/tmuxinator/ubuntu.yml
         - 
+  - Music:
+      root: ~/Music
+      layout: even-horizontal
+      panes:
+        - cmus
+        - 
   - crayons-snippets:
       root: ~/Public/www/crayons-snippets
       layout: even-horizontal
