@@ -1,5 +1,5 @@
-require("options")
-require("plugins")
+require("rajasegar.options")
+require("rajasegar.plugins")
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -429,6 +429,6 @@ require("rest-nvim").setup({
 })
 
 
-require("keymaps")
+require("rajasegar.keymaps")
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
