@@ -46,6 +46,12 @@ windows:
       panes:
         - nvim config/nvim/init.lua
         - 
+  - Music:
+      root: ~/Music
+      layout: even-horizontal
+      panes:
+        - cmus
+        - 
   - unity-frontend:
       root: ~/Code/unity_frontend
       layout: even-horizontal
