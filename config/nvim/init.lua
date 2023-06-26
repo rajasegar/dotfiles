@@ -1,259 +1,5 @@
--- Install lazy
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
-
--- [[ Basic Keymaps ]]
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
-require('lazy').setup({
-
-  { -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-
-      -- Additional lua configuration, makes nvim stuff amazing
-      'folke/neodev.nvim',
-    },
-  },
-
-  { -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    -- load cmp on InsertEnter
-    event = "InsertEnter",
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 
-      {
-        'L3MON4D3/LuaSnip',
-        dependencies = { "rafamadriz/friendly-snippets" }
-      }, 
-      'saadparwaiz1/cmp_luasnip' },
-  },
-
-  -- Highlight, edit, and navigate code
-  { 
-    'nvim-treesitter/nvim-treesitter',
-    config = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
-  },
-
-  { -- Additional text objects via treesitter
-    'nvim-treesitter/nvim-treesitter-textobjects',
-  },
-
-  -- barbar
-  'romgrk/barbar.nvim',
-
-  -- Git related plugins
-  {
-  'tpope/vim-fugitive',
-    cmd = "Git"
-  },
-  'lewis6991/gitsigns.nvim',
-
-  {
-    "Mofiqul/dracula.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      --load the colorscheme here
-      vim.cmd[[colorscheme dracula]]
-    end,
-  },
-  'nvim-lualine/lualine.nvim', -- Fancier statusline
-  'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
-  {
-  'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
-    event = "BufReadPost",
-    config = function()
-      -- Enable Comment.nvim
-      require('Comment').setup()
-    end,
-  },
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
-  -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', 
-    lazy = true,
-    branch = '0.1.x', 
-    dependencies = { 'nvim-lua/plenary.nvim' } 
-  },
-
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
-
-  { "nvim-tree/nvim-web-devicons", lazy = true },
-
-  -- Nvim tree
-  {
-    'nvim-tree/nvim-tree.lua',
-    keys = {
-      { "<leader>pt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
-    },
-    config = function()
-      require("nvim-tree").setup()
-    end,
-    dependencies = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  },
-
-  -- Ember plugins
-  {
-    'mustache/vim-mustache-handlebars',
-     ft = "hbs",
-  },
-
-  -- Prettier
-  'jose-elias-alvarez/null-ls.nvim',
-  'MunifTanjim/prettier.nvim',
-
-  -- Smart yank
-  'ibhagwan/smartyank.nvim',
-
-  -- Octo
-  {
-    'pwntester/octo.nvim',
-    cmd = "Octo",
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function ()
-      require"octo".setup()
-    end
-  },
-
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    opts = { },
-  },
-
-  {
-    "preservim/vimux",
-    cmd = "VimuxPromptCommand"
-  },
-
-  -- nvim-surround
-  {
-    "kylechui/nvim-surround",
-    version = "*",
-    event = "VeryLazy",
-    config = function()
-        require("nvim-surround").setup({
-        })
-    end
-  },
-
-  -- symbols outline
-  {
-    'simrat39/symbols-outline.nvim',
-    event = "VeryLazy"
-  },
-
-  -- colorizer
-  {
-    'norcalli/nvim-colorizer.lua',
-    event = "VeryLazy"
-  },
-
-  -- rainbow parens
-  {
-    'HiPhish/nvim-ts-rainbow2',
-    event = "VeryLazy"
-  },
-
-  -- rest.nvim
-  {
-    'rest-nvim/rest.nvim',
-    event = "VeryLazy"
-  }
-})
-
--- [[ Setting options ]]
--- See `:help vim.o`
-
--- No swap file
-vim.o.swapfile = false
-
--- set tabstop
-vim.o.tabstop = 2
---set shiftwidth
-vim.o.shiftwidth = 2
-
--- Expand tabs
-vim.o.expandtab = true
-
--- Set highlight on search
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
-
--- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
-
--- Set colorscheme
-vim.o.termguicolors = true
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- Set cursorline
-vim.o.cursorline = true
-
--- Set relative line number
-vim.o.relativenumber = true
-
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+require("rajasegar.options")
+require("rajasegar.plugins")
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -645,141 +391,44 @@ require'colorizer'.setup()
 
 -- rest.nvim
 require("rest-nvim").setup({
-      -- Open request results in a horizontal split
-      result_split_horizontal = false,
-      -- Keep the http file buffer above|left when split horizontal|vertical
-      result_split_in_place = false,
-      -- Skip SSL verification, useful for unknown certificates
-      skip_ssl_verification = false,
-      -- Encode URL before making request
-      encode_url = true,
-      -- Highlight request on run
-      highlight = {
-        enabled = true,
-        timeout = 150,
-      },
-      result = {
-        -- toggle showing URL, HTTP info, headers at top the of result window
-        show_url = true,
-        -- show the generated curl command in case you want to launch
-        -- the same request via the terminal (can be verbose)
-        show_curl_command = false,
-        show_http_info = true,
-        show_headers = true,
-        -- executables or functions for formatting response body [optional]
-        -- set them to false if you want to disable them
-        formatters = {
-          json = "jq",
-          html = function(body)
-            return vim.fn.system({"tidy", "-i", "-q", "-"}, body)
-          end
-        },
-      },
-      -- Jump to request line on run
-      jump_to_request = false,
-      env_file = '.env',
-      custom_dynamic_variables = {},
-      yank_dry_run = true,
-    })
+  -- Open request results in a horizontal split
+  result_split_horizontal = false,
+  -- Keep the http file buffer above|left when split horizontal|vertical
+  result_split_in_place = false,
+  -- Skip SSL verification, useful for unknown certificates
+  skip_ssl_verification = false,
+  -- Encode URL before making request
+  encode_url = true,
+  -- Highlight request on run
+  highlight = {
+    enabled = true,
+    timeout = 150,
+  },
+  result = {
+    -- toggle showing URL, HTTP info, headers at top the of result window
+    show_url = true,
+    -- show the generated curl command in case you want to launch
+    -- the same request via the terminal (can be verbose)
+    show_curl_command = false,
+    show_http_info = true,
+    show_headers = true,
+    -- executables or functions for formatting response body [optional]
+    -- set them to false if you want to disable them
+    formatters = {
+      json = "jq",
+      html = function(body)
+        return vim.fn.system({"tidy", "-i", "-q", "-"}, body)
+      end
+    },
+  },
+  -- Jump to request line on run
+  jump_to_request = false,
+  env_file = '.env',
+  custom_dynamic_variables = {},
+  yank_dry_run = true,
+})
 
 
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-
-local nmap = function(keys, func, desc)
-  vim.keymap.set('n', keys, func, { noremap = true, silent = true, desc = desc })
-end
-
-local autocmd = function(keys, func, pattern)
-  vim.api.nvim_create_autocmd('FileType', {
-    command = "nmap <buffer> " .. keys .. " " .. "<Cmd>" .. func .. "<CR>",
-    pattern = pattern,
-  })
-end
-
-
--- Edit config
-nmap('<leader>.', ":tabe ~/.config/nvim/init.lua<CR>", 'Edit Neovim config')
-
--- Diagnostic keymaps
-nmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostics')
-nmap(']d', vim.diagnostic.goto_next, 'Go to next diagnostics')
-nmap('<leader>e', vim.diagnostic.open_float, 'Open floating diagnostics')
-nmap('<leader>q', vim.diagnostic.setloclist, 'Set location list')
-
--- Fugitive key mappings
-nmap('<Leader>gs', ':Git<CR>', 'Git') 
-nmap('<Leader>gp', ':Git push<CR>', 'Git push')
-nmap('<Leader>gf', ':Git pull<CR>', 'Git pull')
-nmap('<Leader>gb', ':Git blame<CR>', 'Git blame')
-nmap('<Leader>gc', ':Git checkout<Space>', 'Git checkout')
-nmap('<Leader>gu', ':Git push -u origin <Space>', 'Git push origin')
-nmap('<Leader>gl', ':Git log<CR>', 'Git log')
-
-autocmd('q','q', { 'fugitiveblame', 'fugitive' })
-
--- Telescope key mappings
-nmap('<leader>?', ':Telescope oldfiles<cr>' , '[?] Find recently opened files')
-nmap('<leader><space>', ':Telescope buffers<cr>', '[ ] Find existing buffers')
-nmap('<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, '[/] Fuzzily search in current buffer]')
-
-nmap('<leader>sf', ':Telescope find_files<cr>', '[S]earch [F]iles')
-nmap('<leader>sh', ':Telescope help_tags<cr>', '[S]earch [H]elp')
-nmap('<leader>sw', ':Telescope grep_string<cr>', '[S]earch current [W]ord')
-nmap('<leader>sg', ':Telescope live_grep<cr>', '[S]earch by [G]rep')
-nmap('<leader>sd', ':Telescope diagnostics<cr>', '[S]earch [D]iagnostics')
-
--- Barbar key mappings
--- Move to previous/next
-nmap('[b', '<Cmd>BufferPrevious<CR>', 'Go to previous buffer')
-nmap(']b', '<Cmd>BufferNext<CR>', 'Go to next buffer')
--- Re-order to previous/next
-nmap('<Space>b<', '<Cmd>BufferMovePrevious<CR>', 'Move previous buffer')
-nmap('<Space>b>', '<Cmd>BufferMoveNext<CR>', 'Move next buffer')
--- Goto buffer in position...
-nmap('<Space>b1', '<Cmd>BufferGoto 1<CR>', 'Go to buffer 1')
-nmap('<Space>b2', '<Cmd>BufferGoto 2<CR>', 'Go to buffer 2')
-nmap('<Space>b0', '<Cmd>BufferLast<CR>', 'Go to buffer 3')
--- Close buffer
-nmap('<Space>bd', '<Cmd>BufferClose<CR>', 'Delete Buffer')
--- Pick buffer
-nmap('gb', '<Cmd>BufferPick<CR>', 'Pick buffer')
-
--- vimux mappings
-nmap('<Leader>v', 'Vimux')
-nmap('<Leader>vr', '<Cmd>VimuxPromptCommand<CR>', 'Vimux Prompt Command')
-nmap('<Leader>vl', '<Cmd>VimuxRunLastCommand<CR>', 'Vimux Run Last Command')
-
--- rest.nvim mappings
-nmap('<Leader>r', 'REST')
-nmap('<Leader>rr', '<Plug>RestNvim','Run the request under the cursor')
-nmap('<Leader>rp', '<Plug>RestNvimPreview','Preview the request curl command')
-nmap('<Leader>rl', '<Plug>RestNvimLast','Re-run the last request')
-autocmd('q','q', { 'httpResult' })
-
--- Octo key mappings
-nmap('<Space>o','Octo')
-nmap('<Space>op','Pull Requests')
-nmap('<Space>opl','<Cmd>Octo pr list<CR>', 'List pull requests')
-
-nmap('<Space>oi','Issues')
-nmap('<Space>oil','<Cmd>Octo issue list<CR>', 'List issues')
-nmap('<Space>oin','<Cmd>Octo issue create<CR>', 'New issue')
-nmap('<Space>oib','<Cmd>Octo issue browser<CR>', 'Open current issue in the browser')
-nmap('<Space>oiu','<Cmd>Octo issue url<CR>', 'Copies the URL of the current issue to the system clipboard')
-
-autocmd('b','Octo issue browser', { 'octo' })
-autocmd('u','Octo issue url', { 'octo' })
-autocmd('q','BufferClose', { 'octo' })
-
-autocmd('f','Git pull', { 'fugitive' })
-autocmd('p','Git push', { 'fugitive' })
-
+require("rajasegar.keymaps")
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
