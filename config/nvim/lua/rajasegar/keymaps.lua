@@ -94,9 +94,16 @@ nmap('<Space>oin','<Cmd>Octo issue create<CR>', 'New issue')
 nmap('<Space>oib','<Cmd>Octo issue browser<CR>', 'Open current issue in the browser')
 nmap('<Space>oiu','<Cmd>Octo issue url<CR>', 'Copies the URL of the current issue to the system clipboard')
 
+nmap('<Space>or','Review')
+nmap('<Space>ors','<Cmd>Octo review start<CR>', 'Review Start')
+nmap('<Space>oru','<Cmd>Octo review submit<CR>', 'Review S[u]bmit')
+nmap('<Space>ord','<Cmd>Octo review discard<CR>', 'Review Discard')
+nmap('<Space>orx','<Cmd>Octo review close<CR>', 'Review Exit')
+
 autocmd('b','Octo issue browser', { 'octo' })
 autocmd('u','Octo issue url', { 'octo' })
 autocmd('q','BufferClose', { 'octo' })
+autocmd('r','Octo review start', { 'octo' })
 
 autocmd('f','Git pull', { 'fugitive' })
 autocmd('p','Git push', { 'fugitive' })
