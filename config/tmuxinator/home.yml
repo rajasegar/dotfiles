@@ -41,10 +41,10 @@ root: ~/
 
 windows:
   - editor:
-      root: ~/.dotfiles
+      root: ~/.config
       layout: even-horizontal
       panes:
-        - nvim config/nvim/init.lua
+        - hx helix/config.toml
         - 
   - Music:
       root: ~/Music
@@ -56,15 +56,15 @@ windows:
       root: ~/Code/unity_frontend
       layout: even-horizontal
       panes:
-        - nvim README.md
+        - hx README.md
         - 
   - helpkit-ember:
       root: ~/Code/helpkit-ember
       layout: even-horizontal
       panes:
-        - nvim README.md
+        - hx README.md
   - ai-first:
       root: ~/Code/ai-first
       layout: even-horizontal
       panes:
-        - nvim README.md
+        - hx README.md
