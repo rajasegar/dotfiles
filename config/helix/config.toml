@@ -30,4 +30,5 @@ skip-levels = 1
 
 [keys.normal]
 C-o = ":open ~/.config/helix/config.toml"
-
+C-r = ":config-reload"
+C-g = ":sh tmux send-keys -t 2 lazygit Enter && tmux select-pane -t 2"
