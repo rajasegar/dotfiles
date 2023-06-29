@@ -17,7 +17,7 @@ hidden = false
 [editor.statusline]
 left = ["mode", "spinner"]
 center = ["file-name"]
-right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+right = ["version-control", "diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
 separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
@@ -32,3 +32,10 @@ skip-levels = 1
 C-o = ":open ~/.config/helix/config.toml"
 C-r = ":config-reload"
 C-g = ":sh tmux send-keys -t 2 lazygit Enter && tmux select-pane -t 2"
+C-n = ":n"
+
+[keys.insert]
+C-s = ":w"
+
+[keys.normal.space]
+q = ":q"
