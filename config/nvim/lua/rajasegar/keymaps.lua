@@ -109,3 +109,4 @@ autocmd('f','Git pull', { 'fugitive' })
 autocmd('p','Git push', { 'fugitive' })
 
 
+nmap('<Leader>fs', ':w<CR>', 'Save File') 
