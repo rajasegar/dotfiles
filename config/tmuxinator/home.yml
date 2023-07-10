@@ -45,13 +45,17 @@ windows:
       layout: even-horizontal
       panes:
         - hx helix/config.toml
-        - 
+        - birthday
   - Music:
       root: ~/Music
       layout: even-horizontal
       panes:
         - cmus
-        - 
+  - Stocks:
+      root: ~/
+      layout: even-horizontal
+      panes:
+        - ticker
   - unity-frontend:
       root: ~/Code/unity_frontend
       layout: even-horizontal
@@ -63,8 +67,10 @@ windows:
       layout: even-horizontal
       panes:
         - hx README.md
+        -
   - ai-first:
       root: ~/Code/ai-first
       layout: even-horizontal
       panes:
         - hx README.md
+        -
