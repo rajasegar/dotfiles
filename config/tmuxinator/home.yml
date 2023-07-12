@@ -41,21 +41,16 @@ root: ~/
 
 windows:
   - editor:
-      root: ~/.config
+      root: ~/
       layout: even-horizontal
       panes:
-        - hx helix/config.toml
+        - hx .config/helix/config.toml .tmux.conf .config/tmuxinator/home.yml
         - birthday
   - Music:
       root: ~/Music
       layout: even-horizontal
       panes:
         - cmus
-  - Stocks:
-      root: ~/
-      layout: even-horizontal
-      panes:
-        - ticker
   - unity-frontend:
       root: ~/Code/unity_frontend
       layout: even-horizontal
