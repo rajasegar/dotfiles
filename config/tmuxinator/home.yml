@@ -41,17 +41,16 @@ root: ~/
 
 windows:
   - editor:
-      root: ~/.config
+      root: ~/
       layout: even-horizontal
       panes:
-        - hx helix/config.toml
-        - 
+        - hx .config/helix/config.toml .tmux.conf .config/tmuxinator/home.yml
+        - birthday
   - Music:
       root: ~/Music
       layout: even-horizontal
       panes:
         - cmus
-        - 
   - unity-frontend:
       root: ~/Code/unity_frontend
       layout: even-horizontal
@@ -63,8 +62,10 @@ windows:
       layout: even-horizontal
       panes:
         - hx README.md
+        -
   - ai-first:
       root: ~/Code/ai-first
       layout: even-horizontal
       panes:
         - hx README.md
+        -

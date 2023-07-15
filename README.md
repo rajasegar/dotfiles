@@ -82,3 +82,11 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ## Fonts
 Download Hack Nerd Font from here
 [Nerd fonts](https://www.nerdfonts.com/font-downloads)
+
+
+## CLI utilities
+- [birthday](https://github.com/IonicaBizau/birthday)
+- [ticker](https://github.com/achannarasappa/ticker)
+- [pass](https://www.passwordstore.org/)
+- [cmus](https://github.com/cmus/cmus)
+- [Taskwarrior](https://taskwarrior.org/)
