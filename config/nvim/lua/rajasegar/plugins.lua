@@ -56,10 +56,10 @@ require('lazy').setup({
   'romgrk/barbar.nvim',
 
   -- Git related plugins
-  {
-  'tpope/vim-fugitive',
-    cmd = "Git"
-  },
+  -- {
+  -- 'tpope/vim-fugitive',
+  --   cmd = "Git"
+  -- },
   'lewis6991/gitsigns.nvim',
 
   {
@@ -124,18 +124,18 @@ require('lazy').setup({
   'ibhagwan/smartyank.nvim',
 
   -- Octo
-  {
-    'pwntester/octo.nvim',
-    cmd = "Octo",
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function ()
-      require"octo".setup()
-    end
-  },
+  -- {
+  --   'pwntester/octo.nvim',
+  --   cmd = "Octo",
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-telescope/telescope.nvim',
+  --     'nvim-tree/nvim-web-devicons',
+  --   },
+  --   config = function ()
+  --     require"octo".setup()
+  --   end
+  -- },
 
   {
     "folke/which-key.nvim",
@@ -164,10 +164,10 @@ require('lazy').setup({
   },
 
   -- symbols outline
-  {
-    'simrat39/symbols-outline.nvim',
-    event = "VeryLazy"
-  },
+  -- {
+  --   'simrat39/symbols-outline.nvim',
+  --   event = "VeryLazy"
+  -- },
 
   -- colorizer
   {
@@ -182,10 +182,10 @@ require('lazy').setup({
   },
 
   -- rest.nvim
-  {
-    'rest-nvim/rest.nvim',
-    event = "VeryLazy"
-  }
+  -- {
+  --   'rest-nvim/rest.nvim',
+  --   event = "VeryLazy"
+  -- }
 })
 
 
