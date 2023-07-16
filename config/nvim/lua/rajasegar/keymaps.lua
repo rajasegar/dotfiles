@@ -33,6 +33,9 @@ nmap('<C-n>',":tabe scratch<CR>", "New scratch buffer")
 -- Quit everything
 nmap('<leader>q','ZQ', 'Quit Neovim')
 
+-- Open lazygit
+nmap('<C-g>',':!tmux popup -d "\\#{pane_current_path}" -xC -yC -w80\\% -h80\\%  -E lazygit<CR>', 'Open Lazygit')
+
 -- Diagnostic keymaps
 nmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostics')
 nmap(']d', vim.diagnostic.goto_next, 'Go to next diagnostics')
