@@ -20,12 +20,24 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- Edit config
 nmap('<leader>.', ":tabe ~/.config/nvim/init.lua<CR>", 'Edit Neovim config')
+nmap('<leader>c', 'Edit Neovim config')
+nmap('<leader>ck', ":tabe ~/.config/nvim/lua/rajasegar/keymaps.lua<CR>", 'Edit Neovim keypmaps')
+nmap('<leader>cp', ":tabe ~/.config/nvim/lua/rajasegar/plugins.lua<CR>", 'Edit Neovim plugins')
+nmap('<leader>co', ":tabe ~/.config/nvim/lua/rajasegar/options.lua<CR>", 'Edit Neovim options')
+nmap('<leader>cr', ":source %<CR>", 'Reload current config')
+
+-- Map C-b to C-a to increment numbers work properly inside tmux
+nmap('<C-b>','<C-a>')
+-- Open new scratch buffer on C-n
+nmap('<C-n>',":tabe scratch<CR>", "New scratch buffer")
+-- Quit everything
+nmap('<leader>q','ZQ', 'Quit Neovim')
 
 -- Diagnostic keymaps
 nmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostics')
 nmap(']d', vim.diagnostic.goto_next, 'Go to next diagnostics')
 nmap('<leader>e', vim.diagnostic.open_float, 'Open floating diagnostics')
-nmap('<leader>q', vim.diagnostic.setloclist, 'Set location list')
+-- nmap('<leader>q', vim.diagnostic.setloclist, 'Set location list')
 
 -- Fugitive key mappings
 nmap('<Leader>gs', ':Git<CR>', 'Git') 
@@ -68,6 +80,7 @@ nmap('<Space>b2', '<Cmd>BufferGoto 2<CR>', 'Go to buffer 2')
 nmap('<Space>b0', '<Cmd>BufferLast<CR>', 'Go to buffer 3')
 -- Close buffer
 nmap('<Space>bd', '<Cmd>BufferClose<CR>', 'Delete Buffer')
+nmap('<Space>bx', ':bd!<CR>', 'Delete Buffer')
 -- Pick buffer
 nmap('gb', '<Cmd>BufferPick<CR>', 'Pick buffer')
 
@@ -109,4 +122,4 @@ autocmd('f','Git pull', { 'fugitive' })
 autocmd('p','Git push', { 'fugitive' })
 
 
-nmap('<Leader>fs', ':w<CR>', 'Save File') 
+nmap('<Leader>;', ':w<CR>', 'Save File') 
