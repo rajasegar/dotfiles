@@ -44,7 +44,10 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
 
-let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeIgnore = ['^node_modules$', '^coverage$']
 
 " Enable tabline to show buffer list
 let g:airline#extensions#tabline#enabled = 1
+
+"keep your conceal setting
+let g:indentLine_setConceal = 0
