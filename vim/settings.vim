@@ -18,6 +18,7 @@ set noswapfile
 set number
 set pastetoggle=<F11>
 set path+=**
+set re=0
 set relativenumber
 set rtp+=~/.fzf
 set rtp+=~/.vim
