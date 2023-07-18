@@ -1,51 +1,33 @@
-" Attempt to determine the type of a file based on its name and possibly its
-" contents. Use this to allow intelligent auto-indenting for each filetype,
-" and for plugins that are filetype specific.
-filetype indent plugin on
- 
-" Enable syntax highlighting
-" syntax on
- 
- 
-set nocompatible
-set hidden
-set noswapfile
-set path+=**
-set wildmenu
-set showcmd
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-set backspace=indent,eol,start
 set autoindent
-set nostartofline
-set ruler
-set laststatus=2
-set confirm
-set visualbell
-set t_vb=
-set mouse=a
+set clipboard+=unnamed
 set cmdheight=1
-set number
-set notimeout ttimeout ttimeoutlen=0
-set pastetoggle=<F11>
-set shiftwidth=2
-set softtabstop=2
+set conceallevel=0
+set confirm
+set cursorline
+set encoding=utf-8
 set expandtab
-set autoread
+set foldenable
+set foldlevelstart=20
+set foldmethod=syntax
+set hidden
+set hlsearch
+set ignorecase
+set mouse=a
+set nostartofline
+set noswapfile
+set notimeout ttimeout ttimeoutlen=0
+set number
+set pastetoggle=<F11>
+set path+=**
+set relativenumber
 set rtp+=~/.fzf
 set rtp+=~/.vim
-set wildignore+=*/tmp/*,*/bower_components/*,*.so,*.swp,*.zip
-set wildignore+=*/node_modules/*
+set shiftwidth=2
+set showcmd
+set smartcase
+set softtabstop=2
+set t_vb=
 set title
-set clipboard+=unnamed
-set foldenable
-set foldmethod=syntax
-set foldlevelstart=20
-set cursorline
-set relativenumber
-set encoding=utf-8
-set conceallevel=0
-
-
+set visualbell
+set wildignore+=*/node_modules/*
+set wildignore+=*/tmp/*,*/bower_components/*,*.so,*.swp,*.zip
