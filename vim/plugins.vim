@@ -17,6 +17,9 @@ Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
 call plug#end()
 
 
