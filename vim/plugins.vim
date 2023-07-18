@@ -16,6 +16,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 call plug#end()
 
 

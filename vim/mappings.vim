@@ -17,14 +17,15 @@ nmap <silent> [b :bprev<CR>
 nmap <silent> <leader>bd :bdelete<CR>
 
 " config manipulation
-nnoremap <leader>. :tabe ~/.vimrc<CR>
-nnoremap <leader>om :tabe ~/.vim/mappings.vim<CR>
-nnoremap <leader>os :tabe ~/.vim/settings.vim<CR>
-nnoremap <leader>op :tabe ~/.vim/plugins.vim<CR>
-nnoremap <leader>bs :tabe scratch<CR>
+nnoremap <leader>. :e ~/.vimrc<CR>
+nnoremap <leader>om :e ~/.vim/mappings.vim<CR>
+nnoremap <leader>os :e ~/.vim/settings.vim<CR>
+nnoremap <leader>op :e ~/.vim/plugins.vim<CR>
+nnoremap <leader>bs :e scratch<CR>
 nnoremap <space>fr :History<CR>
 
 nnoremap <C-g> :exe '!tmux popup -d "\#{pane_current_path}" -xC -yC -w80\% -h80\% -E lazygit'<CR>
+nnoremap <leader>pf :GFiles<CR>
 nnoremap <leader>ff :Files<CR>
 
 " Tab for autocompletion
