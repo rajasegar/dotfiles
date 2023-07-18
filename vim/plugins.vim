@@ -1,6 +1,6 @@
 call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'on': ['Files','GFiles','Buffers'] }
 Plug 'pangloss/vim-javascript', { 'for': 'js' }
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-sensible'
@@ -16,7 +16,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'evanleck/vim-svelte', {'branch': 'main', 'for': 'svelte'}
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'rafamadriz/friendly-snippets'
