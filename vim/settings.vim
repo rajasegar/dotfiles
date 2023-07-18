@@ -14,6 +14,7 @@ set path+=**
 set wildmenu
 set showcmd
 set hlsearch
+set incsearch
 set ignorecase
 set smartcase
 set backspace=indent,eol,start
@@ -38,13 +39,13 @@ set rtp+=~/.vim
 set wildignore+=*/tmp/*,*/bower_components/*,*.so,*.swp,*.zip
 set wildignore+=*/node_modules/*
 set title
-set clipboard+=unnamedplus
+set clipboard+=unnamed
 set foldenable
 set foldmethod=syntax
 set foldlevelstart=20
 set cursorline
 set relativenumber
-set thesaurus+=~/thesaurus.txt
 set encoding=utf-8
+set conceallevel=0
 
 

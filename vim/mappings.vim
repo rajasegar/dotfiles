@@ -1,24 +1,26 @@
 "Open nerdtree on startup
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :NERDTree
-augroup END
+"augroup ProjectDrawer
+  "autocmd!
+  "autocmd VimEnter * :NERDTree
+"augroup END
 
 let mapleader = " "
 nmap <silent> <leader>ww :wincmd w<CR>
-nmap <silent> <leader>fs :w<CR>
+nmap <silent> <leader>; :w<CR>
 nmap <silent> <leader>pt :NERDTreeToggle<CR>
 
 " Buffer manipulation
 nnoremap <leader>bb :Buffers<CR>
 nmap <silent> <leader><tab> :bn<CR>
-nmap <silent> <leader>bn :bnext<CR>
-nmap <silent> <leader>bp :bprev<CR>
+nmap <silent> ]b :bnext<CR>
+nmap <silent> [b :bprev<CR>
 nmap <silent> <leader>bd :bdelete<CR>
 
 " config manipulation
 nnoremap <leader>. :tabe ~/.vimrc<CR>
-nnoremap <leader>feR :source %<CR>
+nnoremap <leader>om :tabe ~/.vim/mappings.vim<CR>
+nnoremap <leader>os :tabe ~/.vim/settings.vim<CR>
+nnoremap <leader>op :tabe ~/.vim/plugins.vim<CR>
 nnoremap <leader>bs :tabe scratch<CR>
 nnoremap <space>fr :History<CR>
 

@@ -43,6 +43,8 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 let g:NERDTreeIgnore = ['^node_modules$']
+
+" Enable tabline to show buffer list
+let g:airline#extensions#tabline#enabled = 1
