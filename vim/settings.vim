@@ -15,7 +15,6 @@ set ignorecase
 set mouse=a
 set nostartofline
 set noswapfile
-set notimeout ttimeout ttimeoutlen=0
 set number
 set pastetoggle=<F11>
 set path+=**
