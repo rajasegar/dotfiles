@@ -51,3 +51,9 @@ let g:airline#extensions#tabline#enabled = 1
 
 "keep your conceal setting
 let g:indentLine_setConceal = 0
+
+augroup load_snippets
+  autocmd!
+  autocmd InsertEnter * call plug#load('vim-vsnip', 'vim-vsnip-integ','friendly-snippets')
+        \| autocmd! load_snippets
+augroup END
