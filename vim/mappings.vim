@@ -7,7 +7,7 @@
 let mapleader = " "
 nmap <silent> <leader>ww :wincmd w<CR>
 nmap <silent> <leader>; :w<CR>
-nmap <silent> <leader>pt :NERDTreeToggle<CR>
+nmap <silent> <leader>pt :NERDTreeFind<CR>
 
 nnoremap <leader>/ :Ag<CR>
 " Buffer manipulation
