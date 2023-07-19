@@ -1,6 +1,6 @@
 call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim', { 'on': ['Files','GFiles','Buffers'] }
+Plug 'junegunn/fzf.vim', { 'on': ['Files','GFiles','Buffers','Ag'] }
 Plug 'pangloss/vim-javascript', { 'for': 'js' }
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-sensible'
