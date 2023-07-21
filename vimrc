@@ -57,3 +57,5 @@ augroup load_snippets
   autocmd InsertEnter * call plug#load('vim-vsnip', 'vim-vsnip-integ','friendly-snippets')
         \| autocmd! load_snippets
 augroup END
+
+let g:hardtime_default_on = 1

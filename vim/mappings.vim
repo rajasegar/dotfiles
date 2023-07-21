@@ -13,8 +13,6 @@ nnoremap <leader>/ :Ag<CR>
 " Buffer manipulation
 nnoremap <leader>bb :Buffers<CR>
 nmap <silent> <leader><tab> :bn<CR>
-nmap <silent> ]b :bnext<CR>
-nmap <silent> [b :bprev<CR>
 nmap <silent> <leader>bd :bdelete<CR>
 
 " config manipulation
@@ -34,4 +32,6 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
-
+" Line manipulation
+nnoremap <C-j> :exe "normal ddp"<CR>
+nnoremap <C-k> :exe "normal ddP"<CR>

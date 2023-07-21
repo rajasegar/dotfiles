@@ -16,11 +16,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
 Plug 'evanleck/vim-svelte', {'branch': 'main', 'for': 'svelte'}
 Plug 'hrsh7th/vim-vsnip', { 'on': [] }
 Plug 'hrsh7th/vim-vsnip-integ', { 'on': [] }
 Plug 'rafamadriz/friendly-snippets', { 'on': [] }
 Plug 'joukevandermaas/vim-ember-hbs', { 'for': 'hbs' }
+Plug 'takac/vim-hardtime'
 call plug#end()
 
 
