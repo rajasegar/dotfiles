@@ -35,3 +35,15 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " Line manipulation
 nnoremap <C-j> :exe "normal ddp"<CR>
 nnoremap <C-k> :exe "normal ddP"<CR>
+
+" LSP key mappings
+nmap gd <plug>(lsp-definition)
+nmap gs <plug>(lsp-document-symbol-search)
+nmap gS <plug>(lsp-workspace-symbol-search)
+nmap gr <plug>(lsp-references)
+nmap gi <plug>(lsp-implementation)
+nmap gt <plug>(lsp-type-definition)
+nmap <leader>rn <plug>(lsp-rename)
+nmap [g <plug>(lsp-previous-diagnostic)
+nmap ]g <plug>(lsp-next-diagnostic)
+nmap K <plug>(lsp-hover)
