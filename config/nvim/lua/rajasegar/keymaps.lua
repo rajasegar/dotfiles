@@ -126,3 +126,6 @@ autocmd('p','Git push', { 'fugitive' })
 
 
 nmap('<Leader>;', ':w<CR>', 'Save File') 
+
+-- Markdown
+vim.keymap.set('v', '<C-b>', '<Plug>(nvim-surround-visual)')
