@@ -1,0 +1,48 @@
+use-grammars = { only = [ "rust", "javascript", "typescript", "html", "css", "glimmer", "toml" ] }
+
+[language-server.glimmer]
+command = "glint-language-server"
+
+[language-server.unity-frontend-ls]
+args = ["--stdio"]
+command="unity-frontend-ls"
+
+[[language]]
+name = "handlebars"
+roots = ["package.json"]
+file-types = ["hbs"]
+grammar = "glimmer"
+scope = "source.hbs"
+language-server = { command = "unity-frontend-ls" } 
+
+[[grammar]]
+name = "glimmer"
+source = { git = "https://github.com/alexlafroscia/tree-sitter-glimmer", rev = "d3031a8294bf331600d5046b1d14e690a0d8ba0c"}
+
+[[language]]
+name = "javascript"
+# scope = "source.js"
+# injection-regex = "(js|javascript)"
+# file-types = ["js", "mjs", "cjs"]
+# shebangs = ["node"]
+# roots = []
+# comment-token = "//"
+# language-server = { command = "typescript-language-server", args = ["--stdio"], language-id = "javascript" }
+# indent = { tab-width = 2, unit = "  " }
+
+[language.debugger]
+name = "node-debug2"
+command = "node"
+transport = "stdio"
+quirks = { absolute-paths = true }
+args = ["/home/boot/Public/www/vscode-node-debug2/out/src/nodeDebug.js"]
+
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+completion = [ { name = "main", completion = "filename", default = "index.js" } ]
+args = { program = "{0}" }
+
+[language-server.emmet-ls]
+args = ["--stdio"]
+command="emmet-ls"
