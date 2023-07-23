@@ -47,3 +47,7 @@ nmap <leader>rn <plug>(lsp-rename)
 nmap [g <plug>(lsp-previous-diagnostic)
 nmap ]g <plug>(lsp-next-diagnostic)
 nmap K <plug>(lsp-hover)
+
+" Vimux
+nnoremap <leader>vr :VimuxPromptCommand<CR>
+nnoremap <leader>vl :VimuxRunLastCommand<CR>
