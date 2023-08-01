@@ -181,7 +181,9 @@
                              '((shell . t)
                                (lisp . t)))
 
-(setq org-agenda-files (list "~/Dropbox/org/freshdesk.org" "~/Dropbox/org/rajasegar.org"))
+(setq org-agenda-files (list "~/Dropbox/org/freshdesk.org"
+                             "~/Dropbox/org/rajasegar.org"
+                             "~/Dropbox/org/birthdays.org"))
 (setq org-default-notes-file "~/Dropbox/org/tasks.org")
 
 
@@ -190,6 +192,10 @@
   :ensure t
   :init (org-mode))
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+;; Org-agenda customizations
+(setq org-agenda-start-on-weekday 0)
+(setq org-agenda-timegrid-use-ampm 1)
 
 ;; Org tempo
 ;; (use-package org-tempo
@@ -206,20 +212,15 @@
 
 (use-package company
   :ensure t
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
   :custom
   (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0))
+  (company-idle-delay 0.0)
+  :init (global-company-mode))
 
 (with-eval-after-load 'lsp-mode
   (add-to-list 'lsp-language-id-configuration
     '(".*\\.svelte$" . "svelte")))
 
-
-
-;; Disable company for org-mode
-;; (setq company-global-modes '(not org-mode))
 
 ;; yaml
 (use-package yaml-mode
