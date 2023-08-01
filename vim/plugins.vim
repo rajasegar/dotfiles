@@ -22,7 +22,7 @@ Plug 'hrsh7th/vim-vsnip', { 'on': [] }
 Plug 'hrsh7th/vim-vsnip-integ', { 'on': [] }
 Plug 'rafamadriz/friendly-snippets', { 'on': [] }
 Plug 'joukevandermaas/vim-ember-hbs', { 'for': 'hbs' }
-Plug 'takac/vim-hardtime'
+"Plug 'takac/vim-hardtime'
 Plug 'preservim/vimux', { 'on': ['VimuxPromptCommand','VimuxRunLastCommand'] }
 call plug#end()
 

@@ -44,7 +44,7 @@ windows:
       root: ~/.dotfiles
       layout: even-horizontal
       panes:
-        - nvim config/nvim/init.lua config/tmuxinator/ubuntu.yml
+        - vim vimrc config/tmuxinator/ubuntu.yml
         - 
   - Music:
       root: ~/Music
@@ -56,15 +56,15 @@ windows:
       root: ~/Public/www/crayons-snippets
       layout: even-horizontal
       panes:
-        - nvim README.md
+        - vim README.md
         - 
   - book-notes:
       root: ~/Public/www/book-notes
       layout: even-horizontal
       panes:
-        - nvim README.md
+        - vim README.md
   - art-of-debugging:
       root: ~/Public/www/art-of-debugging-slides
       layout: even-horizontal
       panes:
-        - nvim README.md
+        - vim README.md
