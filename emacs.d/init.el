@@ -279,12 +279,6 @@
 ;; Svelte - For syntax highlighting svelte files we need to set them to web-mode
 (add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
 
-;; JSX
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-
-;; TSX syntax higlighting
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-
 ;; Astro
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
 
@@ -393,11 +387,6 @@
 
 (require 'emms-history)
 (emms-history-load)
-
-(require 'emms-mode-line)
-(emms-mode-line 1)
-
-
 
 ;; plantuml
 (use-package plantuml-mode
