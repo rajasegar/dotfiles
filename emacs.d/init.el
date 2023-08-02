@@ -13,7 +13,7 @@
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq delete-old-versions -1 )
-(setq inhibit-startup-screen t )
+;; (setq inhibit-startup-screen t )
 (setq ring-bell-function 'ignore )
 (setq coding-system-for-read 'utf-8 )
 (setq coding-system-for-write 'utf-8 )
@@ -86,8 +86,6 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-(exec-path-from-shell-copy-env "PATH")
-
 ;; Vim mode
 (use-package evil
   :ensure t
@@ -133,6 +131,20 @@
   (add-hook 'neo-after-create-hook
             (lambda (&rest _) (display-line-numbers-mode -1))))
 
+;; Startup time
+(setq use-package-compute-statistics t)
+
+(defun efs/display-startup-time ()
+  (message
+   "Emacs loaded in %s with %d garbage collections."
+   (format
+    "%.2f seconds"
+    (float-time
+     (time-subtract after-init-time before-init-time)))
+   gcs-done))
+
+(add-hook 'emacs-startup-hook #'efs/display-startup-time)
+
 (defun neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
@@ -165,7 +177,7 @@
 (setq neo-theme 'icons)
 
 ;; Use icons in dired mode
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+;; (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 
 
@@ -196,8 +208,9 @@
 ;; Org mode enhancements
 (use-package org-bullets
   :ensure t
-  :init (org-mode))
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  :commands org-bullets-mode
+  :hook (org-mode . org-bullets-mode))
+
 
 ;; Org-agenda customizations
 (setq org-agenda-start-on-weekday 0)
@@ -221,7 +234,7 @@
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0)
-  :init (global-company-mode))
+  :hook (lsp-mode . company-mode))
 
 (with-eval-after-load 'lsp-mode
   (add-to-list 'lsp-language-id-configuration
@@ -231,18 +244,21 @@
 ;; yaml
 (use-package yaml-mode
   :ensure t
+  :mode "\\.yaml\\'"
   :init
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
 ;; json
 (use-package json-mode
   :ensure t
+  :mode "\\.json\\'"
   :init
   (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode)))
 
 ;; Javascript
 (use-package js2-mode 
   :ensure t
+  :mode "\\.js\\'"
   :init
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
 
@@ -283,14 +299,6 @@
   :custom
   (lsp-ui-doc-position 'bottom))
 
-;; Svelte - For syntax highlighting svelte files we need to set them to web-mode
-(add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
-
-;; Astro
-(add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
-
-;; Handlebars
-;; (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
 
 (use-package add-node-modules-path
   :ensure t)
@@ -336,15 +344,25 @@
 (use-package evil-nerd-commenter :ensure t)
 
 ;; Magit
-(use-package magit :ensure t)
+(use-package magit
+  :ensure t
+  :commands (magit-mode))
 ;(use-package git-gutter :ensure t)
 ;(global-git-gutter-mode +1)
 
 ;; Startup screen with dashboard
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook))
+;; (use-package dashboard
+;;   :ensure t
+;;   :config
+;;   (dashboard-setup-startup-hook))
+
+;; (setq dashboard-items '((recents  . 5)
+;;                         (bookmarks . 5)
+;;                         (projects . 5)
+;;                         (agenda . 5)
+;;                         (registers . 5)))
+;; (setq dashboard-center-content t)
+;; (setq dashboard-display-icons-p nil) ;; display icons on both GUI and terminal
 
 ;; Project management
 (use-package projectile
@@ -397,7 +415,9 @@
 
 ;; plantuml
 (use-package plantuml-mode
+  :mode "\\.pum\\'"
   :ensure t)
+
 ;; Sample jar configuration
 (setq plantuml-jar-path "~/plantuml.jar")
 (setq org-plantuml-jar-path "~/plantuml.jar")
