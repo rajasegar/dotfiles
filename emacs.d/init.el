@@ -13,7 +13,7 @@
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq delete-old-versions -1 )
-;; (setq inhibit-startup-screen t )
+(setq inhibit-startup-screen t )
 (setq ring-bell-function 'ignore )
 (setq coding-system-for-read 'utf-8 )
 (setq coding-system-for-write 'utf-8 )
@@ -312,12 +312,6 @@
   (add-hook 'web-mode-hook 'add-node-modules-path)
   (add-hook 'web-mode-hook 'prettier-js-mode))
 
-;; (setq prettier-js-args '(
-  ;; "--trailing-comma" "all"
-  ;; "--bracket-spacing" "false"
-;; ))
-
-
 
 ;; Slime
 (use-package slime
@@ -339,10 +333,6 @@
 (use-package counsel
   :ensure t)
 
-
-;; Code commenting
-(use-package evil-nerd-commenter :ensure t)
-
 ;; Magit
 (use-package magit
   :ensure t
@@ -351,18 +341,18 @@
 ;(global-git-gutter-mode +1)
 
 ;; Startup screen with dashboard
-;; (use-package dashboard
-;;   :ensure t
-;;   :config
-;;   (dashboard-setup-startup-hook))
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
 
-;; (setq dashboard-items '((recents  . 5)
-;;                         (bookmarks . 5)
-;;                         (projects . 5)
-;;                         (agenda . 5)
-;;                         (registers . 5)))
-;; (setq dashboard-center-content t)
-;; (setq dashboard-display-icons-p nil) ;; display icons on both GUI and terminal
+(setq dashboard-items '((recents  . 5)
+                        (bookmarks . 5)
+                        (projects . 5)
+                        (agenda . 5)
+                        (registers . 5)))
+(setq dashboard-center-content t)
+(setq dashboard-display-icons-p nil) ;; display icons on both GUI and terminal
 
 ;; Project management
 (use-package projectile
@@ -376,6 +366,7 @@
   (setq projectile-git-submodule-command "git submodule --quiet foreach 'echo $path' 2>/dev/null | tr '\\n' '\\0'")
   :config
   (projectile-mode))
+
 (use-package counsel-projectile 
   :ensure t
   :config
@@ -511,6 +502,11 @@
   (interactive)
   (emms-play-directory "~/Music/College"))
 
+(defun play-latest-folder ()
+  "Play the 2023 directory in EMMS"
+  (interactive)
+  (emms-play-directory-tree "~/Music/2023"))
+
 (defun open-new-eshell ()
   "Open new shell instance everytime"
   (interactive)
@@ -574,6 +570,7 @@
    "ams" 'emms-shuffle
    "am1" 'play-favs-folder
    "am2" 'play-college-folder
+   "am3" 'play-college-folder
    "ar" 'elfeed
    "at" 'open-new-eshell
 
