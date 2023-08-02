@@ -63,7 +63,8 @@
 ;; Disable line numbers for some modes
 (dolist (mode '(term-mode-hook
                 eshell-mode-hook
-                org-present-mode-hook))
+                org-present-mode-hook
+                dashboard-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Package Management
@@ -110,8 +111,13 @@
 (menu-bar-mode   -1)
 
 ;; Font
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-11" ))
-(set-face-attribute 'default t :font "DejaVu Sans Mono-11" )
+(when (string-equal system-type "darwin")
+    (add-to-list 'default-frame-alist '(font . "Monaco-16" ))
+    (set-face-attribute 'default t :font "Monaco-16" ))
+
+(when (string-equal system-type  "gnu/linux")
+    (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-11" ))
+    (set-face-attribute 'default t :font "DejaVu Sans Mono-11" ))
 
 ;; Themes
 (use-package doom-themes
@@ -151,8 +157,8 @@
   :ensure t)
 
 ;; all-the-icons-dired
-(use-package all-the-icons-dired
-  :ensure t)
+;; (use-package all-the-icons-dired
+  ;; :ensure t)
 
 ;; Use icons in neotree
 ;; (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
