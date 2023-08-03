@@ -234,9 +234,9 @@
   (add-hook 'css-mode-hook 'company-mode))
 
 
-(with-eval-after-load 'lsp-mode
-  (add-to-list 'lsp-language-id-configuration
-    '(".*\\.svelte$" . "svelte")))
+;; (with-eval-after-load 'lsp-mode
+;;   (add-to-list 'lsp-language-id-configuration
+;;     '(".*\\.svelte$" . "svelte")))
 
 
 ;; yaml
@@ -263,15 +263,23 @@
 
 ;; Typescript
 (use-package typescript-mode
-  :mode "\\.ts\\'"
+  :mode "\\.tsx\\'"
   :config
-  (setq typescript-indent-level 2))
+  (setq typescript-indent-level 2)
+  (add-hook 'typescript-mode-hook 'tree-sitter-hl-mode))
 
 ;; Web mode
 (use-package web-mode
   :ensure t
   :hook (web-mode . lsp-deferred))
 (setq web-mode-markup-indent-offset 2)
+
+;; Svelte mode
+(use-package svelte-mode
+  :ensure t
+  :mode "\\.svelte\\'"
+  :init
+  (add-hook 'svelte-mode-hook 'tree-sitter-hl-mode))
 
 ;; LSP
 (use-package lsp-mode
@@ -283,10 +291,11 @@
 	 (html-mode . lsp-deferred)
 	 (css-mode . lsp-deferred)
    (typescript-mode . lsp-deferred)
-	 (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp-deferred
-  :config
-  (lsp-enable-which-key-integration t))
+   (svelte-mode . lsp-deferred))
+  :commands lsp-deferred)
+
+(with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 
 ;; LSP performance
 (setq gc-cons-threshold 100000000)
@@ -538,9 +547,8 @@
    "M-x" 'counsel-M-x)
 
   (general-define-key
-   :states '(normal visual)
-   ;; "/" 'swiper
-   ;; "gcc" 'evilnc-comment-or-uncomment-lines
+   :states '(normal)
+   :prefix "g"
   )
 
   (general-define-key
@@ -606,6 +614,10 @@
    "gs" 'magit-status
    "gw" 'switch-git-work
 
+   "gi" 'lsp-goto-implementation
+   "gt" 'lsp-goto-type-definition
+   "gd" 'lsp-find-definition
+
    "l" '(:ignore t :whick-key "Perspective")
    "lc" 'persp-new
    "ll" 'persp-switch
@@ -666,7 +678,7 @@
  '(css-indent-offset 2)
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(visual-fill-column org-present lsp-ui yasnippet org-tempo all-the-icons-dired nov typescript-mode neotree airline-themes linum-relative olivetti which-key use-package ranger prettier-js multi-term js2-mode general exec-path-from-shell evil doom-themes counsel-projectile))
+   '(svelte-mode visual-fill-column org-present lsp-ui yasnippet org-tempo all-the-icons-dired nov typescript-mode neotree airline-themes linum-relative olivetti which-key use-package ranger prettier-js multi-term js2-mode general exec-path-from-shell evil doom-themes counsel-projectile))
  '(web-mode-css-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
