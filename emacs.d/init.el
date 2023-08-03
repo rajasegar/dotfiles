@@ -192,7 +192,10 @@
 
 (use-package flycheck
   :ensure t
-  :init (global-flycheck-mode))
+  ;; :init (global-flycheck-mode)
+  :commands flycheck-mode
+  :init
+    (add-hook 'js2-mode-hook 'flycheck-mode))
 
 ;; org load languages
 (org-babel-do-load-languages 'org-babel-load-languages
@@ -234,7 +237,13 @@
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0)
-  :hook (lsp-mode . company-mode))
+  :commands company-mode
+  :init
+  (add-hook 'emacs-lisp-mode-hook 'company-mode)
+  (add-hook 'js2-mode-hook 'company-mode)
+  (add-hook 'web-mode-hook 'company-mode)
+  (add-hook 'css-mode-hook 'company-mode))
+
 
 (with-eval-after-load 'lsp-mode
   (add-to-list 'lsp-language-id-configuration
@@ -260,7 +269,8 @@
   :ensure t
   :mode "\\.js\\'"
   :init
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)
+  (add-hook 'js2-mode-hook 'tree-sitter-hl-mode)))
 
 ;; Typescript
 (use-package typescript-mode
@@ -280,8 +290,8 @@
    :init
   (setq lsp-keymap-prefix "C-c l")
   :hook (
-	 (js2-mode . lsp-deferred)
-	 (web-mode . lsp-deferred)
+	 (js-mode . lsp-deferred)
+	 (html-mode . lsp-deferred)
 	 (css-mode . lsp-deferred)
    (typescript-mode . lsp-deferred)
 	 (lsp-mode . lsp-enable-which-key-integration))
@@ -315,7 +325,8 @@
 
 ;; Slime
 (use-package slime
-  :ensure t)
+  :ensure t
+  :commands (slime-mode))
 (setq inferior-lisp-program "sbcl")
 
 ;; Markdown
