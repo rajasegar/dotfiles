@@ -134,17 +134,6 @@
 ;; Startup time
 (setq use-package-compute-statistics t)
 
-(defun efs/display-startup-time ()
-  (message
-   "Emacs loaded in %s with %d garbage collections."
-   (format
-    "%.2f seconds"
-    (float-time
-     (time-subtract after-init-time before-init-time)))
-   gcs-done))
-
-(add-hook 'emacs-startup-hook #'efs/display-startup-time)
-
 (defun neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
@@ -198,9 +187,9 @@
     (add-hook 'js2-mode-hook 'flycheck-mode))
 
 ;; org load languages
-(org-babel-do-load-languages 'org-babel-load-languages
-                             '((shell . t)
-                               (lisp . t)))
+;; (org-babel-do-load-languages 'org-babel-load-languages
+                            ;; '((shell . t)
+                            ;; (lisp . t)))
 
 (setq org-agenda-files (list "~/Dropbox/org/freshdesk.org"
                              "~/Dropbox/org/rajasegar.org"
@@ -358,10 +347,8 @@
   (dashboard-setup-startup-hook))
 
 (setq dashboard-items '((recents  . 5)
-                        (bookmarks . 5)
                         (projects . 5)
-                        (agenda . 5)
-                        (registers . 5)))
+                        (agenda . 5)))
 (setq dashboard-center-content t)
 (setq dashboard-display-icons-p nil) ;; display icons on both GUI and terminal
 
@@ -397,6 +384,12 @@
   :config
   (global-evil-surround-mode 1))
 
+(use-package esup
+  :ensure t
+  ;; To use MELPA Stable use ":pin melpa-stable",
+  :pin melpa)
+(setq esup-depth 0)
+
 ;; EMMS
 (use-package emms
   :ensure t)
@@ -424,9 +417,10 @@
 (setq plantuml-jar-path "~/plantuml.jar")
 (setq org-plantuml-jar-path "~/plantuml.jar")
 (setq plantuml-default-exec-mode 'jar)
+
 ;; Enable plantuml for org-mode
-(add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-(org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+;; (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
 ;; emmet-mode
 (use-package emmet-mode
