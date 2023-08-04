@@ -4,6 +4,26 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+(defun rajasegar/edit-emacs-settings ()
+  "Open common settings file"
+  (interactive)
+  (find-file "~/.emacs.d/rajasegar/settings.el"))
+
+(defun rajasegar/edit-emacs-packages ()
+  "Open  packages file"
+  (interactive)
+  (find-file "~/.emacs.d/rajasegar/packages.el"))
+
+(defun rajasegar/edit-emacs-keybindings ()
+  "Open  keybindings file"
+  (interactive)
+  (find-file "~/.emacs.d/rajasegar/keybindings.el"))
+
+(defun rajasegar/edit-emacs-functions ()
+  "Open  keybindings file"
+  (interactive)
+  (find-file "~/.emacs.d/rajasegar/functions.el"))
+
 (defun toggle-buffers ()
   "Toggle buffers."
   (interactive)

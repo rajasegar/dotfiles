@@ -1,22 +1,9 @@
 ;; Keybindings
-(use-package key-chord
-  :ensure t
-  :config
-  (key-chord-mode 1)
-  (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "Kj" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "KJ" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "kJ" 'evil-normal-state))
 (use-package general
   :ensure t
   :config 
   (general-define-key
    "M-x" 'counsel-M-x)
-
-  (general-define-key
-   :states '(normal)
-   :prefix "g"
-  )
 
   (general-define-key
    :states '(normal visual)
@@ -64,6 +51,7 @@
    "bd" 'kill-this-buffer
    "be" 'eval-buffer
    "bh" 'switch-to-dashboard
+   "bs" 'scratch-buffer
 
    "c" '(:ignore t :which-key "Comment")
    "cl" 'comment-line
@@ -75,6 +63,11 @@
    "ff" 'counsel-find-file
    "fr" 'counsel-recentf
    "fs" 'save-buffer
+   "fe" '(:ignore t :which-key "Edit Configs")
+   "fef" 'rajasegar/edit-emacs-functions
+   "fek" 'rajasegar/edit-emacs-keybindings
+   "fep" 'rajasegar/edit-emacs-packages
+   "fes" 'rajasegar/edit-emacs-settings
 
    "g" '(:ignore t :which-key "Code?")
    "gh" 'switch-git-personal
@@ -124,14 +117,9 @@
    "wl"  'windmove-right
    "ww"  'evil-window-next
 
-   "x" '(:ignore t :which-key "Text")
-   "xl" '(:ignore t :which-key "Lines")
-   "xls" 'sort-lines
-
    "y" '(:ignore t :which-key "Yasnippet")
    "yn" 'yas-new-snippet
-   "yi" 'yas-insert-snippet
-   )
+   "yi" 'yas-insert-snippet)
 
   (general-define-key
    :states '(visual)

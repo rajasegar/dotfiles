@@ -149,12 +149,6 @@
   (add-hook 'web-mode-hook 'company-mode)
   (add-hook 'css-mode-hook 'company-mode))
 
-
-;; (with-eval-after-load 'lsp-mode
-;;   (add-to-list 'lsp-language-id-configuration
-;;     '(".*\\.svelte$" . "svelte")))
-
-
 ;; yaml
 (use-package yaml-mode
   :ensure t
