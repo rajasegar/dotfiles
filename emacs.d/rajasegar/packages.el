@@ -119,15 +119,9 @@
   :commands org-bullets-mode
   :hook (org-mode . org-bullets-mode))
 
-
 ;; Org-agenda customizations
 (setq org-agenda-start-on-weekday 0)
 (setq org-agenda-timegrid-use-ampm 1)
-
-;; Org tempo
-;; (use-package org-tempo
-  ;; :ensure t)
-
 
 ;; Powerline
 (use-package powerline
@@ -147,7 +141,8 @@
   (add-hook 'emacs-lisp-mode-hook 'company-mode)
   (add-hook 'js2-mode-hook 'company-mode)
   (add-hook 'web-mode-hook 'company-mode)
-  (add-hook 'css-mode-hook 'company-mode))
+  (add-hook 'css-mode-hook 'company-mode)
+  (add-hook 'org-mode-hook 'company-mode))
 
 ;; yaml
 (use-package yaml-mode
@@ -371,4 +366,15 @@
                  (org-present-read-write)
                  (visual-fill-column-mode 0)
                  (visual-line-mode 0)))))
+
+;; For reading epub files 
+(use-package nov
+  :ensure t
+  :mode "\\.nov\\'"
+  :init
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+(setq nov-text-width t)
+(setq visual-fill-column-center-text t)
+(add-hook 'nov-mode-hook 'visual-line-mode)
+(add-hook 'nov-mode-hook 'visual-fill-column-mode)
 

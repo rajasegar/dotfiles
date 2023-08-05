@@ -53,7 +53,8 @@
 (dolist (mode '(term-mode-hook
                 eshell-mode-hook
                 org-present-mode-hook
-                dashboard-mode-hook))
+                dashboard-mode-hook
+                nov-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Minimal UI
