@@ -78,3 +78,11 @@
              (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))))
 
 (setq org-clock-sound "~/.emacs.d/bell.wav")
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/Dropbox/org/rajasegar.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("f" "Freshchat Todo" entry (file+headline "~/Dropbox/org/freshdesk.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
+         "* %?\nEntered on %U\n  %i\n  %a")))
