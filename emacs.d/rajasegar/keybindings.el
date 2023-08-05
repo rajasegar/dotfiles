@@ -63,11 +63,13 @@
    "ff" 'counsel-find-file
    "fr" 'counsel-recentf
    "fs" 'save-buffer
-   "fe" '(:ignore t :which-key "Edit Configs")
-   "fef" 'rajasegar/edit-emacs-functions
-   "fek" 'rajasegar/edit-emacs-keybindings
-   "fep" 'rajasegar/edit-emacs-packages
-   "fes" 'rajasegar/edit-emacs-settings
+
+
+   "e" '(:ignore t :which-key "Edit Configs")
+   "ef" 'rajasegar/edit-emacs-functions
+   "ek" 'rajasegar/edit-emacs-keybindings
+   "ep" 'rajasegar/edit-emacs-packages
+   "es" 'rajasegar/edit-emacs-settings
 
    "g" '(:ignore t :which-key "Code?")
    "gh" 'switch-git-personal
