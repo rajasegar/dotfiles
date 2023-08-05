@@ -76,3 +76,5 @@
           (function
            (lambda ()
              (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))))
+
+(setq org-clock-sound "~/.emacs.d/bell.wav")
