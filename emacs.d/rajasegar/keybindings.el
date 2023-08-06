@@ -28,16 +28,6 @@
    "a SPC" 'emms-pause
    "a e" 'emms
    "a" '(:ignore t :which-key "Applications")
-   "am" '(:ignore t :which-key "Music")
-   "amb" 'emms-browser
-   "amd" 'emms-play-directory
-   "amn" 'emms-next
-   "amo" 'emms-show
-   "amp" 'emms-previous
-   "ams" 'emms-shuffle
-   "am1" 'play-favs-folder
-   "am2" 'play-college-folder
-   "am3" 'play-college-folder
    "ar" 'elfeed
    "at" 'open-new-eshell
 
@@ -74,6 +64,7 @@
    "g" '(:ignore t :which-key "Code?")
    "gh" 'switch-git-personal
    "gs" 'magit-status
+   "gt" 'git-timemachine
    "gw" 'switch-git-work
 
    "gi" 'lsp-goto-implementation
@@ -86,7 +77,18 @@
    "ln" 'persp-next
    "lp" 'persp-prev
    "lk" 'persp-kill
-   
+
+   "m" '(:ignore t :which-key "Music")
+   "mb" 'emms-browser
+   "md" 'emms-play-directory-tree
+   "mn" 'emms-next
+   "mo" 'emms-show
+   "mp" 'emms-previous
+   "ms" 'emms-shuffle
+   "m1" 'rajasegar/play-favs-folder
+   "m2" 'rajasegar/play-college-folder
+   "m3" 'rajasegar/play-latest-folder
+  
 
    "o" '(:ignore t : which-key "Org-Mode")
    "oa" 'org-agenda

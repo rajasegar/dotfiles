@@ -109,7 +109,8 @@
 
 (setq org-agenda-files (list "~/Dropbox/org/freshdesk.org"
                              "~/Dropbox/org/rajasegar.org"
-                             "~/Dropbox/org/birthdays.org"))
+                             "~/Dropbox/org/birthdays.org"
+                             "~/Dropbox/org/anniversaries.org"))
 (setq org-default-notes-file "~/Dropbox/org/tasks.org")
 
 
@@ -253,6 +254,11 @@
   :commands (magit-mode))
 ;(use-package git-gutter :ensure t)
 ;(global-git-gutter-mode +1)
+
+;; Git timemachine
+(use-package git-timemachine
+  :ensure t
+  :commands (git-timemachine))
 
 ;; Startup screen with dashboard
 (use-package dashboard

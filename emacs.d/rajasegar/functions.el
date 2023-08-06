@@ -44,17 +44,17 @@
   (interactive)
   (shell-command "ssh-add -D && ssh-add ~/.ssh/id_ed25519 && ssh -T git@github.com"))
 
-(defun play-favs-folder ()
+(defun rajasegar/play-favs-folder ()
   "Play the Favs directory in EMMS"
   (interactive)
   (emms-play-directory "~/Music/Favs"))
 
-(defun play-college-folder ()
+(defun rajasegar/play-college-folder ()
   "Play the College directory in EMMS"
   (interactive)
   (emms-play-directory "~/Music/College"))
 
-(defun play-latest-folder ()
+(defun rajasegar/play-latest-folder ()
   "Play the 2023 directory in EMMS"
   (interactive)
   (emms-play-directory-tree "~/Music/2023"))
