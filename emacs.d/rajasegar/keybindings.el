@@ -50,26 +50,21 @@
    "df" 'js-doc-insert-function-doc
    "dm" 'js-doc-insert-file-doc
 
-   "ff" 'counsel-find-file
-   "fr" 'counsel-recentf
-   "fs" 'save-buffer
-
-
    "e" '(:ignore t :which-key "Edit Configs")
    "ef" 'rajasegar/edit-emacs-functions
    "ek" 'rajasegar/edit-emacs-keybindings
    "ep" 'rajasegar/edit-emacs-packages
    "es" 'rajasegar/edit-emacs-settings
 
+   "ff" 'counsel-find-file
+   "fr" 'counsel-recentf
+   "fs" 'save-buffer
+
    "g" '(:ignore t :which-key "Code?")
    "gh" 'switch-git-personal
    "gs" 'magit-status
    "gt" 'git-timemachine
    "gw" 'switch-git-work
-
-   "gi" 'lsp-goto-implementation
-   "gt" 'lsp-goto-type-definition
-   "gd" 'lsp-find-definition
 
    "l" '(:ignore t :whick-key "Perspective")
    "lc" 'persp-new
@@ -124,6 +119,13 @@
    "y" '(:ignore t :which-key "Yasnippet")
    "yn" 'yas-new-snippet
    "yi" 'yas-insert-snippet)
+
+  (general-define-key
+ :states '(normal visual)
+ :keymaps 'typescript-mode-map
+   "gi" 'lsp-goto-implementation
+   "gt" 'lsp-goto-type-definition
+   "gd" 'lsp-find-definition)
 
   (general-define-key
    :states '(visual)

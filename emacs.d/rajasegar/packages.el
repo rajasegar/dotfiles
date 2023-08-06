@@ -145,6 +145,14 @@
   (add-hook 'css-mode-hook 'company-mode)
   (add-hook 'org-mode-hook 'company-mode))
 
+;; Treesitter
+(use-package  tree-sitter
+  :ensure t
+  :commands tree-sitter-hl-mode)
+(use-package tree-sitter-langs
+  :ensure t
+  :commands tree-sitter-hl-mode)
+
 ;; yaml
 (use-package yaml-mode
   :ensure t
