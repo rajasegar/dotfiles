@@ -80,6 +80,7 @@
    "mo" 'emms-show
    "mp" 'emms-previous
    "ms" 'emms-shuffle
+   "mx" 'emms-stop
    "m1" 'rajasegar/play-favs-folder
    "m2" 'rajasegar/play-college-folder
    "m3" 'rajasegar/play-latest-folder

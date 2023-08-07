@@ -55,7 +55,8 @@
                 org-present-mode-hook
                 dashboard-mode-hook
                 nov-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+  (add-hook mode (lambda () (display-line-numbers-mode 0)
+    (global-display-line-numbers-mode 0))))
 
 ;; Minimal UI
 (scroll-bar-mode -1)
