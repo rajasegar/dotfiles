@@ -55,8 +55,7 @@
                 org-present-mode-hook
                 dashboard-mode-hook
                 nov-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0)
-    (global-display-line-numbers-mode 0))))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Minimal UI
 (scroll-bar-mode -1)
@@ -82,6 +81,8 @@
 
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/Dropbox/org/rajasegar.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("e" "Emacs Todo" entry (file+headline "~/Dropbox/org/rajasegar.org" "Emacs")
          "* TODO %?\n  %i\n  %a")
         ("f" "Freshchat Todo" entry (file+headline "~/Dropbox/org/freshdesk.org" "Tasks")
          "* TODO %?\n  %i\n  %a")
