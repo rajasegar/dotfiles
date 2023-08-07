@@ -145,13 +145,14 @@
   (add-hook 'css-mode-hook 'company-mode)
   (add-hook 'org-mode-hook 'company-mode))
 
-;; Treesitter
+;; Treesitter install only for linux
+(when (string-equal system-type  "gnu/linux")
 (use-package  tree-sitter
   :ensure t
   :commands (tree-sitter-hl-mode))
 (use-package tree-sitter-langs
   :ensure t
-  :commands (tree-sitter-hl-mode))
+  :commands (tree-sitter-hl-mode)))
 
 ;; yaml
 (use-package yaml-mode
