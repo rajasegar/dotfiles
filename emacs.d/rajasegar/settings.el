@@ -54,7 +54,8 @@
                 eshell-mode-hook
                 org-present-mode-hook
                 dashboard-mode-hook
-                nov-mode-hook))
+                nov-mode-hook
+                eww-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Minimal UI
@@ -88,3 +89,14 @@
          "* TODO %?\n  %i\n  %a")
         ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
          "* %?\nEntered on %U\n  %i\n  %a")))
+
+(setq nov-text-width t)
+(setq visual-fill-column-center-text t)
+
+
+;; Enable visual line and fill column for some modes
+(dolist (mode '(nov-mode-hook
+                eww-mode-hook))
+  (add-hook mode (lambda ()
+                   (visual-line-mode 1)
+                   (visual-fill-column-mode 1))))
