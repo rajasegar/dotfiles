@@ -18,16 +18,16 @@
    "/"   'counsel-rg
    "SPC"   'counsel-M-x
    "."   'edit-emacs-configuration
+   ";"   'emms-pause
    "\""  'split-window-below
    "%"  'split-window-right
    "TAB" 'toggle-buffers
    
    "T" 'counsel-load-theme
 
-   "a RET" 'emms-playlist-mode-go
-   "a SPC" 'emms-pause
-   "a e" 'emms
    "a" '(:ignore t :which-key "Applications")
+   "ae" 'emms
+   "ah" 'rajasegar/open-hackernews
    "ar" 'elfeed
    "at" 'open-new-eshell
 

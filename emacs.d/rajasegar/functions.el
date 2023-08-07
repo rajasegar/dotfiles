@@ -64,3 +64,7 @@
   (interactive)
   (eshell 'N))
 
+(defun rajasegar/open-hackernews ()
+  "OPen hacker news website in eww"
+  (interactive)
+  (eww "hackernews.com"))
