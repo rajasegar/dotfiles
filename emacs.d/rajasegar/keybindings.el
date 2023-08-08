@@ -15,7 +15,7 @@
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
    "'"   'multi-term
-   "/"   'counsel-rg
+   "/"   'counsel-git-grep
    "SPC"   'counsel-M-x
    "."   'edit-emacs-configuration
    ";"   'emms-pause
@@ -56,12 +56,17 @@
    "fr" 'counsel-recentf
    "fs" 'save-buffer
 
-   "g" '(:ignore t :which-key "Code?")
+   "g" '(:ignore t :which-key "Git")
    "gb" 'magit-blame
    "gh" 'switch-git-personal
    "gs" 'magit-status
    "gt" 'git-timemachine
    "gw" 'switch-git-work
+
+   "h" '(:ignore t :which-key "Help")
+   "hb" 'counsel-descbinds
+   "hf" 'counsel-describe-function
+   "hv" 'counsel-describe-variable
 
    "l" '(:ignore t :whick-key "Perspective")
    "lc" 'persp-new
