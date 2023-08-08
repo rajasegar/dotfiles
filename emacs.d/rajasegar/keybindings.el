@@ -119,6 +119,11 @@
    "yi" 'yas-insert-snippet)
 
   (general-define-key
+   :states '(normal visual)
+   :keymaps 'dired-mode-map
+   "p" 'emms-play-dired)
+
+  (general-define-key
  :states '(normal visual)
  :keymaps 'typescript-mode-map
    "gi" 'lsp-goto-implementation
