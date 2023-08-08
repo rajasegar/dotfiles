@@ -28,13 +28,9 @@
    "a" '(:ignore t :which-key "Applications")
    "ae" 'emms
    "ah" 'rajasegar/open-hackernews
+   "ap" 'org-present
    "ar" 'elfeed
    "at" 'open-new-eshell
-
-   "ap" '(:ignore t :which-key "Org Present")
-   "apx" 'org-present
-   "apn" 'org-present-next
-   "app" 'org-present-prev
 
    "b" '(:ignore t :which-key "Buffers")
    "bb"  'ivy-switch-buffer
@@ -61,6 +57,7 @@
    "fs" 'save-buffer
 
    "g" '(:ignore t :which-key "Code?")
+   "gb" 'magit-blame
    "gh" 'switch-git-personal
    "gs" 'magit-status
    "gt" 'git-timemachine

@@ -372,7 +372,8 @@
                  (org-present-hide-cursor)
                  (org-present-read-only)
                  (visual-fill-column-mode 1)
-                 (visual-line-mode 1)))
+                 (visual-line-mode 1)
+                 (evil-mode 0)))
      (add-hook 'org-present-mode-quit-hook
                (lambda ()
                  (org-present-small)
@@ -380,7 +381,8 @@
                  (org-present-show-cursor)
                  (org-present-read-write)
                  (visual-fill-column-mode 0)
-                 (visual-line-mode 0)))))
+                 (visual-line-mode 0)
+                 (evil-mode 1)))))
 
 ;; For reading epub files 
 (use-package nov
