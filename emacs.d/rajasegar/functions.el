@@ -37,7 +37,7 @@
 (defun switch-git-personal ()
   "Switch to personal Github profile."
   (interactive)
-  (shell-command "ssh-add -D && ssh-add ~/.ssh/id_rsa && ssh -T git@github.com"))
+  (shell-command "ssh-add -D && ssh-add ~/.ssh/id_ed25519 && ssh -T git@github.com"))
 
 (defun switch-git-work ()
   "Switch to work Github profile."
