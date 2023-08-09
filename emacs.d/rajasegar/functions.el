@@ -42,7 +42,7 @@
 (defun switch-git-work ()
   "Switch to work Github profile."
   (interactive)
-  (shell-command "ssh-add -D && ssh-add ~/.ssh/id_ed25519 && ssh -T git@github.com"))
+  (shell-command "ssh-add -D && ssh-add ~/.ssh/id_ed25519_fw && ssh -T git@github.com"))
 
 (defun rajasegar/play-favs-folder ()
   "Play the Favs directory in EMMS"

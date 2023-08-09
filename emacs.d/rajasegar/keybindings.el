@@ -98,7 +98,7 @@
    "pp" 'projectile-persp-switch-project
    "pt" 'neotree-project-dir
 
-   "qq" '(kill-emacs)
+   "qq" 'kill-emacs
    "qr" 'restart-emacs
 
    "s" '(:ignore t :which-key "Slime")
