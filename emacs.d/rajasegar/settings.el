@@ -38,7 +38,7 @@
 
 (setq-default mode-line-format nil)
 
-;; (toggle-word-wrap)
+(toggle-word-wrap)
 (global-auto-revert-mode t)
 (global-display-line-numbers-mode 1)
 (electric-pair-mode)
