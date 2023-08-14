@@ -147,12 +147,12 @@
 
 ;; Treesitter install only for linux
 (when (string-equal system-type  "gnu/linux")
-(use-package  tree-sitter
-  :ensure t
-  :commands (tree-sitter-hl-mode))
-(use-package tree-sitter-langs
-  :ensure t
-  :commands (tree-sitter-hl-mode)))
+  (use-package  tree-sitter
+    :ensure t
+    :commands (tree-sitter-hl-mode))
+  (use-package tree-sitter-langs
+    :ensure t
+    :commands (tree-sitter-hl-mode)))
 
 ;; yaml
 (use-package yaml-mode
@@ -173,8 +173,9 @@
   :ensure t
   :mode "\\.js\\'"
   :init
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)
-  (add-hook 'js2-mode-hook 'tree-sitter-hl-mode)))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  (add-to-list 'auto-mode-alist '("\\.cjs\\'" . js2-mode))
+  (add-hook 'js2-mode-hook 'tree-sitter-hl-mode))
 
 ;; Typescript
 (use-package typescript-mode
@@ -213,8 +214,8 @@
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 
 ;; LSP performance
-(setq gc-cons-threshold 100000000)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq gc-cons-threshold (* 100 1000 1000)) ;; 100 mb
+(setq read-process-output-max (* 3 1024 1024)) ;; 3mb
 
 (use-package lsp-ui
   :ensure t

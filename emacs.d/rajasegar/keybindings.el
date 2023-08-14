@@ -26,6 +26,7 @@
    "T" 'counsel-load-theme
 
    "a" '(:ignore t :which-key "Applications")
+   "ac" 'calendar
    "ae" 'emms
    "ah" 'rajasegar/open-hackernews
    "ap" 'org-present

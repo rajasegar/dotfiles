@@ -100,3 +100,5 @@
   (add-hook mode (lambda ()
                    (visual-line-mode 1)
                    (visual-fill-column-mode 1))))
+
+(setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))

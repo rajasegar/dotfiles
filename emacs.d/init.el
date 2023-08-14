@@ -9,6 +9,8 @@
 ;; - https://dev.to/huytd/emacs-from-scratch-1cg6
 ;; - https://sam217pa.github.io/2016/09/13/from-helm-to-ivy/#fnref:2
 
+;; -*- lexical-binding: t; -*-
+
 ;; Load common settings
 (load (concat user-emacs-directory "rajasegar/settings.el"))
 
