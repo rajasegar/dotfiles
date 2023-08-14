@@ -222,6 +222,8 @@
   :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-position 'bottom))
+(setq lsp-ui-doc-enable nil)
+(setq lsp-lens-enable nil)
 
 
 (use-package add-node-modules-path
@@ -261,7 +263,8 @@
 ;; Magit
 (use-package magit
   :ensure t
-  :commands (magit-mode))
+  ;; :commands (magit-mode)
+  )
 ;(use-package git-gutter :ensure t)
 ;(global-git-gutter-mode +1)
 
