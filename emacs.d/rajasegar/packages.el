@@ -124,13 +124,10 @@
 (setq org-agenda-start-on-weekday 0)
 (setq org-agenda-timegrid-use-ampm 1)
 
-;; Powerline
-(use-package powerline
-  :ensure t)
-(powerline-default-theme)
-(use-package airline-themes
-  :ensure t)
-(load-theme 'airline-dark t)
+;; Modeline
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
 
 (use-package company
   :ensure t
