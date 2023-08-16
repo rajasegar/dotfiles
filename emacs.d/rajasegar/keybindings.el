@@ -38,8 +38,8 @@
    "bd" 'kill-this-buffer
    "be" 'eval-buffer
    "bh" 'switch-to-dashboard
-   "bn" 'centaur-tabs-backward
-   "bp" 'centaur-tabs-forward
+   "bn" 'centaur-tabs-forward
+   "bp" 'centaur-tabs-backward
    "bs" 'scratch-buffer
 
    "c" '(:ignore t :which-key "Comment")
@@ -141,7 +141,3 @@
   (general-define-key
    :states '(visual)
    "gc" 'evilnc-comment-or-uncomment-lines))
-
-;; Tab switch
-(define-key evil-normal-state-map (kbd "g t") 'centaur-tabs-forward)
-(define-key evil-normal-state-map (kbd "g T") 'centaur-tabs-backward)
