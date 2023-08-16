@@ -99,7 +99,7 @@
    "p" 'projectile-command-map
    "pf" 'counsel-projectile-find-file
    "pp" 'projectile-persp-switch-project
-   "pt" 'neotree-project-dir
+   "pt" 'neotree-show
 
    "qq" 'kill-emacs
    "qr" 'restart-emacs

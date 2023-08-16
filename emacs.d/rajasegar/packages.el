@@ -10,6 +10,9 @@
   (package-install 'use-package))
 (require 'use-package)
 
+;; Startup time
+(setq use-package-compute-statistics t)
+
 ;; Path management
 (use-package exec-path-from-shell
   :ensure t
@@ -46,22 +49,7 @@
   ;; Disable line-numbers minor mode for neotree
   (add-hook 'neo-after-create-hook
             (lambda (&rest _) (display-line-numbers-mode -1))))
-
-;; Startup time
-(setq use-package-compute-statistics t)
-
-(defun neotree-project-dir ()
-    "Open NeoTree using the git root."
-    (interactive)
-    (let ((project-dir (projectile-project-root))
-          (file-name (buffer-file-name)))
-      (neotree-toggle)
-      (if project-dir
-          (if (neo-global--window-exists-p)
-              (progn
-                (neotree-dir project-dir)
-                (neotree-find file-name)))
-        (message "Could not find git project root."))))
+(setq neo-smart-open t)
 
 ;; Ignore files in neotree
 (setq neo-hidden-regexp-list
@@ -83,8 +71,6 @@
 
 ;; Use icons in dired mode
 ;; (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-
-
 
 ;; Which Key
 (use-package which-key
