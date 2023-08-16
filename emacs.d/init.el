@@ -1,15 +1,6 @@
-;;; package --- my init.el
-
-;;; Commentary:
-;; Got this config from this url and tweaking for my taste
-;; http://www.petecorey.com/blog/2019/07/01/building-my-own-spacemacs/
-;; Helpful links:
-;; 
-;; - https://sam217pa.github.io/2016/09/02/how-to-build-your-own-spacemacs/
-;; - https://dev.to/huytd/emacs-from-scratch-1cg6
-;; - https://sam217pa.github.io/2016/09/13/from-helm-to-ivy/#fnref:2
-
 ;; -*- lexical-binding: t; -*-
+
+;;; package --- my init.el
 
 ;; Load common settings
 (load (concat user-emacs-directory "rajasegar/settings.el"))
@@ -25,7 +16,6 @@
 
 ;; Load keybindings
 (load (concat user-emacs-directory "rajasegar/keybindings.el"))
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
