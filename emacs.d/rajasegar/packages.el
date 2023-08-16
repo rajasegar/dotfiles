@@ -424,6 +424,7 @@
      (string-prefix-p "*help" name)
      (string-prefix-p " *temp" name)
      (string-prefix-p "*Help" name)
+     (string-prefix-p "magit-" name)
 
      ;; Is not magit buffer.
      (and (string-prefix-p "magit" name)
