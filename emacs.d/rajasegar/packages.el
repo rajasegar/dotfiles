@@ -260,8 +260,7 @@
 ;; Magit
 (use-package magit
   :ensure t
-  ;; :commands (magit-mode)
-  )
+  :commands (magit-mode))
 ;(use-package git-gutter :ensure t)
 ;(global-git-gutter-mode +1)
 
@@ -391,3 +390,15 @@
   :mode "\\.nov\\'"
   :init
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+
+;; Tabs
+(use-package centaur-tabs
+  :ensure t
+  :demand
+  :config
+  (centaur-tabs-mode t))
+(centaur-tabs-group-by-projectile-project)
+(setq centaur-tabs-set-icons t)
+(setq centaur-tabs-gray-out-icons 'buffer)
+(setq centaur-tabs-set-bar 'left)
+(setq centaur-tabs-cycle-scope 'tabs)
