@@ -47,12 +47,12 @@
 (defun rajasegar/play-favs-folder ()
   "Play the Favs directory in EMMS"
   (interactive)
-  (emms-play-directory "~/Music/Favs"))
+  (emms-play-directory-tree "~/Music/Favs"))
 
 (defun rajasegar/play-college-folder ()
   "Play the College directory in EMMS"
   (interactive)
-  (emms-play-directory "~/Music/College"))
+  (emms-play-directory-tree "~/Music/College"))
 
 (defun rajasegar/play-latest-folder ()
   "Play the 2023 directory in EMMS"
