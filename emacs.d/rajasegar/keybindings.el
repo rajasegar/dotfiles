@@ -27,6 +27,7 @@
 
    "a" '(:ignore t :which-key "Applications")
    "ac" 'calendar
+   "ad" 'dired
    "ae" 'emms
    "ah" 'rajasegar/open-hackernews
    "ap" 'org-present
