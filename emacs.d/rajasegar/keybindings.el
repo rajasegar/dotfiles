@@ -1,4 +1,12 @@
 ;; Keybindings
+
+(global-set-key [f5] 'emms)
+(global-set-key [f6] 'emms-pause)
+;; (global-set-key [f7] ')
+(global-set-key [f8] 'neotree-show)
+;; (global-set-key [f9] ')
+;; (global-set-key [f12] ')
+
 (use-package general
   :ensure t
   :config 
