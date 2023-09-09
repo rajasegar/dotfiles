@@ -1,10 +1,10 @@
 ;; Keybindings
 
-(global-set-key [f5] 'emms)
+(global-set-key [f5] 'emms-start)
 (global-set-key [f6] 'emms-pause)
-;; (global-set-key [f7] ')
-(global-set-key [f8] 'neotree-show)
-;; (global-set-key [f9] ')
+(global-set-key [f7] 'emms-previous)
+(global-set-key [f8] 'emms-next)
+(global-set-key [f9] 'neotree-show)
 ;; (global-set-key [f12] ')
 
 (use-package general
