@@ -103,6 +103,8 @@
    "oa" 'org-agenda
    "oc" 'org-capture
    "ot" 'org-toggle-link-display
+   "os" 'org-timer-set-timer
+   "ox" 'org-timer-stop
 
    "p" 'projectile-command-map
    "pf" 'counsel-projectile-find-file
