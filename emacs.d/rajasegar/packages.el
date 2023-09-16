@@ -173,6 +173,19 @@
   :hook (web-mode . lsp-deferred))
 (setq web-mode-markup-indent-offset 2)
 
+(define-derived-mode hbs-mode web-mode "Handlebars mode" "Major mode for handlebars")
+(add-to-list 'auto-mode-alist '("\\.hbs\\'" . hbs-mode))
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-language-id-configuration
+    '(hbs-mode . "hbs"))
+  (lsp-register-client
+   ;; Git clone language server from https://github.com/lifeart/ember-language-server/tree/component-context-info-origin
+   ;; And build it
+    (make-lsp-client :new-connection (lsp-stdio-connection (list "node" (expand-file-name "~/www/ember-language-server/lib/start-server.js") "--stdio"))
+                     :activation-fn (lsp-activate-on "hbs")
+                     :server-id 'ember-language-server)))
+
+
 ;; Svelte mode
 (use-package svelte-mode
   :ensure t
