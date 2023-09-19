@@ -151,4 +151,9 @@
 
   (general-define-key
    :states '(visual)
-   "gc" 'evilnc-comment-or-uncomment-lines))
+   "gc" 'evilnc-comment-or-uncomment-lines)
+
+  (general-define-key
+   :states '(normal visual)
+   :keymaps 'neotree-mode-map
+   "o" 'neotree-quick-look))
