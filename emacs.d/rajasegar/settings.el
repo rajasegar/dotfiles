@@ -102,3 +102,14 @@
                    (visual-fill-column-mode 1))))
 
 (setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
+
+(setq org-hide-emphasis-markers t)
+(setq org-emphasis-alist
+      (quote (
+              ("*" (bold :foreground "cyan"))
+              ("/" (italic :foreground-color "red")
+              ("_" underline)
+              ("=" (:foreground "yellow" ))
+              ("~" org-verbatim verbatim)
+              ("+" (:strike-through t))
+              )))
