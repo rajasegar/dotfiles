@@ -87,6 +87,8 @@
          "* TODO %?\n  %i\n  %a")
         ("f" "Freshchat Todo" entry (file+headline "~/Dropbox/org/freshdesk.org" "Tasks")
          "* TODO %?\n  %i\n  %a")
+        ("d" "Technical Debt" entry (file+headline "~/Dropbox/org/fc-tech-debt.org" "Tasks")
+         "* TODO %?\n")
         ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
          "* %?\nEntered on %U\n  %i\n  %a")))
 
@@ -112,4 +114,4 @@
               ("=" (:foreground "yellow" ))
               ("~" org-verbatim verbatim)
               ("+" (:strike-through t))
-              )))
+              ))))
