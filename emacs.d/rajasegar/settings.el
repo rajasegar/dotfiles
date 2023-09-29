@@ -103,8 +103,6 @@
                    (visual-line-mode 1)
                    (visual-fill-column-mode 1))))
 
-;; (setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
-
 (setq org-hide-emphasis-markers t)
 (setq org-emphasis-alist
       (quote (
@@ -118,7 +116,7 @@
 ;; Don’t compact font caches during GC.
 (setq inhibit-compacting-font-caches t)
 
-;; Eglot
+;; LSP with eglot
 (add-hook 'js2-mode-hook 'eglot-ensure)
 (add-hook 'css-mode-hook 'eglot-ensure)
 (add-hook 'html-mode-hook 'eglot-ensure)
