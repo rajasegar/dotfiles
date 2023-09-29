@@ -81,12 +81,12 @@
   :config
   (which-key-mode))
 
-(use-package flycheck
-  :ensure t
-  ;; :init (global-flycheck-mode)
-  :commands flycheck-mode
-  :init
-    (add-hook 'js2-mode-hook 'flycheck-mode))
+;; (use-package flycheck
+;;   :ensure t
+;;   ;; :init (global-flycheck-mode)
+;;   :commands flycheck-mode
+;;   :init
+;;     (add-hook 'js2-mode-hook 'flycheck-mode))
 
 ;; org load languages
 ;; (org-babel-do-load-languages 'org-babel-load-languages
@@ -167,6 +167,8 @@
   :config
   (setq typescript-indent-level 2)
   (add-hook 'typescript-mode-hook 'tree-sitter-hl-mode))
+
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 
 ;; Web mode
 (use-package web-mode
@@ -377,7 +379,7 @@
      (string-prefix-p "*Helm" name)
      (string-prefix-p "*Compile-Log*" name)
      (string-prefix-p "*company" name)
-     (string-prefix-p "*Flycheck" name)
+     ;; (string-prefix-p "*Flycheck" name)
      (string-prefix-p "*dashboard" name)
      (string-prefix-p " *Mini" name)
      (string-prefix-p "*help" name)

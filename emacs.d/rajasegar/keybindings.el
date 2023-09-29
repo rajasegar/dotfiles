@@ -69,6 +69,12 @@
    "fr" 'counsel-recentf
    "fs" 'save-buffer
 
+   ;; Flymake
+   "fn" 'flymake-goto-next-error
+   "fp" 'flymake-goto-prev-error
+   "fd" 'flymake-show-buffer-diagnostics
+   
+
    "g" '(:ignore t :which-key "Git")
    "gb" 'magit-blame
    "gh" 'switch-git-personal
@@ -145,16 +151,11 @@
 
   (general-define-key
  :states '(normal visual)
- :keymaps 'typescript-mode-map
-   ;; "gi" 'lsp-goto-implementation
-   ;; "gt" 'lsp-goto-type-definition
-   ;; "gd" 'lsp-find-definition
+ :keymaps '(js2-mode-map typescript-mode-map)
 
    "gi" 'eglot-find-implementation
    "gt" 'eglot-find-typeDefinition
    "gd" 'eglot-find-declaration
-
-
    )
 
   (general-define-key
