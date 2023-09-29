@@ -53,6 +53,7 @@
 
    "c" '(:ignore t :which-key "Comment")
    "cl" 'comment-line
+   "cg" 'counsel-rg
 
    "d" '(:ignore t :which-key "Comments")
    "df" 'js-doc-insert-function-doc
@@ -145,9 +146,16 @@
   (general-define-key
  :states '(normal visual)
  :keymaps 'typescript-mode-map
-   "gi" 'lsp-goto-implementation
-   "gt" 'lsp-goto-type-definition
-   "gd" 'lsp-find-definition)
+   ;; "gi" 'lsp-goto-implementation
+   ;; "gt" 'lsp-goto-type-definition
+   ;; "gd" 'lsp-find-definition
+
+   "gi" 'eglot-find-implementation
+   "gt" 'eglot-find-typeDefinition
+   "gd" 'eglot-find-declaration
+
+
+   )
 
   (general-define-key
    :states '(visual)

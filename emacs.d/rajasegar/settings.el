@@ -103,7 +103,7 @@
                    (visual-line-mode 1)
                    (visual-fill-column-mode 1))))
 
-(setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
+;; (setq lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
 
 (setq org-hide-emphasis-markers t)
 (setq org-emphasis-alist
@@ -115,3 +115,20 @@
               ("~" org-verbatim verbatim)
               ("+" (:strike-through t))
               ))))
+;; Don’t compact font caches during GC.
+(setq inhibit-compacting-font-caches t)
+
+;; Eglot
+(add-hook 'js2-mode-hook 'eglot-ensure)
+(add-hook 'css-mode-hook 'eglot-ensure)
+(add-hook 'html-mode-hook 'eglot-ensure)
+(add-hook 'typescript-mode-hook 'eglot-ensure)
+(add-hook 'hbs-mode-hook 'eglot-ensure)
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '(hbs-mode . ("node" "/Users/rajasegarchandran/www/ember-language-server/lib/start-server.js" "--stdio"))
+               ))
+
+(defun jsonrpc--log-event (_connection _message &optional type)
+  "A NOOP just for issue 61"
+  nil)
