@@ -24,6 +24,11 @@
   (interactive)
   (find-file "~/.emacs.d/rajasegar/functions.el"))
 
+(defun rajasegar/open-emacs-config-folder ()
+  "Open Emacs config folder"
+  (interactive)
+  (dired "~/.emacs.d/rajasegar"))
+
 (defun toggle-buffers ()
   "Toggle buffers."
   (interactive)

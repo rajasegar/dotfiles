@@ -60,6 +60,7 @@
    "dm" 'js-doc-insert-file-doc
 
    "e" '(:ignore t :which-key "Edit Configs")
+   "e." 'rajasegar/open-emacs-config-folder
    "ef" 'rajasegar/edit-emacs-functions
    "ek" 'rajasegar/edit-emacs-keybindings
    "ep" 'rajasegar/edit-emacs-packages
@@ -105,7 +106,7 @@
    "m1" 'rajasegar/play-favs-folder
    "m2" 'rajasegar/play-college-folder
    "m3" 'rajasegar/play-latest-folder
-  
+   
 
    "o" '(:ignore t : which-key "Org-Mode")
    "oa" 'org-agenda
@@ -150,12 +151,12 @@
    "p" 'emms-play-dired)
 
   (general-define-key
- :states '(normal visual)
- :keymaps '(js2-mode-map typescript-mode-map)
+   :states '(normal visual)
+   :keymaps '(js2-mode-map typescript-mode-map)
 
-   "gi" 'eglot-find-implementation
-   "gt" 'eglot-find-typeDefinition
-   "gd" 'eglot-find-declaration
+   "gi" 'lsp-goto-implementation
+   "gt" 'lsp-goto-type-definition
+   "gd" 'lsp-find-definition
    )
 
   (general-define-key

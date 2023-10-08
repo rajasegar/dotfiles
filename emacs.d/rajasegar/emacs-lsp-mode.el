@@ -41,8 +41,8 @@
     (make-lsp-client :new-connection (lsp-stdio-connection (list "node" (expand-file-name "~/Public/www/ember-language-server/lib/start-server.js") "--stdio"))
                      :activation-fn (lsp-activate-on "hbs")
                      :server-id 'ember-language-server))
-  (lsp-register-client
-    (make-lsp-client :new-connection (lsp-stdio-connection (list "node" (expand-file-name "~/Public/www/bun-lsp/out/server.js") "--stdio"))
-                     :activation-fn (lsp-activate-on "javascript")
-                     :server-id 'bun-lsp-server))
+  ;; (lsp-register-client
+  ;;   (make-lsp-client :new-connection (lsp-stdio-connection (list "node" (expand-file-name "~/Public/www/bun-lsp/out/server.js") "--stdio"))
+  ;;                    :activation-fn (lsp-activate-on "javascript")
+  ;;                    :server-id 'bun-lsp-server))
   )
