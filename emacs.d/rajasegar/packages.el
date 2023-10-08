@@ -176,8 +176,6 @@
 
 (setq web-mode-markup-indent-offset 2)
 
-(define-derived-mode hbs-mode web-mode "Handlebars mode" "Major mode for handlebars")
-(add-to-list 'auto-mode-alist '("\\.hbs\\'" . hbs-mode))
 
 ;; Svelte mode
 (use-package svelte-mode

@@ -8,6 +8,12 @@
 ;; Load package config
 (load (concat user-emacs-directory "rajasegar/packages.el"))
 
+;; Load emacs-lsp-mode config
+(load (concat user-emacs-directory "rajasegar/emacs-lsp-mode.el"))
+
+;; Load eglot config
+;; (load (concat user-emacs-directory "rajasegar/eglot.el"))
+
 ;; Load music config
 (load (concat user-emacs-directory "rajasegar/music.el"))
 
@@ -26,6 +32,7 @@
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
    '(doom-modeline git-timemachine nova-theme svelte-mode visual-fill-column org-present lsp-ui yasnippet org-tempo all-the-icons-dired nov typescript-mode neotree airline-themes linum-relative olivetti which-key use-package ranger prettier-js multi-term js2-mode general exec-path-from-shell evil doom-themes counsel-projectile))
+ '(safe-local-variable-values '((lsp-enabled-clients quote (bun-lsp-server))))
  '(web-mode-css-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
