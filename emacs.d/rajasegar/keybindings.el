@@ -40,7 +40,7 @@
    "ah" 'rajasegar/open-hackernews
    "ap" 'org-present
    "ar" 'elfeed
-   "at" 'open-new-eshell
+   "at" 'multi-term
 
    "b" '(:ignore t :which-key "Buffers")
    "bb"  'ivy-switch-buffer
