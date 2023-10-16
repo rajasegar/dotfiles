@@ -60,6 +60,7 @@
    "dm" 'js-doc-insert-file-doc
 
    "e" '(:ignore t :which-key "Edit Configs")
+   "e." 'rajasegar/open-emacs-config-folder
    "ef" 'rajasegar/edit-emacs-functions
    "ek" 'rajasegar/edit-emacs-keybindings
    "ep" 'rajasegar/edit-emacs-packages
@@ -68,6 +69,12 @@
    "ff" 'counsel-find-file
    "fr" 'counsel-recentf
    "fs" 'save-buffer
+
+   ;; Flymake
+   "fn" 'flymake-goto-next-error
+   "fp" 'flymake-goto-prev-error
+   "fd" 'flymake-show-buffer-diagnostics
+   
 
    "g" '(:ignore t :which-key "Git")
    "gb" 'magit-blame
@@ -99,7 +106,7 @@
    "m1" 'rajasegar/play-favs-folder
    "m2" 'rajasegar/play-college-folder
    "m3" 'rajasegar/play-latest-folder
-  
+   
 
    "o" '(:ignore t : which-key "Org-Mode")
    "oa" 'org-agenda
@@ -144,17 +151,12 @@
    "p" 'emms-play-dired)
 
   (general-define-key
- :states '(normal visual)
- :keymaps 'typescript-mode-map
-   ;; "gi" 'lsp-goto-implementation
-   ;; "gt" 'lsp-goto-type-definition
-   ;; "gd" 'lsp-find-definition
+   :states '(normal visual)
+   :keymaps '(js2-mode-map typescript-mode-map)
 
-   "gi" 'eglot-find-implementation
-   "gt" 'eglot-find-typeDefinition
-   "gd" 'eglot-find-declaration
-
-
+   "gi" 'lsp-goto-implementation
+   "gt" 'lsp-goto-type-definition
+   "gd" 'lsp-find-definition
    )
 
   (general-define-key
