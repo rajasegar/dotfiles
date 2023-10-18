@@ -130,6 +130,7 @@
    "t" '(:ignore t :which-key "Toggles")
    "tl" 'toggle-truncate-lines
    "tn" 'display-line-numbers-mode
+   "tc" 'rajasegar/add-codeium-completions
 
    "w" '(:ignore t :which-key "Window")
    "w-"  'split-window-below

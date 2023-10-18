@@ -120,14 +120,21 @@
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0)
-  :commands company-mode
-  :init
-  (add-hook 'emacs-lisp-mode-hook 'company-mode)
-  (add-hook 'js2-mode-hook 'company-mode)
-  (add-hook 'typescript-mode-hook 'company-mode)
-  (add-hook 'web-mode-hook 'company-mode)
-  (add-hook 'css-mode-hook 'company-mode)
-  (add-hook 'org-mode-hook 'company-mode))
+
+    :config
+    (global-company-mode t)
+  ;; :commands company-mode
+  ;; :init
+  ;; (add-hook 'emacs-lisp-mode-hook 'company-mode)
+  ;; (add-hook 'js2-mode-hook 'company-mode)
+  ;; (add-hook 'typescript-mode-hook 'company-mode)
+  ;; (add-hook 'web-mode-hook 'company-mode)
+  ;; (add-hook 'css-mode-hook 'company-mode)
+  ;; (add-hook 'org-mode-hook 'company-mode)
+  ;; (add-hook 'prog-mode-hook 'company-mode)
+  )
+
+
 
 ;; Treesitter install only for linux
 (when (string-equal system-type  "gnu/linux")

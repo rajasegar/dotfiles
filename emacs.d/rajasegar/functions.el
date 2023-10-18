@@ -73,3 +73,11 @@
   "OPen hacker news website in eww"
   (interactive)
   (eww "hackernews.com"))
+
+
+(defun rajasegar/add-codeium-completions ()
+  "add codeium completions to the current buffer"
+  (interactive)
+  (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
+  ;; (setq completion-at-point-functions (append completion-at-point-functions (list 'codeium-completion-at-point)))
+  )
