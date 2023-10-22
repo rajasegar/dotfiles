@@ -88,6 +88,8 @@
    "hf" 'counsel-describe-function
    "hv" 'counsel-describe-variable
 
+   "i" 'ielm
+
    "l" '(:ignore t :whick-key "Perspective")
    "lc" 'persp-new
    "ll" 'persp-switch
@@ -141,6 +143,8 @@
    "wk"  'windmove-up
    "wl"  'windmove-right
    "ww"  'evil-window-next
+
+   "x" 'eval-print-last-sexp
 
    "y" '(:ignore t :which-key "Yasnippet")
    "yn" 'yas-new-snippet
