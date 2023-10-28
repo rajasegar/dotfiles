@@ -74,6 +74,11 @@
   (interactive)
   (eshell-command (eshell-get-history 0)))
 
+(defun rajasegar/kill-buffer-eshell-command-output ()
+  "Kill the buffer named *Eshell Command Output*"
+  (interactive)
+  (kill-buffer "*Eshell Command Output*"))
+
 (defun rajasegar/open-hackernews ()
   "OPen hacker news website in eww"
   (interactive)

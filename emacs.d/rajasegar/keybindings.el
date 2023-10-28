@@ -137,6 +137,7 @@
    "v" '(:ignore t :which-key "Eshell")
    "vr" 'eshell-command
    "vl" 'rajasegar/run-previous-eshell-command
+   "vk" 'rajasegar/kill-buffer-eshell-command-output
 
    "w" '(:ignore t :which-key "Window")
    "w-"  'split-window-below
