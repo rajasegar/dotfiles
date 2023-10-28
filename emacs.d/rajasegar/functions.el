@@ -69,6 +69,11 @@
   (interactive)
   (eshell 'N))
 
+(defun rajasegar/run-previous-eshell-command ()
+  "Run the previous command in eshell"
+  (interactive)
+  (eshell-command (eshell-get-history 1)))
+
 (defun rajasegar/open-hackernews ()
   "OPen hacker news website in eww"
   (interactive)

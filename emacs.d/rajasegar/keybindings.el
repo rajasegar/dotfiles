@@ -134,6 +134,10 @@
    "tn" 'display-line-numbers-mode
    "tc" 'rajasegar/add-codeium-completions
 
+   "v" '(:ignore t :which-key "Eshell")
+   "vr" 'eshell-command
+   "vl" 'rajasegar/run-previous-eshell-command
+
    "w" '(:ignore t :which-key "Window")
    "w-"  'split-window-below
    "w/"  'split-window-right
