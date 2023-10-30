@@ -15,6 +15,8 @@
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 
+
+(setq lsp-enable-file-watchers nil)
 ;; LSP performance
 (setq gc-cons-threshold (* 100 1000 1000)) ;; 100 mb
 (setq read-process-output-max (* 3 1024 1024)) ;; 3mb
