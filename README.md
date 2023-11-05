@@ -28,6 +28,9 @@ $ rcup -v
 
 ## Tools you need
 
+### Emacs
+Install [Emacs](https://www.gnu.org/software/emacs/)
+
 ### NeoVim
 Install [neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
@@ -84,9 +87,3 @@ Download Hack Nerd Font from here
 [Nerd fonts](https://www.nerdfonts.com/font-downloads)
 
 
-## CLI utilities
-- [birthday](https://github.com/IonicaBizau/birthday)
-- [ticker](https://github.com/achannarasappa/ticker)
-- [pass](https://www.passwordstore.org/)
-- [cmus](https://github.com/cmus/cmus)
-- [Taskwarrior](https://taskwarrior.org/)

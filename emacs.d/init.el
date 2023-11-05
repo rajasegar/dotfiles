@@ -24,17 +24,20 @@
 (load (concat user-emacs-directory "rajasegar/keybindings.el"))
 
 ;; Load copilot
-(load (concat user-emacs-directory "rajasegar/copilot.el"))
+;; (load (concat user-emacs-directory "rajasegar/copilot.el"))
 
 ;; Load codeium
-;; (load (concat user-emacs-directory "rajasegar/codeium.el"))
+(load (concat user-emacs-directory "rajasegar/codeium.el"))
+
+;; Load dashboard footer messages
+(load (concat user-emacs-directory "rajasegar/dashboard-footer-messages.el"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(codeium/metadata/api_key "0b411248-3ce1-4842-9b0f-697896ac8794")
+ '(codeium/metadata/api_key "55c40452-3c40-46a6-bdbb-8610ea1e13d5")
  '(css-indent-offset 2)
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages

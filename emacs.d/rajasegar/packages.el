@@ -95,7 +95,6 @@
   (global-company-mode t)
   (setq-default
    company-idle-delay 0.05
-   company-require-match nil
    company-minimum-prefix-length 0))
 
 
