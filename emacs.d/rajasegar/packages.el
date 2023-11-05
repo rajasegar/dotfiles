@@ -13,13 +13,6 @@
 ;; Startup time
 (setq use-package-compute-statistics t)
 
-;; Path management
-(use-package exec-path-from-shell
-  :ensure t
-  :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
-
 ;; Vim mode
 (use-package evil
   :ensure t
@@ -61,16 +54,9 @@
 (use-package all-the-icons
   :ensure t)
 
-;; all-the-icons-dired
-;; (use-package all-the-icons-dired
-  ;; :ensure t)
 
 ;; Use icons in neotree
-;; (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (setq neo-theme 'icons)
-
-;; Use icons in dired mode
-;; (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 ;; Which Key
 (use-package which-key
@@ -80,18 +66,6 @@
   (setq which-key-prefix-prefix "+")
   :config
   (which-key-mode))
-
-;; (use-package flycheck
-;;   :ensure t
-;;   ;; :init (global-flycheck-mode)
-;;   :commands flycheck-mode
-;;   :init
-;;     (add-hook 'js2-mode-hook 'flycheck-mode))
-
-;; org load languages
-;; (org-babel-do-load-languages 'org-babel-load-languages
-                            ;; '((shell . t)
-                            ;; (lisp . t)))
 
 (setq org-agenda-files (list "~/Dropbox/org/freshdesk.org"
                              "~/Dropbox/org/rajasegar.org"
@@ -117,22 +91,12 @@
 
 (use-package company
   :ensure t
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0)
-
-    :config
-    (global-company-mode t)
-  ;; :commands company-mode
-  ;; :init
-  ;; (add-hook 'emacs-lisp-mode-hook 'company-mode)
-  ;; (add-hook 'js2-mode-hook 'company-mode)
-  ;; (add-hook 'typescript-mode-hook 'company-mode)
-  ;; (add-hook 'web-mode-hook 'company-mode)
-  ;; (add-hook 'css-mode-hook 'company-mode)
-  ;; (add-hook 'org-mode-hook 'company-mode)
-  ;; (add-hook 'prog-mode-hook 'company-mode)
-  )
+  :config
+  (global-company-mode t)
+  (setq-default
+   company-idle-delay 0.05
+   company-require-match nil
+   company-minimum-prefix-length 0))
 
 
 
@@ -182,17 +146,6 @@
   :ensure t)
 
 (setq web-mode-markup-indent-offset 2)
-
-
-;; Svelte mode
-(use-package svelte-mode
-  :ensure t
-  :mode "\\.svelte\\'"
-  :init
-  (add-hook 'svelte-mode-hook 'tree-sitter-hl-mode))
-
-(use-package add-node-modules-path
-  :ensure t)
 
 (use-package prettier-js
   :ensure t
@@ -285,12 +238,6 @@
   :config
   (global-evil-surround-mode 1))
 
-(use-package esup
-  :ensure t
-  ;; To use MELPA Stable use ":pin melpa-stable",
-  :pin melpa)
-(setq esup-depth 0)
-
 ;; plantuml
 (use-package plantuml-mode
   :mode "\\.pum\\'"
@@ -356,12 +303,6 @@
                  (visual-line-mode 0)
                  (evil-mode 1)))))
 
-;; For reading epub files 
-(use-package nov
-  :ensure t
-  :mode "\\.nov\\'"
-  :init
-  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
 ;; Tabs
 (use-package centaur-tabs
