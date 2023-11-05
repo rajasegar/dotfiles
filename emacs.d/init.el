@@ -23,8 +23,11 @@
 ;; Load keybindings
 (load (concat user-emacs-directory "rajasegar/keybindings.el"))
 
+;; Load copilot
+(load (concat user-emacs-directory "rajasegar/copilot.el"))
+
 ;; Load codeium
-(load (concat user-emacs-directory "rajasegar/codeium.el"))
+;; (load (concat user-emacs-directory "rajasegar/codeium.el"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
