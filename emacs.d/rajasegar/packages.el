@@ -13,6 +13,13 @@
 ;; Startup time
 (setq use-package-compute-statistics t)
 
+;; Path management
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
+
 ;; Vim mode
 (use-package evil
   :ensure t
@@ -145,6 +152,9 @@
   :ensure t)
 
 (setq web-mode-markup-indent-offset 2)
+
+(use-package add-node-modules-path
+  :ensure t)
 
 (use-package prettier-js
   :ensure t
