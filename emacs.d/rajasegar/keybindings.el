@@ -25,7 +25,7 @@
    "'"   'multi-term
    "/"   'counsel-git-grep
    "SPC"   'counsel-M-x
-   "."   'edit-emacs-configuration
+   "."   'rajasegar/edit-emacs-configuration
    ";"   'emms-pause
    "\""  'split-window-below
    "%"  'split-window-right
@@ -40,13 +40,13 @@
    "ah" 'rajasegar/open-hackernews
    "ap" 'prodigy
    "ar" 'elfeed
-   "at" 'eshell
+   "at" 'rajasegar/open-new-eshell
 
    "b" '(:ignore t :which-key "Buffers")
    "bb"  'ivy-switch-buffer
    "bd" 'kill-this-buffer
    "be" 'eval-buffer
-   "bh" 'switch-to-dashboard
+   "bh" 'rajasegar/switch-to-dashboard
    "bn" 'centaur-tabs-forward
    "bp" 'centaur-tabs-backward
    "br" 'rename-buffer
@@ -79,10 +79,10 @@
 
    "g" '(:ignore t :which-key "Git")
    "gb" 'magit-blame
-   "gh" 'switch-git-personal
+   "gh" 'rajasegar/switch-git-personal
    "gs" 'magit-status
    "gt" 'git-timemachine
-   "gw" 'switch-git-work
+   "gw" 'rajasegar/switch-git-work
 
    "h" '(:ignore t :which-key "Help")
    "hb" 'counsel-descbinds
