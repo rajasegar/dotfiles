@@ -360,3 +360,7 @@
 
 (use-package yasnippet-snippets
   :ensure t)
+
+(use-package prodigy
+  :ensure t)
+

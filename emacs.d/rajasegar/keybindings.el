@@ -38,7 +38,7 @@
    "ad" 'dired
    "ae" 'emms
    "ah" 'rajasegar/open-hackernews
-   "ap" 'org-present
+   "ap" 'prodigy
    "ar" 'elfeed
    "at" 'eshell
 
@@ -49,6 +49,7 @@
    "bh" 'switch-to-dashboard
    "bn" 'centaur-tabs-forward
    "bp" 'centaur-tabs-backward
+   "br" 'rename-buffer
    "bs" 'scratch-buffer
 
    "c" '(:ignore t :which-key "Comment")
@@ -113,6 +114,7 @@
    "o" '(:ignore t : which-key "Org-Mode")
    "oa" 'org-agenda
    "oc" 'org-capture
+   "op" 'org-present
    "ot" 'org-toggle-link-display
    "os" 'org-timer-set-timer
    "ox" 'org-timer-stop
