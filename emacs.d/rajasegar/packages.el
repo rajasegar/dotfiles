@@ -329,33 +329,6 @@
   :init
   (setq centaur-tabs-enable-key-bindings t))
 
-(defun centaur-tabs-hide-tab (x)
-  "Do no to show buffer X in tabs."
-  (let ((name (format "%s" x)))
-    (or
-     ;; Current window is not dedicated window.
-     (window-dedicated-p (selected-window))
-
-     ;; Buffer name not match below blacklist.
-     (string-prefix-p "*scratch" name)
-     (string-prefix-p "*Messages" name)
-     (string-prefix-p "*Helm" name)
-     (string-prefix-p "*Compile-Log*" name)
-     (string-prefix-p "*company" name)
-     ;; (string-prefix-p "*Flycheck" name)
-     (string-prefix-p "*dashboard" name)
-     (string-prefix-p " *Mini" name)
-     (string-prefix-p "*help" name)
-     (string-prefix-p " *temp" name)
-     (string-prefix-p "*Help" name)
-     (string-prefix-p "magit-" name)
-     (string-prefix-p "magit:" name)
-
-     ;; Is not magit buffer.
-     (and (string-prefix-p "magit" name)
-          (not (file-name-extension name)))
-     )))
-
 ;; yasnippet
 (use-package yasnippet
   :ensure t)
@@ -367,3 +340,7 @@
 (use-package prodigy
   :ensure t)
 
+;; Colorful dired
+(use-package diredfl
+  :ensure t
+  :hook (dired-mode . diredfl-mode))
