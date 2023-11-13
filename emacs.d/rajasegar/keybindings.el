@@ -91,6 +91,11 @@
 
    "i" 'ielm
 
+   "j" '(:ignore t :which-key "Jump Centaur tabs")
+   "jj" 'centaur-tabs-ace-jump
+   "jh" 'centaur-tabs-backward
+   "jl" 'centaur-tabs-forward
+
    "l" '(:ignore t :whick-key "Perspective")
    "lc" 'persp-new
    "ll" 'persp-switch

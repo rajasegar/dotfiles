@@ -324,7 +324,9 @@
    centaur-tabs-set-bar 'left
    centaur-tabs-cycle-scope 'tabs)
   (centaur-tabs-mode t)
-  (centaur-tabs-group-by-projectile-project))
+  (centaur-tabs-group-by-projectile-project)
+  :init
+  (setq centaur-tabs-enable-key-bindings t))
 
 (defun centaur-tabs-hide-tab (x)
   "Do no to show buffer X in tabs."
