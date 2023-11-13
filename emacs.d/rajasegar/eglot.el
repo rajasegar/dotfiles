@@ -14,3 +14,9 @@
 (defun jsonrpc--log-event (_connection _message &optional type)
   "A NOOP just for issue 61"
   nil)
+
+(add-hook 'eglot-managed-mode-hook (lambda ()
+                                     (add-to-list 'company-backends
+                                                  '(company-capf :with company-yasnippet))))
+
+
