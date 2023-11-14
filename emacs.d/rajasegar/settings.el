@@ -17,6 +17,9 @@
 ;; start in fullscreen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+;; enable tab line mode globally
+(global-tab-line-mode)
+
 ;; Tab settings
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -115,4 +118,5 @@
               ))))
 ;; Don’t compact font caches during GC.
 (setq inhibit-compacting-font-caches t)
+
 

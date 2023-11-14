@@ -90,3 +90,19 @@
   (interactive)
   ;; (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
   (setq completion-at-point-functions (list 'codeium-completion-at-point)))
+
+(defun rajasegar/find-projects-function (str pred _)
+  (let ((props '("~/Public/www/ember-gct/" "~/Code/unity_frontend/"))
+        (strs '("ember-gct" "unity_frontend")))
+    (cl-mapcar (lambda (s p) (propertize s 'property p))
+               strs
+               props)))
+
+(defun rajasegar/find-projects ()
+  (interactive)
+  (tab-bar-new-tab)
+  (ivy-read "Find projects: "
+            #'rajasegar/find-projects-function
+            :action (lambda (x)
+                      (project-switch-project (get-text-property 0 'property x))
+                      (tab-bar-rename-tab x))))

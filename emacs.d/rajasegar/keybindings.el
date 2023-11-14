@@ -126,7 +126,8 @@
 
    "p" 'projectile-command-map
    "pf" 'counsel-projectile-find-file
-   "pp" 'projectile-persp-switch-project
+   ;; "pp" 'projectile-persp-switch-project
+   "pp" 'rajasegar/find-projects
    "pt" 'neotree-show
 
    "qq" 'kill-emacs
