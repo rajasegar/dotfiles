@@ -20,6 +20,9 @@
 ;; enable tab line mode globally
 (global-tab-line-mode)
 
+;; Hide tab bar since we are using mode line to show the active tab
+(setq tab-bar-show nil)
+
 ;; Tab settings
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)

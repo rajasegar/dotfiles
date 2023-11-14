@@ -29,7 +29,7 @@
    ";"   'emms-pause
    "\""  'split-window-below
    "%"  'split-window-right
-   "TAB" 'toggle-buffers
+   "TAB" 'rajasegar/toggle-buffers
    
    "T" 'counsel-load-theme
 
@@ -116,7 +116,7 @@
    "m3" 'rajasegar/play-latest-folder
    
 
-   "o" '(:ignore t : which-key "Org-Mode")
+   "o" '(:ignore t :which-key "Org-Mode")
    "oa" 'org-agenda
    "oc" 'org-capture
    "op" 'org-present
@@ -124,7 +124,7 @@
    "os" 'org-timer-set-timer
    "ox" 'org-timer-stop
 
-   "p" 'projectile-command-map
+   "p" '(:ignore t :which-key "Projects")
    "pf" 'counsel-projectile-find-file
    ;; "pp" 'projectile-persp-switch-project
    "pp" 'rajasegar/find-projects

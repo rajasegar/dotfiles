@@ -95,6 +95,8 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+(setq doom-modeline-workspace-name t)
+
 
 (use-package company
   :ensure t
@@ -208,32 +210,6 @@
 (setq dashboard-center-content t)
 (setq dashboard-display-icons-p nil) ;; display icons on both GUI and terminal
 
-;; Project management
-(use-package projectile
-  :ensure t
-  :init
-  (setq projectile-completion-system 'ivy)
-  (setq projectile-indexing-method 'alien)
-  (setq projectile-sort-order 'recently-active)
-
-  ; Route errors to /dev/null
-  (setq projectile-git-submodule-command "git submodule --quiet foreach 'echo $path' 2>/dev/null | tr '\\n' '\\0'")
-  :config
-  (projectile-mode))
-
-(use-package counsel-projectile 
-  :ensure t
-  :config
-  (counsel-projectile-mode))
-
-;; Window Layouts with Perspective
-(use-package perspective
-  :ensure t
-  :config
-  (persp-mode))
-(use-package persp-projectile
-  :ensure t)
-
 ;; Surround
 (use-package evil-surround
   :ensure t
@@ -305,21 +281,6 @@
                  (visual-line-mode 0)
                  (evil-mode 1)))))
 
-
-;; Tabs
-(use-package centaur-tabs
-  :ensure t
-  :demand
-  :config
-  (setq
-   centaur-tabs-set-icons t
-   centaur-tabs-gray-out-icons 'buffer
-   centaur-tabs-set-bar 'left
-   centaur-tabs-cycle-scope 'tabs)
-  (centaur-tabs-mode t)
-  (centaur-tabs-group-by-projectile-project)
-  :init
-  (setq centaur-tabs-enable-key-bindings t))
 
 ;; yasnippet
 (use-package yasnippet
