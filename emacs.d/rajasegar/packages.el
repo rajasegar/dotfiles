@@ -130,14 +130,6 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode)))
 
-;; Javascript
-(use-package js2-mode 
-  :ensure t
-  :mode "\\.js\\'"
-  :init
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-  (add-to-list 'auto-mode-alist '("\\.cjs\\'" . js2-mode))
-  (add-hook 'js2-mode-hook 'tree-sitter-hl-mode))
 
 ;; Typescript
 (use-package typescript-mode
@@ -161,8 +153,8 @@
   :ensure t
   :init
   (require 'prettier-js)
-  (add-hook 'js2-mode-hook 'add-node-modules-path)
-  (add-hook 'js2-mode-hook 'prettier-js-mode)
+  (add-hook 'js-mode-hook 'add-node-modules-path)
+  (add-hook 'js-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'add-node-modules-path)
   (add-hook 'web-mode-hook 'prettier-js-mode))
 
