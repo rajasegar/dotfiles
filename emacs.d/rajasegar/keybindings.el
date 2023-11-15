@@ -92,9 +92,10 @@
    "i" 'ielm
 
    "j" '(:ignore t :which-key "Jump Centaur tabs")
-   "jj" 'centaur-tabs-ace-jump
-   "jh" 'centaur-tabs-backward
-   "jl" 'centaur-tabs-forward
+   "jj" 'switch-to-buffer
+   "jh" 'switch-to-prev-buffer
+   "jl" 'switch-to-next-buffer
+   "j"
 
    "l" '(:ignore t :whick-key "Perspective")
    "lc" 'persp-new
@@ -125,8 +126,7 @@
    "ox" 'org-timer-stop
 
    "p" '(:ignore t :which-key "Projects")
-   "pf" 'counsel-projectile-find-file
-   ;; "pp" 'projectile-persp-switch-project
+   "pf" 'project-find-file
    "pp" 'rajasegar/find-projects
    "pt" 'neotree-show
 
@@ -168,14 +168,14 @@
    :keymaps 'dired-mode-map
    "p" 'emms-play-dired)
 
-  (general-define-key
-   :states '(normal visual)
-   :keymaps '(js2-mode-map typescript-mode-map)
+  ;; (general-define-key
+  ;;  :states '(normal visual)
+  ;;  :keymaps '(js-mode-map typescript-mode-map)
 
-   "gi" 'lsp-goto-implementation
-   "gt" 'lsp-goto-type-definition
-   "gd" 'lsp-find-definition
-   )
+  ;;  "gi" 'eglot-find-implementation
+  ;;  "gd" 'eglot-find-typeDefinition
+  ;;  "ge" 'eglot-find-declaration
+  ;;  )
 
   (general-define-key
    :states '(visual)

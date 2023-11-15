@@ -8,6 +8,9 @@
 ;; Load package config
 (load (concat user-emacs-directory "rajasegar/packages.el"))
 
+;; Load tab line config
+(load (concat user-emacs-directory "rajasegar/tab-line-config.el"))
+
 ;; Load emacs-lsp-mode config
 ;; (load (concat user-emacs-directory "rajasegar/emacs-lsp-mode.el"))
 
