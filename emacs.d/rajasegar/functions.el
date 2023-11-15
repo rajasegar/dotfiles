@@ -91,12 +91,23 @@
   ;; (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
   (setq completion-at-point-functions (list 'codeium-completion-at-point)))
 
+(defun get-projects ()
+ (with-temp-buffer
+    (insert-file-contents "~/.emacs.d/projects")
+    (let* ((projects (read (current-buffer)))
+          (props '()))
+      (loop for (p) in projects do
+            (add-to-list 'props p))
+      props)))
+
 (defun rajasegar/find-projects-function (str pred _)
-  (let ((props '("~/Public/www/ember-gct/" "~/Code/unity_frontend/"))
-        (strs '("ember-gct" "unity_frontend")))
+  (let* ((props (get-projects))
+        (strs (cl-mapcar (lambda (p) (car (last (split-string p "/" t)))) props)))
     (cl-mapcar (lambda (s p) (propertize s 'property p))
                strs
                props)))
+
+  
 
 (defun rajasegar/find-projects ()
   (interactive)
