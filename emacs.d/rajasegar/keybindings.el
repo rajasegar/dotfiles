@@ -67,6 +67,7 @@
    "ep" 'rajasegar/edit-emacs-packages
    "es" 'rajasegar/edit-emacs-settings
 
+   "f" '(:ignore t :which-key "Files")
    "ff" 'counsel-find-file
    "fr" 'counsel-recentf
    "fs" 'save-buffer
@@ -91,18 +92,15 @@
 
    "i" 'ielm
 
-   "j" '(:ignore t :which-key "Jump Centaur tabs")
+   "j" '(:ignore t :which-key "Jump-Buffer")
    "jj" 'switch-to-buffer
    "jh" 'switch-to-prev-buffer
    "jl" 'switch-to-next-buffer
-   "j"
 
-   "l" '(:ignore t :whick-key "Perspective")
-   "lc" 'persp-new
-   "ll" 'persp-switch
-   "ln" 'persp-next
-   "lp" 'persp-prev
-   "lk" 'persp-kill
+   "l" '(:ignore t :whick-key "LSP")
+   "li" 'eglot-find-implementation
+   "lt" 'eglot-find-typeDefinition
+   "ld" 'eglot-find-declaration
 
    "m" '(:ignore t :which-key "Music")
    "mb" 'emms-browser
@@ -161,21 +159,13 @@
 
    "y" '(:ignore t :which-key "Yasnippet")
    "yn" 'yas-new-snippet
-   "yi" 'yas-insert-snippet)
+   "yi" 'yas-insert-snippet
+   )
 
   (general-define-key
    :states '(normal visual)
    :keymaps 'dired-mode-map
    "p" 'emms-play-dired)
-
-  ;; (general-define-key
-  ;;  :states '(normal visual)
-  ;;  :keymaps '(js-mode-map typescript-mode-map)
-
-  ;;  "gi" 'eglot-find-implementation
-  ;;  "gd" 'eglot-find-typeDefinition
-  ;;  "ge" 'eglot-find-declaration
-  ;;  )
 
   (general-define-key
    :states '(visual)
