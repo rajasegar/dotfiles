@@ -6,6 +6,11 @@
 (add-hook 'typescript-mode-hook 'eglot-ensure)
 (add-hook 'hbs-mode-hook 'eglot-ensure)
 
+;; Handlebars mode
+(define-derived-mode hbs-mode web-mode "Handlebars mode" "Major mode for handlebars")
+(add-to-list 'auto-mode-alist '("\\.hbs\\'" . hbs-mode))
+
+
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                ;; '(hbs-mode . ("node" "/Users/rajasegarchandran/www/ember-language-server/lib/start-server.js" "--stdio"))

@@ -19,7 +19,8 @@
 
 
 ;; Hide tab bar since we are using mode line to show the active tab
-(setq tab-bar-show nil)
+(setq tab-bar-close-button-show nil)
+(setq tab-bar-tab-hints t)                 ;; show tab numbers
 
 ;; Tab settings
 (setq-default indent-tabs-mode nil)
