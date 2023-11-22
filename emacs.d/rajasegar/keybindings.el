@@ -82,6 +82,7 @@
    "g" '(:ignore t :which-key "Git")
    "gb" 'magit-blame
    "gh" 'rajasegar/switch-git-personal
+   "gp" 'magit-push-current-to-upstream
    "gs" 'magit-status
    "gt" 'git-timemachine
    "gw" 'rajasegar/switch-git-work
@@ -138,9 +139,10 @@
    "ss" 'slime
    "sl" 'slime-load-file
 
-   "t" '(:ignore t :which-key "Toggles")
+   "t" '(:ignore t :which-key "Tabs & Toggles")
    "tl" 'toggle-truncate-lines
-   "tn" 'display-line-numbers-mode
+   "tp" 'tab-bar-switch-to-prev-tab
+   "tn" 'tab-bar-new-tab
    "tc" 'rajasegar/add-codeium-completions
 
    "v" '(:ignore t :which-key "Eshell")
