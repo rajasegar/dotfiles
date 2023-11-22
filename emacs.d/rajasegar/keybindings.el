@@ -51,6 +51,7 @@
    "bp" 'centaur-tabs-backward
    "br" 'rename-buffer
    "bs" 'scratch-buffer
+   "bx" 'erase-buffer
 
    "c" '(:ignore t :which-key "Comment")
    "cl" 'comment-line
@@ -96,6 +97,8 @@
    "jj" 'switch-to-buffer
    "jh" 'switch-to-prev-buffer
    "jl" 'switch-to-next-buffer
+
+   "k" 'eval-expression
 
    "l" '(:ignore t :whick-key "LSP")
    "li" 'eglot-find-implementation
