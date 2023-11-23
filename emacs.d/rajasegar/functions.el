@@ -117,3 +117,20 @@
             :action (lambda (x)
                       (project-switch-project (get-text-property 0 'property x))
                       (tab-bar-rename-tab x))))
+
+(defun rajasegar/open-project ()
+  "create a new tab and switch project"
+  (interactive)
+  (tab-bar-new-tab)
+  (project-switch-project "" ))
+
+
+(defun rajasegar/open-new-pull-request ()
+  "Open new pull request url for current branch in browser"
+  (interactive)
+  (shell-command (concat "open https://github.com/freshdesk/unity_frontend/pull/new/" (car (vc-git-branches)))))
+
+(defun rajasegar/compare-git-branches ()
+  "Open compare branches page in github in the browser"
+  (interactive)
+  (shell-command (concat "open https://github.com/freshdesk/unity_frontend/compare/dev..." (car (vc-git-branches)))))
