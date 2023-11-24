@@ -51,7 +51,7 @@
  '(css-indent-offset 2)
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(nerd-icons-dired diredfl prodigy doom-modeline git-timemachine nova-theme svelte-mode visual-fill-column org-present lsp-ui yasnippet org-tempo all-the-icons-dired nov typescript-mode neotree airline-themes linum-relative olivetti which-key use-package ranger prettier-js multi-term js2-mode general exec-path-from-shell evil doom-themes counsel-projectile))
+   '(flymake-eslint nerd-icons-dired diredfl prodigy doom-modeline git-timemachine nova-theme svelte-mode visual-fill-column org-present lsp-ui yasnippet org-tempo all-the-icons-dired nov typescript-mode neotree airline-themes linum-relative olivetti which-key use-package ranger prettier-js multi-term js2-mode general exec-path-from-shell evil doom-themes counsel-projectile))
  '(safe-local-variable-values '((lsp-enabled-clients quote (bun-lsp-server))))
  '(web-mode-css-indent-offset 2))
 (custom-set-faces

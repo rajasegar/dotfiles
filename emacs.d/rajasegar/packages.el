@@ -297,3 +297,25 @@
 (use-package diredfl
   :ensure t
   :hook (dired-mode . diredfl-mode))
+
+
+;; Project management
+(use-package projectile
+  :ensure t
+  :init
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-indexing-method 'alien)
+  (setq projectile-sort-order 'recently-active)
+
+  ; Route errors to /dev/null
+  (setq projectile-git-submodule-command "git submodule --quiet foreach 'echo $path' 2>/dev/null | tr '\\n' '\\0'")
+  :config
+  (projectile-mode))
+
+(use-package counsel-projectile 
+  :ensure t
+  :config
+  (counsel-projectile-mode))
+
+(use-package flymake-eslint
+  :ensure t)

@@ -129,8 +129,8 @@
    "os" 'org-timer-set-timer
    "ox" 'org-timer-stop
 
-   "p" '(:ignore t :which-key "Projects")
-   "pf" 'project-find-file
+   "p" 'projectile-command-map
+   "pf" 'counsel-projectile-find-file
    "pp" 'rajasegar/find-projects
    "pt" 'neotree-show
 
