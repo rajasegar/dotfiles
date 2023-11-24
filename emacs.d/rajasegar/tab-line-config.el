@@ -35,7 +35,8 @@
    (format
     (concat
       (if (eq (car tab) 'current-tab)
-          " 🚀 " (random-element-of-list '(" ⚽ " " 🏀 " " 🏈 " " ⚾ " " 🥎 " " 🎾 " " 🏐 " " 🏉 ")))
+          ;; " 🚀 " (random-element-of-list '(" ⚽ " " 🏀 " " 🏈 " " ⚾ " " 🥎 " " 🎾 " " 🏐 " " 🏉 ")))
+          " 🚀 " (nth i '(" ⚽ " " 🏀 " " 🏈 " " ⚾ " " 🥎 " " 🎾 " " 🏐 " " 🏉 ")))
       "%s ")
     (alist-get 'name tab))
    'face (list (append
@@ -73,7 +74,7 @@
   (tab-bar-new-tab)
   (magit-status))
 
-(setq project-switch-commands #'my/project-create-tab)
+;; (setq project-switch-commands #'my/project-create-tab)
 
 (defun my/switch-to-tab-buffer ()
   (interactive)

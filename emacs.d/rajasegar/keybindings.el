@@ -148,6 +148,7 @@
    "tc" 'rajasegar/add-codeium-completions
 
    "v" '(:ignore t :which-key "Eshell")
+   "vc" 'rajasegar/eshell-command-current-line
    "vr" 'eshell-command
    "vl" 'rajasegar/run-previous-eshell-command
    "vk" 'rajasegar/kill-buffer-eshell-command-output

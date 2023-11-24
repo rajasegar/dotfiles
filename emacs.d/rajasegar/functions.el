@@ -74,6 +74,13 @@
   (interactive)
   (eshell-command (eshell-get-history 0)))
 
+(defun rajasegar/eshell-command-current-line ()
+  "Run the command from current line in eshell"
+  (interactive)
+  (let ((cmd (buffer-substring-no-properties (line-beginning-position) (line-end-position))))
+  (message "Running command: %s" cmd)
+  (eshell-command cmd)))
+
 (defun rajasegar/kill-buffer-eshell-command-output ()
   "Kill the buffer named *Eshell Command Output*"
   (interactive)
