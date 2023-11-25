@@ -33,10 +33,14 @@
    
    "T" 'counsel-load-theme
 
+   "4" '(:ignore t :which-key "Eshell")
+   "4v" 'rajasegar/eshell-vertical
+   "4h" 'rajasegar/eshell-horizontal
+
    "a" '(:ignore t :which-key "Applications")
    "ac" 'calendar
    "ad" 'dired
-   "ae" 'emms
+   "am" 'emms
    "ah" 'rajasegar/open-hackernews
    "ap" 'prodigy
    "ar" 'elfeed
@@ -163,7 +167,9 @@
    "wl"  'windmove-right
    "ww"  'evil-window-next
 
-   "x" 'eval-print-last-sexp
+   "x" '(:ignore t :which-key "Execute")
+   "xe" 'eval-print-last-sexp
+   "xp" 'rajasegar/create-prodigy-service
 
    "y" '(:ignore t :which-key "Yasnippet")
    "yn" 'yas-new-snippet

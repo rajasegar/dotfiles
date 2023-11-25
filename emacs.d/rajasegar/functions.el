@@ -69,6 +69,18 @@
   (interactive)
   (eshell 'N))
 
+(defun rajasegar/eshell-vertical ()
+  "Open new shell instance in vertical split"
+  (interactive)
+  (split-window-below)
+  (eshell 'N))
+
+(defun rajasegar/eshell-horizontal ()
+  "Open new shell instance in horizontal split"
+  (interactive)
+  (split-window-right)
+  (eshell 'N))
+
 (defun rajasegar/run-previous-eshell-command ()
   "Run the previous command in eshell"
   (interactive)
@@ -141,3 +153,24 @@
   "Open compare branches page in github in the browser"
   (interactive)
   (shell-command (concat "open https://github.com/freshdesk/unity_frontend/compare/dev..." (car (vc-git-branches)))))
+
+(defun rajasegar/create-prodigy-service ()
+  "Create new prodigy services based on current package.json"
+  (interactive)
+  (let ((pkg (json-parse-string (buffer-substring-no-properties (point-min) (point-max)))))
+    (maphash  (lambda (key value)
+                (let ((args '())
+                      (name (gethash "name" pkg)))
+                  (add-to-list 'args key)
+                  (add-to-list 'args "run")
+                  (prodigy-define-service
+                    :name (concat name "-" key)
+                    :command "npm"
+                    :cwd (file-name-directory (buffer-file-name))
+                    :path (file-name-directory (buffer-file-name))
+                    :args args
+                    :tags '(temp)
+                    :stop-signal 'sigkill
+                    :kill-process-buffer-on-stop t
+                    ))) (gethash "scripts" pkg))
+    ))
