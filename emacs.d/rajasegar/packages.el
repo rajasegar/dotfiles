@@ -318,4 +318,15 @@
   (counsel-projectile-mode))
 
 (use-package flymake-eslint
-  :ensure t)
+  :hook
+  (eglot-managed-mode . (lambda ()
+                          (when (derived-mode-p 'typescript-mode 'js-mode)
+                            (flymake-eslint-enable)))))
+
+(use-package eshell-git-prompt
+  :ensure t
+  :config
+  (eshell-git-prompt-use-theme 'robbyrussell))
+
+(use-package eshell-extensions
+  :load-path "elpa/eshell-extensions/")

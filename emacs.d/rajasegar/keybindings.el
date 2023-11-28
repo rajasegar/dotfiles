@@ -28,14 +28,10 @@
    "."   'rajasegar/edit-emacs-configuration
    ";"   'emms-pause
    "\""  'split-window-below
-   "%"  'split-window-right
+   "%"  'replace-string
    "TAB" 'rajasegar/toggle-buffers
    
    "T" 'counsel-load-theme
-
-   "4" '(:ignore t :which-key "Eshell")
-   "4v" 'rajasegar/eshell-vertical
-   "4h" 'rajasegar/eshell-horizontal
 
    "a" '(:ignore t :which-key "Applications")
    "ac" 'calendar
@@ -44,7 +40,7 @@
    "ah" 'rajasegar/open-hackernews
    "ap" 'prodigy
    "ar" 'elfeed
-   "at" 'rajasegar/open-new-eshell
+   "at" 'eshell-extensions/open-new-eshell
 
    "b" '(:ignore t :which-key "Buffers")
    "bb"  'ivy-switch-buffer
@@ -136,6 +132,7 @@
    "p" 'projectile-command-map
    "pf" 'counsel-projectile-find-file
    "pp" 'rajasegar/find-projects
+   ;; "pp" 'projectile-switch-project
    "pt" 'neotree-show
 
    "qq" 'kill-emacs
@@ -152,10 +149,12 @@
    "tc" 'rajasegar/add-codeium-completions
 
    "v" '(:ignore t :which-key "Eshell")
-   "vc" 'rajasegar/eshell-command-current-line
+   "vc" 'eshell-extensions/eshell-command-current-line
    "vr" 'eshell-command
-   "vl" 'rajasegar/run-previous-eshell-command
-   "vk" 'rajasegar/kill-buffer-eshell-command-output
+   "vl" 'eshell-extensions/run-previous-eshell-command
+   "vk" 'eshell-extensions/kill-buffer-eshell-command-output
+   "vv" 'eshell-extensions/eshell-vertical
+   "vh" 'eshell-extensions/eshell-horizontal
 
    "w" '(:ignore t :which-key "Window")
    "w-"  'split-window-below

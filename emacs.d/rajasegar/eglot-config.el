@@ -1,14 +1,6 @@
 ;; LSP with eglot
 
-(add-hook
- 'js-mode-hook
- (lambda ()
-   (add-hook
-    'eglot-managed-mode-hook
-    (lambda ()
-      (flymake-eslint-enable)))
-   (eglot-ensure)))
-
+(add-hook 'js-mode-hook 'eglot-ensure)
 (add-hook 'css-mode-hook 'eglot-ensure)
 (add-hook 'html-mode-hook 'eglot-ensure)
 (add-hook 'typescript-mode-hook 'eglot-ensure)
