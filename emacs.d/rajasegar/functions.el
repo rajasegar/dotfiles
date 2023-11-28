@@ -64,40 +64,6 @@
   (interactive)
   (emms-play-directory-tree "~/Music/2023"))
 
-(defun rajasegar/open-new-eshell ()
-  "Open new shell instance everytime"
-  (interactive)
-  (eshell 'N))
-
-(defun rajasegar/eshell-vertical ()
-  "Open new shell instance in vertical split"
-  (interactive)
-  (split-window-below)
-  (eshell 'N))
-
-(defun rajasegar/eshell-horizontal ()
-  "Open new shell instance in horizontal split"
-  (interactive)
-  (split-window-right)
-  (eshell 'N))
-
-(defun rajasegar/run-previous-eshell-command ()
-  "Run the previous command in eshell"
-  (interactive)
-  (eshell-command (eshell-get-history 0)))
-
-(defun rajasegar/eshell-command-current-line ()
-  "Run the command from current line in eshell"
-  (interactive)
-  (let ((cmd (buffer-substring-no-properties (line-beginning-position) (line-end-position))))
-  (message "Running command: %s" cmd)
-  (eshell-command cmd)))
-
-(defun rajasegar/kill-buffer-eshell-command-output ()
-  "Kill the buffer named *Eshell Command Output*"
-  (interactive)
-  (kill-buffer "*Eshell Command Output*"))
-
 (defun rajasegar/open-hackernews ()
   "OPen hacker news website in eww"
   (interactive)
@@ -141,7 +107,7 @@
   "create a new tab and switch project"
   (interactive)
   (tab-bar-new-tab)
-  (project-switch-project "" ))
+  (projectile-switch-project))
 
 
 (defun rajasegar/open-new-pull-request ()

@@ -298,7 +298,6 @@
   :ensure t
   :hook (dired-mode . diredfl-mode))
 
-
 ;; Project management
 (use-package projectile
   :ensure t
@@ -322,11 +321,6 @@
   (eglot-managed-mode . (lambda ()
                           (when (derived-mode-p 'typescript-mode 'js-mode)
                             (flymake-eslint-enable)))))
-
-(use-package eshell-git-prompt
-  :ensure t
-  :config
-  (eshell-git-prompt-use-theme 'robbyrussell))
 
 (use-package eshell-extensions
   :load-path "elpa/eshell-extensions/")

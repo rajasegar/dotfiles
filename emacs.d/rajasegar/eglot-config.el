@@ -19,7 +19,7 @@
                ;; '(js2-mode . ("node" "/home/boot/Public/www/bun-lsp/out/server.js" "--stdio"))
                ))
 
-;; (add-hook 'eglot-managed-mode-hook (lambda ()
-;; (add-to-list 'company-backends
-;; '(company-capf :with company-yasnippet))))
+(add-hook 'eglot-managed-mode-hook (lambda ()
+                                     (add-to-list 'company-backends
+                                                  '(company-capf :with company-yasnippet))))
 
