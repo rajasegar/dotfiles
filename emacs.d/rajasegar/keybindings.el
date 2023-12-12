@@ -23,12 +23,12 @@
    :prefix "SPC"
    :non-normal-prefix "C-SPC"
    "'"   'multi-term
-   "/"   'counsel-git-grep
+   "/"   'counsel-rg
    "SPC"   'counsel-M-x
    "."   'rajasegar/edit-emacs-configuration
    ";"   'emms-pause
    "\""  'split-window-below
-   "%"  'replace-string
+   "%"  'query-replace
    "TAB" 'rajasegar/toggle-buffers
    
    "T" 'counsel-load-theme
@@ -82,6 +82,7 @@
    "g" '(:ignore t :which-key "Git")
    "gb" 'magit-blame
    "gc" 'rajasegar/compare-git-branches
+   "gf" 'magit-stage-file
    "gh" 'rajasegar/switch-git-personal
    "gn" 'rajasegar/open-new-pull-request
    "gp" 'magit-push-current-to-upstream
