@@ -82,7 +82,7 @@
    "g" '(:ignore t :which-key "Git")
    "gb" 'magit-blame
    "gc" 'rajasegar/compare-git-branches
-   "gf" 'magit-stage-file
+   "gf" 'rajasegar/stage-file-in-current-line
    "gh" 'rajasegar/switch-git-personal
    "gn" 'rajasegar/open-new-pull-request
    "gp" 'magit-push-current-to-upstream

@@ -121,4 +121,5 @@
 ;; Don’t compact font caches during GC.
 (setq inhibit-compacting-font-caches t)
 
-
+;; Turn on repeat mode
+(repeat-mode 1)

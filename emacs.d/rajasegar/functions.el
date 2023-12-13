@@ -139,4 +139,13 @@
                     :stop-signal 'sigkill
                     :kill-process-buffer-on-stop t
                     ))) (gethash "scripts" pkg))
+    (prodigy)
     ))
+
+(defun rajasegar/stage-file-in-current-line ()
+  "Magit Stage the file name in the current line"
+  (interactive)
+  (let ((filename (string-trim (buffer-substring-no-properties (+ 2 (line-beginning-position)) (line-end-position)))))
+    (message "Staging file: %s" filename)
+    (magit-stage-file filename)
+    (message "File staged successfully: %s !!" filename)))
