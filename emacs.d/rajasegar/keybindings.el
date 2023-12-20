@@ -35,8 +35,9 @@
 
    "a" '(:ignore t :which-key "Applications")
    "ac" 'calendar
-   "ad" 'dired
+   "ad" 'counsel-dired
    "am" 'emms
+   "ak" 'calc
    "ah" 'rajasegar/open-hackernews
    "ap" 'prodigy
    "ar" 'elfeed

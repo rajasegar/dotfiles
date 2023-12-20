@@ -139,8 +139,7 @@
                     :stop-signal 'sigkill
                     :kill-process-buffer-on-stop t
                     ))) (gethash "scripts" pkg))
-    (prodigy)
-    ))
+    (prodigy)))
 
 (defun rajasegar/stage-file-in-current-line ()
   "Magit Stage the file name in the current line"
@@ -149,3 +148,8 @@
     (message "Staging file: %s" filename)
     (magit-stage-file filename)
     (message "File staged successfully: %s !!" filename)))
+
+(defun rajasegar/magit-stash-untracked ()
+  "Stash only untracked files using magit"
+  (interactive)
+  (magit-stash-both (read-string "Enter stash name: ") t))
