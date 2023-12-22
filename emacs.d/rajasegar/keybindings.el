@@ -90,6 +90,7 @@
    "gs" 'magit-status
    "gt" 'git-timemachine
    "gw" 'rajasegar/switch-git-work
+   "gz" 'rajasegar/magit-stash-untracked
 
    "h" '(:ignore t :which-key "Help")
    "hb" 'counsel-descbinds
@@ -102,6 +103,8 @@
    "jj" 'switch-to-buffer
    "jh" 'switch-to-prev-buffer
    "jl" 'switch-to-next-buffer
+   "jc" 'rajasegar/jump-to-component
+   "jt" 'rajasegar/jump-to-template
 
    "k" 'eval-expression
 
@@ -170,6 +173,7 @@
 
    "x" '(:ignore t :which-key "Execute")
    "xe" 'eval-print-last-sexp
+   "xl" 'eval-last-sexp
    "xp" 'rajasegar/create-prodigy-service
 
    "y" '(:ignore t :which-key "Yasnippet")

@@ -150,6 +150,23 @@
     (message "File staged successfully: %s !!" filename)))
 
 (defun rajasegar/magit-stash-untracked ()
-  "Stash only untracked files using magit"
+  "Stash include untracked files using magit"
   (interactive)
   (magit-stash-both (read-string "Enter stash name: ") t))
+
+(defun my-project-root ()
+    (locate-dominating-file (file-name-directory (buffer-file-name)) "package.json"))
+
+(defun rajasegar/jump-to-component ()
+  "Jump to the corresponding Ember component file from test file"
+  (interactive)
+  (let ((root-dir (my-project-root))
+        (component (string-replace "-test" "" (file-name-base (buffer-file-name)))))
+  (find-file (concat root-dir "/app/components/" component "/component.js"))))
+
+(defun rajasegar/jump-to-template ()
+  "Jump to the corresponding Ember component hbs file from test file"
+  (interactive)
+  (let ((root-dir (my-project-root))
+        (component (string-replace "-test" "" (file-name-base (buffer-file-name)))))
+  (find-file (concat root-dir "/app/components/" component "/template.hbs"))))
