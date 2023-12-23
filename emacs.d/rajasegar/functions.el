@@ -170,3 +170,9 @@
   (let ((root-dir (my-project-root))
         (component (string-replace "-test" "" (file-name-base (buffer-file-name)))))
   (find-file (concat root-dir "/app/components/" component "/template.hbs"))))
+
+(defun rajasegar/run-rcup ()
+  "Run rcup -v to update dotfiles."
+  (interactive)
+  (eshell-command  "rcup -v"))
+
