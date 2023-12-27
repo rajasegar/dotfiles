@@ -175,3 +175,9 @@
   "Search word under cursor using counsel-rg"
   (interactive)
   (counsel-rg (word-at-point)))
+
+(defun rajasegar/run-rcup ()
+  "Run rcup -v to update dotfiles."
+  (interactive)
+  (eshell-command  "rcup -v"))
+

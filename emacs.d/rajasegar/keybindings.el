@@ -67,6 +67,7 @@
    "ef" 'rajasegar/edit-emacs-functions
    "ek" 'rajasegar/edit-emacs-keybindings
    "ep" 'rajasegar/edit-emacs-packages
+   "er" 'rajasegar/run-rcup
    "es" 'rajasegar/edit-emacs-settings
 
    "f" '(:ignore t :which-key "Files")
