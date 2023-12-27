@@ -146,6 +146,7 @@
    "s" '(:ignore t :which-key "Slime")
    "ss" 'slime
    "sl" 'slime-load-file
+   "sw" 'rajasegar/counsel-rg-word
 
    "t" '(:ignore t :which-key "Tabs & Toggles")
    "tl" 'toggle-truncate-lines
