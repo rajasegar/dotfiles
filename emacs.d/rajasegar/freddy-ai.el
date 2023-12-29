@@ -8,7 +8,7 @@
     (chat . "You are a large language model and a conversation partner. Respond concisely.")))
 
 
-(defun freddy-ai/request (freddy-ai-prompt directive)
+(defun freddy-ai/request-sync (freddy-ai-prompt directive)
   "Sends a request to Freddy-Ai API and return the response.
 Argument FREDDY-AI-PROMPT is the prompt to send to the API."
   (when (null freddy-ai-api-key)
@@ -65,10 +65,7 @@ Argument FREDDY-AI-PROMPT is the prompt to send to the API."
   (interactive)
   (let* ((prompt (read-string "Enter your question: "))
         (buffer "*Freddy-AI*"))
-    (with-temp-buffer (get-buffer-create buffer)
-                      (switch-to-buffer-other-window buffer)
-                      (markdown-mode)
-                      (insert (get-content (freddy-ai/request prompt (cdr (assoc 'programming freddy-ai-directives))))))))
+                       (freddy-ai/request prompt (cdr (assoc 'programming freddy-ai-directives)))))
 
 (defun freddy-ai/explain-code ()
   "Explain code in the current buffer"
@@ -76,10 +73,7 @@ Argument FREDDY-AI-PROMPT is the prompt to send to the API."
   (let* ((prompt (concat "Explain the following code:\n"
                          (buffer-substring-no-properties (point-min) (point-max))))
         (buffer "*Freddy-AI*"))
-    (with-temp-buffer (get-buffer-create buffer)
-                      (switch-to-buffer-other-window buffer)
-                      (markdown-mode)
-                      (insert (get-content (freddy-ai/request prompt (cdr (assoc 'programming freddy-ai-directives))))))))
+                      (freddy-ai/request prompt (cdr (assoc 'programming freddy-ai-directives)))))
 
 (defun freddy-ai/write-tests ()
   "Explain code in the current buffer"
@@ -87,10 +81,7 @@ Argument FREDDY-AI-PROMPT is the prompt to send to the API."
   (let* ((prompt (concat "Write unit tests for the following code:\n"
                          (buffer-substring-no-properties (point-min) (point-max))))
         (buffer "*Freddy-AI*"))
-    (with-temp-buffer (get-buffer-create buffer)
-                      (switch-to-buffer-other-window buffer)
-                      (markdown-mode)
-                      (insert (get-content (freddy-ai/code prompt))))))
+                       (freddy-ai/code prompt)))
 
 (defun freddy-ai/code (prompt)
 "An assistant to perorm code related activities"
@@ -105,20 +96,20 @@ Argument FREDDY-AI-PROMPT is the prompt to send to the API."
   "Send the prompt text from the minibuffer"
   (interactive)
   (let ((prompt (read-string "Enter your question: ")))
-    (message (get-content (freddy-ai/chat prompt)))))
+     (freddy-ai/chat prompt)))
 
 
 (defun freddy-ai/prompt-from-line ()
   "Send the prompt text from the current line"
   (interactive)
   (let ((prompt (buffer-substring-no-properties (line-beginning-position) (line-end-position))))
-    (message (get-content (freddy-ai/chat prompt)))))
+    (freddy-ai/chat prompt)))
 
 (defun freddy-ai/prompt-from-region ()
   "Send the prompt text from the active region"
   (interactive)
   (let ((prompt (buffer-substring-no-properties (region-beginning) (region-end))))
-    (message (get-content (freddy-ai/chat prompt)))))
+     (freddy-ai/chat prompt)))
 
 
 
@@ -129,7 +120,34 @@ Argument FREDDY-AI-PROMPT is the prompt to send to the API."
     (error "Freddy-Ai API key not found in auth-source")))
 
 
+(defun freddy-ai/handle-response (status)
+  "Callback function to handle the URL response."
+  (if (plist-get status :error)
+      (message "Error retrieving URL: %s" (plist-get status :error))
+    (goto-char (point-min))
+    (search-forward "\n\n")
+    (let ((json-text (buffer-substring (point) (point-max))))
+      (with-current-buffer (generate-new-buffer "*Freddy-AI*")
+        (insert (get-content (json-read-from-string json-text)))
+        (markdown-mode)
+        (pop-to-buffer (current-buffer))))))
+
+
+(defun freddy-ai/request (freddy-ai-prompt directive)
+  "Sends a request to Freddy-Ai API and return the response. "
+  (when (null freddy-ai-api-key)
+    (error "Freddy-Ai API key is not set"))
+
+  (let* ((url-request-method "POST")
+         (url-request-extra-headers
+          `(("Content-Type" . "application/json")
+            ("api-key" . ,(format "%s" freddy-ai-api-key))))
+         (url-request-data
+          (json-encode `((messages .
+                                   [((role . "system")
+                                     (content . directive))
+                                    ((role . "user")
+                                     (content . ,freddy-ai-prompt))])))))
+    (url-retrieve freddy-ai-base-url 'freddy-ai/handle-response)))
 
 (setq freddy-ai-api-key (freddy-ai/key-auth-source))
-
-
