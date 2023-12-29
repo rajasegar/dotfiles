@@ -123,3 +123,6 @@
 
 ;; Turn on repeat mode
 (repeat-mode 1)
+
+;; Turn on abbrev mode globally
+(abbrev-mode 1)

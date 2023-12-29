@@ -74,10 +74,13 @@
    "ff" 'counsel-find-file
    "fr" 'counsel-recentf
    "fs" 'save-buffer
+   "fp" 'freddy-ai/prompt
+   "fc" 'freddy-ai/write-code
+   "ft" 'freddy-ai/write-tests
 
    ;; Flymake
    "fn" 'flymake-goto-next-error
-   "fp" 'flymake-goto-prev-error
+   ;; "fp" 'flymake-goto-prev-error
    "fd" 'flymake-show-buffer-diagnostics
    
 
@@ -148,6 +151,7 @@
    "s" '(:ignore t :which-key "Slime")
    "ss" 'slime
    "sl" 'slime-load-file
+   "sw" 'rajasegar/counsel-rg-word
 
    "t" '(:ignore t :which-key "Tabs & Toggles")
    "tl" 'toggle-truncate-lines

@@ -171,6 +171,11 @@
         (component (string-replace "-test" "" (file-name-base (buffer-file-name)))))
   (find-file (concat root-dir "/app/components/" component "/template.hbs"))))
 
+(defun rajasegar/counsel-rg-word ()
+  "Search word under cursor using counsel-rg"
+  (interactive)
+  (counsel-rg (word-at-point)))
+
 (defun rajasegar/run-rcup ()
   "Run rcup -v to update dotfiles."
   (interactive)

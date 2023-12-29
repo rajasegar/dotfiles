@@ -41,6 +41,10 @@
 ;; Load centaur tabs
 (load (concat user-emacs-directory "rajasegar/centaur-tabs.el"))
 
+;; Load Freddy
+(load (concat user-emacs-directory "rajasegar/freddy-ai.el"))
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
