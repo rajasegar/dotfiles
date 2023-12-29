@@ -85,6 +85,7 @@
    "gb" 'magit-blame
    "gc" 'rajasegar/compare-git-branches
    "gf" 'rajasegar/stage-file-in-current-line
+   "gg" 'rajasegar/create-gist
    "gh" 'rajasegar/switch-git-personal
    "gn" 'rajasegar/open-new-pull-request
    "gp" 'magit-push-current-to-upstream
@@ -180,6 +181,11 @@
    "y" '(:ignore t :which-key "Yasnippet")
    "yn" 'yas-new-snippet
    "yi" 'yas-insert-snippet
+
+   "z" '(:ignore t :which-key "Freddy AI")
+   "zp" 'freddy-ai/prompt
+   "zr" 'freddy-ai/rephrase-from-region
+   "zl" 'freddy-ai/prompt-from-line
    )
 
   (general-define-key

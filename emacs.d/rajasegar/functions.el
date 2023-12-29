@@ -176,3 +176,8 @@
   (interactive)
   (eshell-command  "rcup -v"))
 
+(defun rajasegar/create-gist ()
+  "Create gist from current buffer"
+  (interactive)
+  (eshell-command (concat "gh gist create "  (file-name-base (buffer-file-name)) "." (file-name-extension (buffer-file-name)) )))
+
