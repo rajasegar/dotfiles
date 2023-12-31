@@ -44,6 +44,8 @@
 ;; Load Freddy
 (load (concat user-emacs-directory "rajasegar/freddy-ai.el"))
 
+;; Load ChatGPT Shell
+(load (concat user-emacs-directory "rajasegar/chatgpt-shell.el"))
 
 
 (custom-set-variables
