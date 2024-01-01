@@ -186,3 +186,13 @@
   (interactive)
   (eshell-command (concat "gh gist create "  (file-name-base (buffer-file-name)) "." (file-name-extension (buffer-file-name)) )))
 
+(defun rajasegar/update-wallpaper ()
+  "Fetch a new wallpaper from Upsplash and update it"
+  (interactive)
+  (eshell-command (concat "wallpaper.sh")))  
+
+
+(defun rajasegar/apt-get-install ()
+  "Read a package name from minibuffer and install it with apt-get"
+  (interactive)
+  (eshell-command (concat "sudo apt-get -y install " (read-string "Enter the package name: "))))

@@ -42,6 +42,8 @@
    "ap" 'prodigy
    "ar" 'elfeed
    "at" 'eshell-extensions/open-new-eshell
+   "aw" 'rajasegar/update-wallpaper
+
 
    "b" '(:ignore t :which-key "Buffers")
    "bb"  'ivy-switch-buffer
