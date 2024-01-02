@@ -120,7 +120,7 @@
   (interactive)
   (shell-command (concat "open https://github.com/freshdesk/unity_frontend/compare/dev..." (car (vc-git-branches)))))
 
-(defun rajasegar/create-prodigy-service ()
+(defun rajasegar/create-prodigy-service (&optional package-manager)
   "Create new prodigy services based on current package.json"
   (interactive)
   (let ((pkg (json-parse-string (buffer-substring-no-properties (point-min) (point-max)))))
@@ -131,7 +131,7 @@
                   (add-to-list 'args "run")
                   (prodigy-define-service
                     :name (concat name "-" key)
-                    :command "npm"
+                    :command (or package-manager "pnpm")
                     :cwd (file-name-directory (buffer-file-name))
                     :path (file-name-directory (buffer-file-name))
                     :args args
@@ -139,7 +139,9 @@
                     :stop-signal 'sigkill
                     :kill-process-buffer-on-stop t
                     ))) (gethash "scripts" pkg))
-    (prodigy)))
+    ;; Open prodigy and refresh
+    (prodigy)
+    (prodigy-refresh)))
 
 (defun rajasegar/stage-file-in-current-line ()
   "Magit Stage the file name in the current line"
