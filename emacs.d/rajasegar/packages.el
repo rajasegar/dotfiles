@@ -1,5 +1,12 @@
+;;; packages.el --- This is the package configuration file
 ;; Package Management
+
+;;; Commentary:
+;; All package configuration goes here
+
 (require 'package)
+;;; Code:
+
 (setq package-enable-at-startup nil)
 (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
 			 ("gnu"       . "http://elpa.gnu.org/packages/")
@@ -313,7 +320,7 @@
   :config
   (projectile-mode))
 
-(use-package counsel-projectile 
+(use-package counsel-projectile
   :ensure t
   :config
   (counsel-projectile-mode))
@@ -326,3 +333,7 @@
 
 (use-package eshell-extensions
   :load-path "elpa/eshell-extensions/")
+
+(provide 'packages)
+
+;;; packages.el ends here

@@ -1,3 +1,8 @@
+;;; settings.el --- This is the settings config file
+
+;;; Commentary:
+;; All the Emacs configuration settings 
+
 ;;; Code:
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
@@ -126,3 +131,7 @@
 
 ;; Turn on abbrev mode globally
 (abbrev-mode 1)
+
+(provide 'settings)
+
+;;; settings.el ends here

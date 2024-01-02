@@ -1,4 +1,10 @@
-;; Keybindings
+;;; keybindings.el --- Rajasegar Chandran
+
+
+;;; Commentary:
+;; All my custom keybindings are defined here
+
+;;; Code:
 
 (global-set-key [f5] 'emms-start)
 (global-set-key [f6] 'emms-stop)
@@ -9,7 +15,7 @@
 
 (use-package general
   :ensure t
-  :config 
+  :config
   (general-define-key
    "M-x" 'counsel-M-x)
 
@@ -207,3 +213,7 @@
    :states '(normal visual)
    :keymaps 'neotree-mode-map
    "o" 'neotree-quick-look))
+
+(provide 'keybindings)
+
+;;; keybindings.el ends here
