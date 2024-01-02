@@ -179,7 +179,9 @@
 (defun rajasegar/run-rcup ()
   "Run rcup -v to update dotfiles."
   (interactive)
-  (eshell-command  "rcup -v"))
+  (async-shell-command "rcup -v")
+  (switch-to-buffer-other-window "*Async Shell Command*"))
+
 
 (defun rajasegar/create-gist ()
   "Create gist from current buffer"
