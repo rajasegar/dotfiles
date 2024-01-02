@@ -1,31 +1,39 @@
+;;; functions.el --- My custom Emacs Lisp functions
 ; Edit this config
+
+;;; Commentary:
+;; This file contains both interactive and non-interactive functions
+;; that are key bound to keys in the keybindings.el file
+
+;;; Code:
+
 (defun rajasegar/edit-emacs-configuration ()
   "Edit Emacs configuration."
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
 (defun rajasegar/edit-emacs-settings ()
-  "Open common settings file"
+  "Open common settings file."
   (interactive)
   (find-file "~/.emacs.d/rajasegar/settings.el"))
 
 (defun rajasegar/edit-emacs-packages ()
-  "Open  packages file"
+  "Open  packages file."
   (interactive)
   (find-file "~/.emacs.d/rajasegar/packages.el"))
 
 (defun rajasegar/edit-emacs-keybindings ()
-  "Open  keybindings file"
+  "Open  keybindings file."
   (interactive)
   (find-file "~/.emacs.d/rajasegar/keybindings.el"))
 
 (defun rajasegar/edit-emacs-functions ()
-  "Open  keybindings file"
+  "Open  keybindings file."
   (interactive)
   (find-file "~/.emacs.d/rajasegar/functions.el"))
 
 (defun rajasegar/open-emacs-config-folder ()
-  "Open Emacs config folder"
+  "Open Emacs config folder."
   (interactive)
   (dired "~/.emacs.d/rajasegar"))
 
@@ -50,33 +58,34 @@
   (shell-command "ssh-add -D && ssh-add ~/.ssh/freshworks && ssh -T git@github.com"))
 
 (defun rajasegar/play-favs-folder ()
-  "Play the Favs directory in EMMS"
+  "Play the Favs directory in EMMS."
   (interactive)
   (emms-play-directory-tree "~/Music/Favs"))
 
 (defun rajasegar/play-college-folder ()
-  "Play the College directory in EMMS"
+  "Play the College directory in EMMS."
   (interactive)
   (emms-play-directory-tree "~/Music/College"))
 
 (defun rajasegar/play-latest-folder ()
-  "Play the 2023 directory in EMMS"
+  "Play the 2023 directory in EMMS."
   (interactive)
   (emms-play-directory-tree "~/Music/2023"))
 
 (defun rajasegar/open-hackernews ()
-  "OPen hacker news website in eww"
+  "OPen hacker news website in eww."
   (interactive)
   (eww "hackernews.com"))
 
 
 (defun rajasegar/add-codeium-completions ()
-  "add codeium completions to the current buffer"
+  "Add codeium completions to the current buffer."
   (interactive)
   ;; (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
   (setq completion-at-point-functions (list 'codeium-completion-at-point)))
 
 (defun get-projects ()
+  "Get the list of recently visited projects."
  (with-temp-buffer
     (insert-file-contents "~/.emacs.d/projects")
     (let* ((projects (read (current-buffer)))
@@ -86,6 +95,9 @@
       props)))
 
 (defun rajasegar/find-projects-function (str pred _)
+  "Callback function for `ivy-read' for projects list.
+Argument STR string.
+Argument PRED predicate."
   (let* ((props (get-projects))
         (strs (cl-mapcar (lambda (p) (car (last (split-string p "/" t)))) props)))
     (cl-mapcar (lambda (s p) (propertize s 'property p))
@@ -95,6 +107,7 @@
   
 
 (defun rajasegar/find-projects ()
+  "Find the projects."
   (interactive)
   (tab-bar-new-tab)
   (ivy-read "Find projects: "
@@ -104,24 +117,35 @@
                       (tab-bar-rename-tab x))))
 
 (defun rajasegar/open-project ()
-  "create a new tab and switch project"
+  "Create a new tab and switch project."
   (interactive)
   (tab-bar-new-tab)
   (projectile-switch-project))
 
+(defun github-repository-url ()
+  "Get the github repository url of the current file."
+  (string-replace
+   ".git"
+   ""
+   (string-replace
+    "git@"
+    "https://"
+    (string-replace  ":" "/" (vc-git-repository-url (buffer-file-name))))))
+
 
 (defun rajasegar/open-new-pull-request ()
-  "Open new pull request url for current branch in browser"
+  "Open new pull request url for current branch in browser."
   (interactive)
-  (shell-command (concat "open https://github.com/freshdesk/unity_frontend/pull/new/" (car (vc-git-branches)))))
+  (shell-command (concat "open " (github-repository-url) "/pull/new/" (car (vc-git-branches)))))
 
 (defun rajasegar/compare-git-branches ()
-  "Open compare branches page in github in the browser"
+  "Open compare branches page in github in the browser."
   (interactive)
-  (shell-command (concat "open https://github.com/freshdesk/unity_frontend/compare/dev..." (car (vc-git-branches)))))
+  (shell-command (concat "open " (github-repository-url) "/compare/dev..." (car (vc-git-branches)))))
 
 (defun rajasegar/create-prodigy-service (&optional package-manager)
-  "Create new prodigy services based on current package.json"
+  "Create new prodigy services based on current package.json.
+Optional argument PACKAGE-MANAGER The type of package manager to use (default: pnpm)."
   (interactive)
   (let ((pkg (json-parse-string (buffer-substring-no-properties (point-min) (point-max)))))
     (maphash  (lambda (key value)
@@ -144,7 +168,7 @@
     (prodigy-refresh)))
 
 (defun rajasegar/stage-file-in-current-line ()
-  "Magit Stage the file name in the current line"
+  "Magit Stage the file name in the current line."
   (interactive)
   (let ((filename (string-trim (buffer-substring-no-properties (+ 2 (line-beginning-position)) (line-end-position)))))
     (message "Staging file: %s" filename)
@@ -152,29 +176,30 @@
     (message "File staged successfully: %s !!" filename)))
 
 (defun rajasegar/magit-stash-untracked ()
-  "Stash include untracked files using magit"
+  "Stash include untracked files using magit."
   (interactive)
   (magit-stash-both (read-string "Enter stash name: ") t))
 
 (defun my-project-root ()
+  "Find the project root."
     (locate-dominating-file (file-name-directory (buffer-file-name)) "package.json"))
 
 (defun rajasegar/jump-to-component ()
-  "Jump to the corresponding Ember component file from test file"
+  "Jump to the corresponding Ember component file from test file."
   (interactive)
   (let ((root-dir (my-project-root))
         (component (string-replace "-test" "" (file-name-base (buffer-file-name)))))
   (find-file (concat root-dir "/app/components/" component "/component.js"))))
 
 (defun rajasegar/jump-to-template ()
-  "Jump to the corresponding Ember component hbs file from test file"
+  "Jump to the corresponding Ember component hbs file from test file."
   (interactive)
   (let ((root-dir (my-project-root))
         (component (string-replace "-test" "" (file-name-base (buffer-file-name)))))
   (find-file (concat root-dir "/app/components/" component "/template.hbs"))))
 
 (defun rajasegar/counsel-rg-word ()
-  "Search word under cursor using counsel-rg"
+  "Search word under cursor using `counsel-rg'."
   (interactive)
   (counsel-rg (word-at-point)))
 
@@ -186,17 +211,21 @@
 
 
 (defun rajasegar/create-gist ()
-  "Create gist from current buffer"
+  "Create gist from current buffer."
   (interactive)
   (eshell-command (concat "gh gist create "  (file-name-base (buffer-file-name)) "." (file-name-extension (buffer-file-name)) )))
 
 (defun rajasegar/update-wallpaper ()
-  "Fetch a new wallpaper from Upsplash and update it"
+  "Fetch a new wallpaper from Upsplash and update it."
   (interactive)
-  (eshell-command (concat "wallpaper.sh")))  
+  (eshell-command (concat "wallpaper.sh")))
 
 
 (defun rajasegar/apt-get-install ()
-  "Read a package name from minibuffer and install it with apt-get"
+  "Read a package name from minibuffer and install it with apt-get."
   (interactive)
   (eshell-command (concat "sudo apt-get -y install " (read-string "Enter the package name: "))))
+
+(provide 'functions)
+
+;;; functions.el ends here
