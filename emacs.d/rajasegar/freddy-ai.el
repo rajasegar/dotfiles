@@ -30,7 +30,10 @@
   "Explain code in the current buffer"
   (interactive)
   (let* ((prompt (concat "Explain the following code:\n"
-                         (buffer-substring-no-properties (point-min) (point-max))))
+                         (if (region-active-p)
+                             (buffer-substring-no-properties (region-beginning) (region-end))
+                             (buffer-substring-no-properties (point-min) (point-max))
+                             )))
          (buffer "*Freddy-AI*"))
     (freddy-ai/assistant-code prompt)))
 
