@@ -226,6 +226,21 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (interactive)
   (eshell-command (concat "sudo apt-get -y install " (read-string "Enter the package name: "))))
 
+(defun rajasegar/open-project-in-github ()
+  "Open the github url of the current project"
+  (interactive)
+  (shell-command (concat "open " (github-repository-url))))
+
+(defun rajasegar/open-github-pull-requests ()
+  "Open the github pull requests url of the current project"
+  (interactive)
+  (shell-command (concat "open " (github-repository-url) "/pulls")))
+
+(defun rajasegar/open-github-issues ()
+  "Open the github issues url of the current project"
+  (interactive)
+  (shell-command (concat "open " (github-repository-url) "/issues")))
+
 (provide 'functions)
 
 ;;; functions.el ends here

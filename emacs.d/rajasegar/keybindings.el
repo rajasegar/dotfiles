@@ -98,7 +98,10 @@
    "gf" 'rajasegar/stage-file-in-current-line
    "gg" 'rajasegar/create-gist
    "gh" 'rajasegar/switch-git-personal
+   "gi" 'rajasegar/open-github-issues
+   "gm" 'rajasegar/open-github-pull-requests
    "gn" 'rajasegar/open-new-pull-request
+   "go" 'rajasegar/open-project-in-github
    "gp" 'magit-push-current-to-upstream
    "gs" 'magit-status
    "gt" 'git-timemachine
