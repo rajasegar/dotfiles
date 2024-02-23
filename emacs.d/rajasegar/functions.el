@@ -241,6 +241,21 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (interactive)
   (shell-command (concat "open " (github-repository-url) "/issues")))
 
+(defun rajasegar/dired-sort-size ()
+  "Dired sort by size."
+  (interactive)
+  (dired-sort-other  "-lS"))
+
+(defun rajasegar/dired-sort-size-reverse ()
+  "Dired sort by size."
+  (interactive)
+  (dired-sort-other  "-lrS"))
+
+(defun rajasegar/eval-print-last-sexp-no-truncation ()
+  "Eval sexp and print without truncating the output"
+  (interactive)
+  (eval-print-last-sexp 0))
+
 (provide 'functions)
 
 ;;; functions.el ends here

@@ -82,10 +82,7 @@
    "ff" 'counsel-find-file
    "fr" 'counsel-recentf
    "fs" 'save-buffer
-   "fp" 'freddy-ai/prompt
-   "fc" 'freddy-ai/write-code
-   "ft" 'freddy-ai/write-tests
-
+   
    ;; Flymake
    "fn" 'flymake-goto-next-error
    ;; "fp" 'flymake-goto-prev-error
@@ -189,7 +186,7 @@
    "ww"  'evil-window-next
 
    "x" '(:ignore t :which-key "Execute")
-   "xe" 'eval-print-last-sexp
+   "xe" 'rajasegar/eval-print-last-sexp-no-truncation
    "xl" 'eval-last-sexp
    "xp" 'rajasegar/create-prodigy-service
 
@@ -197,16 +194,21 @@
    "yn" 'yas-new-snippet
    "yi" 'yas-insert-snippet
 
-   "z" '(:ignore t :which-key "Freddy AI")
-   "zp" 'freddy-ai/prompt
-   "zr" 'freddy-ai/rephrase-from-region
-   "zl" 'freddy-ai/prompt-from-line
+   "`" '(:ignore t :which-key "Freddy AI")
+   "`p" 'freddy-ai/prompt
+   "`r" 'freddy-ai/rephrase-from-region
+   "`l" 'freddy-ai/prompt-from-line
+   "`c" 'freddy-ai/write-code
+   "`t" 'freddy-ai/write-tests
    )
 
   (general-define-key
    :states '(normal visual)
    :keymaps 'dired-mode-map
-   "p" 'emms-play-dired)
+   "p" 'emms-play-dired
+   "S" 'rajasegar/dired-sort-size
+   "s" 'rajasegar/dired-sort-size-reverse
+   )
 
   (general-define-key
    :states '(visual)
