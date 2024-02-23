@@ -14,16 +14,16 @@ Before doing the below steps, install the tools you need FIRST.
 
 1. Go to the root
 ```
-$ cd
+cd
 ```
 2. Checkout this repo into `.dotfiles` directory
 ```
-$ git clone https://github.com/rajasegar/dotfiles .dotfiles
+git clone https://github.com/rajasegar/dotfiles .dotfiles
 ```
 
 3. Run `rcup` to install the dotfiles
 ```
-$ rcup -v
+rcup -v
 ```
 
 ## Tools you need
