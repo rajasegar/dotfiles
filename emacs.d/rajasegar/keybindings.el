@@ -162,10 +162,11 @@
    "sw" 'rajasegar/counsel-rg-word
 
    "t" '(:ignore t :which-key "Tabs & Toggles")
-   "tl" 'toggle-truncate-lines
-   "tp" 'tab-bar-switch-to-prev-tab
-   "tn" 'tab-bar-new-tab
    "tc" 'rajasegar/add-codeium-completions
+   "tl" 'toggle-truncate-lines
+   "tn" 'tab-bar-new-tab
+   "tp" 'tab-bar-switch-to-prev-tab
+   "tq" 'tree-sitter-query-builder
 
    "v" '(:ignore t :which-key "Eshell")
    "vc" 'eshell-extensions/eshell-command-current-line
