@@ -163,6 +163,7 @@
 
    "t" '(:ignore t :which-key "Tabs & Toggles")
    "tc" 'rajasegar/add-codeium-completions
+   "te" 'treesit-explore-mode
    "tl" 'toggle-truncate-lines
    "tn" 'tab-bar-new-tab
    "tp" 'tab-bar-switch-to-prev-tab
