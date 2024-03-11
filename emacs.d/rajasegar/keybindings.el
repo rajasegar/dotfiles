@@ -34,7 +34,7 @@
    "."   'rajasegar/edit-emacs-configuration
    ";"   'emms-pause
    "\""  'split-window-below
-   "%"  'query-replace
+   ","  'query-replace
    "TAB" 'rajasegar/toggle-buffers
    
    "T" 'counsel-load-theme
@@ -63,6 +63,7 @@
    "bx" 'erase-buffer
 
    "c" '(:ignore t :which-key "Comment")
+   "cb" 'counsel-bookmark
    "cl" 'comment-line
    "cg" 'counsel-rg
 
