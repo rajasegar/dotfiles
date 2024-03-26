@@ -192,8 +192,13 @@
 ;; Ivy & friends
 (use-package ivy
   :ensure t)
+(ivy-mode)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+
 (use-package counsel
   :ensure t)
+(counsel-mode)
 
 ;; Magit
 (use-package magit

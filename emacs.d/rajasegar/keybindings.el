@@ -13,11 +13,13 @@
 (global-set-key [f9] 'neotree-show)
 (global-set-key [f12] 'persp-next)
 
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+
 (use-package general
   :ensure t
   :config
-  (general-define-key
-   "M-x" 'counsel-M-x)
 
   (general-define-key
    :states '(normal visual)
