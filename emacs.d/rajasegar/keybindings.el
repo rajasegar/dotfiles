@@ -222,7 +222,42 @@
   (general-define-key
    :states '(normal visual)
    :keymaps 'neotree-mode-map
-   "o" 'neotree-quick-look))
+   "o" 'neotree-quick-look)
+
+  (general-create-definer my-leader-def
+    :prefix "C-c")
+
+  (general-create-definer my-org-leader-def
+    :description "Org"
+    :prefix "C-c o")
+
+  (my-org-leader-def
+    "a" 'org-agenda
+    "c" 'org-capture
+    "p" 'org-present)
+
+  (general-create-definer my-git-leader-def
+    :description "Github"
+    :prefix "C-c g")
+
+  (my-git-leader-def
+   "b" 'magit-blame
+   "c" 'rajasegar/compare-git-branches
+   "f" 'rajasegar/stage-file-in-current-line
+   "g" 'rajasegar/create-gist
+   "h" 'rajasegar/switch-git-personal
+   "i" 'rajasegar/open-github-issues
+   "m" 'rajasegar/open-github-pull-requests
+   "n" 'rajasegar/open-new-pull-request
+   "o" 'rajasegar/open-project-in-github
+   "p" 'magit-push-current-to-upstream
+   "t" 'git-timemachine
+   "w" 'rajasegar/switch-git-work
+   "z" 'rajasegar/magit-stash-untracked)
+
+           
+             
+             )
 
 (provide 'keybindings)
 
