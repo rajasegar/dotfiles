@@ -156,9 +156,6 @@
 (global-set-key (kbd "C-c ` c") 'freddy-ai/write-code)
 (global-set-key (kbd "C-c ` t") 'freddy-ai/write-tests)
 
-
-
-
 (provide 'keybindings)
 
 ;;; keybindings.el ends here
