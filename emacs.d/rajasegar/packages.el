@@ -28,20 +28,27 @@
     (exec-path-from-shell-initialize)))
 
 ;; Vim mode
-(use-package evil
-  :ensure t
-  :init
-  (setq evil-want-keybinding nil)
-  :config
-  (evil-mode 1)
-  (setq-default evil-escape-delay 0.2))
+;; (use-package evil
+;;   :ensure t
+;;   :init
+;;   (setq evil-want-keybinding nil)
+;;   :config
+;;   (evil-mode 1)
+;;   (setq-default evil-escape-delay 0.2))
 
 ;; evil-collection
-(use-package evil-collection
-  :after evil
-  :ensure t
-  :config
-  (evil-collection-init))
+;; (use-package evil-collection
+;;   :after evil
+;;   :ensure t
+;;   :config
+;;   (evil-collection-init))
+
+;; Surround
+;; (use-package evil-surround
+;;   :ensure t
+;;   :config
+;;   (global-evil-surround-mode 1))
+
 
 ;; Themes
 (use-package doom-themes
