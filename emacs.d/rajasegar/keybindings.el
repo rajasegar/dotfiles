@@ -15,7 +15,6 @@
 
 (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "M-x") 'counsel-M-x)
 
 ;; Applications
 (global-set-key (kbd "C-c a c") 'calendar)
@@ -32,8 +31,6 @@
 (global-set-key (kbd "C-c b d") 'kill-this-buffer)
 (global-set-key (kbd "C-c b e") 'eval-buffer)
 (global-set-key (kbd "C-c b h") 'rajasegar/switch-to-dashboard)
-(global-set-key (kbd "C-c b n") 'centaur-tabs-forward)
-(global-set-key (kbd "C-c b p") 'centaur-tabs-backward)
 (global-set-key (kbd "C-c b r") 'rename-buffer)
 (global-set-key (kbd "C-c b s") 'scratch-buffer)
 (global-set-key (kbd "C-c b e") 'erase-buffer)
@@ -76,9 +73,6 @@
 
 
 ;; Jump 
-(global-set-key (kbd "C-c j j") 'switch-to-buffer)
-(global-set-key (kbd "C-c j h") 'switch-to-prev-buffer)
-(global-set-key (kbd "C-c j l") 'switch-to-next-buffer)
 (global-set-key (kbd "C-c j c") 'rajasegar/jump-to-component)
 (global-set-key (kbd "C-c j t") 'rajasegar/jump-to-template)
 
@@ -114,23 +108,16 @@
 (global-set-key (kbd "C-c p p") 'rajasegar/find-projects)
 (global-set-key (kbd "C-c p t") 'neotree-show)
 
-;; Quit
-(global-set-key (kbd "C-c q q") 'kill-emacs)
-(global-set-key (kbd "C-c q r") 'restart-emacs)
-
-
 ;; Slime
 (global-set-key (kbd "C-c s s") 'slime)
 (global-set-key (kbd "C-c s l") 'slime-load-file)
 (global-set-key (kbd "C-c s w") 'rajasegar/counsel-rg-word)
    
 
-;; Tabs and tree sitter
+;; Toggles and tree sitter
 (global-set-key (kbd "C-c t c") 'rajasegar/add-codeium-completions)
 (global-set-key (kbd "C-c t e") 'treesit-explore-mode)
 (global-set-key (kbd "C-c t l") 'toggle-truncate-lines)
-(global-set-key (kbd "C-c t n") 'tab-bar-new-tab)
-(global-set-key (kbd "C-c t p") 'tab-bar-switch-to-prev-tab)
 (global-set-key (kbd "C-c t q") 'tree-sitter-query-builder)
 
 ;; Eshell 
@@ -148,6 +135,12 @@
 ;; Yasnippets
 (global-set-key (kbd "C-c y n") 'yas-new-snippet)
 (global-set-key (kbd "C-c y i") 'yas-insert-snippet)
+
+;; Quit
+(global-set-key (kbd "C-c q q") 'kill-emacs)
+(global-set-key (kbd "C-c q r") 'restart-emacs)
+
+
 
 ;; Freddy
 (global-set-key (kbd "C-c ` p") 'freddy-ai/prompt)
