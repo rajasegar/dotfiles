@@ -14,6 +14,7 @@
 (global-set-key [f12] 'persp-next)
 
 (global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c /") 'counsel-rg)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
 ;; Applications
