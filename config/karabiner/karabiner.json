@@ -700,6 +700,29 @@
                                     }
                                 ],
                                 "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "my_modifier_1",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "5",
+                                    "modifiers": {}
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "5",
+                                        "modifiers": [
+                                            "left_alt",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
                             }
                         ]
                     },
@@ -1059,7 +1082,8 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "^org\\.gnu\\.Emacs$"
+                                            "^org\\.gnu\\.Emacs$",
+                                            "^org\\.alacritty$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -1134,7 +1158,8 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "^org\\.gnu\\.Emacs$"
+                                            "^org\\.gnu\\.Emacs$",
+                                            "^org\\.alacritty$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
