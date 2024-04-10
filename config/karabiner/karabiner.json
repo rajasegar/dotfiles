@@ -61,6 +61,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Open Alacritty terminal with Hyper + t",
                                 "from": {
                                     "key_code": "t",
                                     "modifiers": {
@@ -85,6 +86,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Open Emacs with Hyper + e",
                                 "from": {
                                     "key_code": "e",
                                     "modifiers": {
@@ -109,6 +111,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Open Slack with Hyper + s",
                                 "from": {
                                     "key_code": "s",
                                     "modifiers": {
@@ -133,6 +136,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Open Firefox with Hyper + f",
                                 "from": {
                                     "key_code": "f",
                                     "modifiers": {
@@ -157,6 +161,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Open chat github repo with Hyper + u",
                                 "from": {
                                     "key_code": "u",
                                     "modifiers": {
@@ -181,6 +186,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Open calendar.google.com with Hyper + c",
                                 "from": {
                                     "key_code": "c",
                                     "modifiers": {
@@ -205,6 +211,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Open Google Chrome with Hyper + g",
                                 "from": {
                                     "key_code": "g",
                                     "modifiers": {
@@ -229,6 +236,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Print full screen with Hyper + p",
                                 "from": {
                                     "key_code": "p",
                                     "modifiers": {
@@ -257,6 +265,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Open iTunes with Hyper + m",
                                 "from": {
                                     "key_code": "m",
                                     "modifiers": {}
@@ -276,6 +285,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Decrement volume with Hyper + -",
                                 "from": {
                                     "key_code": "hyphen",
                                     "modifiers": {}
@@ -295,6 +305,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Increment volume with Hyper + =",
                                 "from": {
                                     "key_code": "equal_sign",
                                     "modifiers": {}
@@ -314,6 +325,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Play or pause music with Hyper + '",
                                 "from": {
                                     "key_code": "quote",
                                     "modifiers": {}
@@ -333,6 +345,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Move to next track  with Hyper + .",
                                 "from": {
                                     "key_code": "period",
                                     "modifiers": {}
@@ -352,6 +365,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Move to previous track with Hyper + ,",
                                 "from": {
                                     "key_code": "comma",
                                     "modifiers": {}
@@ -371,6 +385,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Down arrow  with Hyper + j",
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {}
@@ -390,6 +405,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Up arrow with Hyper + k",
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {}
@@ -409,6 +425,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Left arrow with Hyper + h",
                                 "from": {
                                     "key_code": "h",
                                     "modifiers": {}
@@ -428,6 +445,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Right arrow with Hyper + l",
                                 "from": {
                                     "key_code": "l",
                                     "modifiers": {}
@@ -720,6 +738,63 @@
                                             "left_alt",
                                             "left_shift"
                                         ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "my_modifier_1",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": {}
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "left_control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "e",
+                                        "modifiers": [
+                                            "left_control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "my_modifier_1",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "description": "Copy entire Emacs buffer with C-c b c",
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {}
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": [
+                                            "left_control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "b"
+                                    },
+                                    {
+                                        "key_code": "c"
                                     }
                                 ],
                                 "type": "basic"
@@ -1089,13 +1164,38 @@
                                 "to": [
                                     {
                                         "key_code": "x",
-                                        "modifiers": [
-                                            "left_control"
-                                        ]
+                                        "modifiers": "left_control"
                                     },
                                     {
                                         "key_code": "c",
                                         "modifiers": "left_control"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "modifier_f",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "description": "Show Emacs bookmarks with C-x r b",
+                                "from": {
+                                    "key_code": "quote",
+                                    "modifiers": {}
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": "left_control"
+                                    },
+                                    {
+                                        "key_code": "r"
+                                    },
+                                    {
+                                        "key_code": "b"
                                     }
                                 ],
                                 "type": "basic"
