@@ -29,6 +29,7 @@
 (global-set-key (kbd "C-c a w") 'rajasegar/update-wallpaper)
 
 ;; Buffers
+(global-set-key (kbd "C-c b c") 'rajasegar/copy-buffer)
 (global-set-key (kbd "C-c b d") 'kill-this-buffer)
 (global-set-key (kbd "C-c b e") 'eval-buffer)
 (global-set-key (kbd "C-c b h") 'rajasegar/switch-to-dashboard)

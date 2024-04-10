@@ -256,6 +256,12 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (interactive)
   (eval-print-last-sexp 0))
 
+(defun rajasegar/copy-buffer ()
+  (interactive)
+  (mark-whole-buffer)
+  (copy-region-as-kill (point-min) (point-max))
+  )
+
 (provide 'functions)
 
 ;;; functions.el ends here
