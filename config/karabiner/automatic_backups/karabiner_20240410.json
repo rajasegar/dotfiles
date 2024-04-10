@@ -1120,19 +1120,11 @@
                                     "modifiers": {}
                                 },
                                 "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 200,
-                                    "basic.to_if_held_down_threshold_milliseconds": 200
-                                },
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "key_code": "a"
-                                        }
-                                    ]
+                                    "basic.to_if_alone_timeout_milliseconds": 250,
+                                    "basic.to_if_held_down_threshold_milliseconds": 250
                                 },
                                 "to_if_alone": [
                                     {
-                                        "halt": true,
                                         "key_code": "a"
                                     }
                                 ],
@@ -1157,19 +1149,11 @@
                                     "modifiers": {}
                                 },
                                 "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 200,
-                                    "basic.to_if_held_down_threshold_milliseconds": 200
-                                },
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "key_code": "s"
-                                        }
-                                    ]
+                                    "basic.to_if_alone_timeout_milliseconds": 250,
+                                    "basic.to_if_held_down_threshold_milliseconds": 250
                                 },
                                 "to_if_alone": [
                                     {
-                                        "halt": true,
                                         "key_code": "s"
                                     }
                                 ],
@@ -1185,20 +1169,8 @@
                                     "key_code": "d",
                                     "modifiers": {}
                                 },
-                                "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 200,
-                                    "basic.to_if_held_down_threshold_milliseconds": 200
-                                },
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "key_code": "d"
-                                        }
-                                    ]
-                                },
                                 "to_if_alone": [
                                     {
-                                        "halt": true,
                                         "key_code": "d"
                                     }
                                 ],
@@ -1210,24 +1182,25 @@
                                 "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^org\\.gnu\\.Emacs$",
+                                            "^org\\.alacritty$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "semicolon",
                                     "modifiers": {}
                                 },
                                 "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 200,
-                                    "basic.to_if_held_down_threshold_milliseconds": 200
-                                },
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "key_code": "semicolon"
-                                        }
-                                    ]
+                                    "basic.to_if_alone_timeout_milliseconds": 250,
+                                    "basic.to_if_held_down_threshold_milliseconds": 250
                                 },
                                 "to_if_alone": [
                                     {
-                                        "halt": true,
                                         "key_code": "semicolon"
                                     }
                                 ],
@@ -1252,19 +1225,11 @@
                                     "modifiers": {}
                                 },
                                 "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 200,
-                                    "basic.to_if_held_down_threshold_milliseconds": 200
-                                },
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "key_code": "l"
-                                        }
-                                    ]
+                                    "basic.to_if_alone_timeout_milliseconds": 250,
+                                    "basic.to_if_held_down_threshold_milliseconds": 250
                                 },
                                 "to_if_alone": [
                                     {
-                                        "halt": true,
                                         "key_code": "l"
                                     }
                                 ],
@@ -1281,19 +1246,11 @@
                                     "modifiers": {}
                                 },
                                 "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 200,
-                                    "basic.to_if_held_down_threshold_milliseconds": 200
-                                },
-                                "to_delayed_action": {
-                                    "to_if_canceled": [
-                                        {
-                                            "key_code": "k"
-                                        }
-                                    ]
+                                    "basic.to_if_alone_timeout_milliseconds": 250,
+                                    "basic.to_if_held_down_threshold_milliseconds": 250
                                 },
                                 "to_if_alone": [
                                     {
-                                        "halt": true,
                                         "key_code": "k"
                                     }
                                 ],
