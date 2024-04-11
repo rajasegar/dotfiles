@@ -132,6 +132,8 @@
 ;; Turn on abbrev mode globally
 (abbrev-mode 1)
 
+(setq next-line-add-newlines t)
+
 (provide 'settings)
 
 ;;; settings.el ends here

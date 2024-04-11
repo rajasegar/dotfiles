@@ -798,32 +798,6 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "my_modifier_1",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "description": "Repeat command in Emacs with C-x z",
-                                "from": {
-                                    "key_code": "z",
-                                    "modifiers": {}
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "x",
-                                        "modifiers": [
-                                            "left_control"
-                                        ]
-                                    },
-                                    {
-                                        "key_code": "z"
-                                    }
-                                ],
-                                "type": "basic"
                             }
                         ]
                     },
@@ -1011,7 +985,6 @@
                                         "value": 1
                                     }
                                 ],
-                                "description": "Copy line in Emacs with C-c y",
                                 "from": {
                                     "key_code": "y",
                                     "modifiers": {
@@ -1023,13 +996,28 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "c",
+                                        "key_code": "a",
                                         "modifiers": [
                                             "left_control"
                                         ]
                                     },
                                     {
-                                        "key_code": "y"
+                                        "key_code": "spacebar",
+                                        "modifiers": [
+                                            "left_control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "e",
+                                        "modifiers": [
+                                            "left_control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": [
+                                            "left_alt"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
