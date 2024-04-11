@@ -258,8 +258,21 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
 
 (defun rajasegar/copy-buffer ()
   (interactive)
-  (mark-whole-buffer)
-  (copy-region-as-kill (point-min) (point-max))
+  ;; (mark-whole-buffer)
+  (copy-region-as-kill (point-min) (point-max)))
+
+(defun rajasegar/copy-line ()
+  (interactive)
+  (copy-region-as-kill (point-at-bol) (point-at-eol)))
+
+(defun rajasegar/duplicate-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank)
   )
 
 (provide 'functions)

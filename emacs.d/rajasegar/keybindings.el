@@ -17,6 +17,8 @@
 (global-set-key (kbd "C-c /") 'counsel-rg)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
+
+
 ;; Applications
 (global-set-key (kbd "C-c a c") 'calendar)
 (global-set-key (kbd "C-c a d") 'counsel-dired)
@@ -40,9 +42,7 @@
 
 (global-set-key (kbd "C-c c g") 'counsel-rg)
 
-
-(global-set-key (kbd "C-c d f") 'js-doc-insert-function-doc)
-(global-set-key (kbd "C-c d m") 'js-doc-insert-file-doc)
+(global-set-key (kbd "C-c d") 'duplicate-line)
 
 ;; Files and Flymake
 (global-set-key (kbd "C-c f r") 'counsel-recentf)
@@ -134,9 +134,10 @@
 (global-set-key (kbd "C-c x e") 'rajasegar/eval-print-last-sexp-no-truncation)
 (global-set-key (kbd "C-c x p") 'rajasegar/create-prodigy-service)
 
+(global-set-key (kbd "C-c y") 'rajasegar/copy-line)
 ;; Yasnippets
-(global-set-key (kbd "C-c y n") 'yas-new-snippet)
-(global-set-key (kbd "C-c y i") 'yas-insert-snippet)
+;; (global-set-key (kbd "C-c y n") 'yas-new-snippet)
+;; (global-set-key (kbd "C-c y i") 'yas-insert-snippet)
 
 ;; Quit
 (global-set-key (kbd "C-c q q") 'kill-emacs)
