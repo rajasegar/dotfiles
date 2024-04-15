@@ -999,14 +999,6 @@
                         "description": "F Modifiers for Emacs",
                         "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^org\\.gnu\\.Emacs$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "f",
                                     "modifiers": {
@@ -1432,64 +1424,6 @@
                                             "left_control",
                                             "left_alt"
                                         ]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "modifier_f",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "description": "Hide block in Emacs with C-c @ C-d",
-                                "from": {
-                                    "key_code": "hyphen",
-                                    "modifiers": {}
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "c",
-                                        "modifiers": "left_control"
-                                    },
-                                    {
-                                        "key_code": "2",
-                                        "modifiers": "left_shift"
-                                    },
-                                    {
-                                        "key_code": "d",
-                                        "modifiers": "left_control"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "modifier_f",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "description": "Show block in Emacs with C-c @ C-s",
-                                "from": {
-                                    "key_code": "equal_sign",
-                                    "modifiers": {}
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "c",
-                                        "modifiers": "left_control"
-                                    },
-                                    {
-                                        "key_code": "2",
-                                        "modifiers": "left_shift"
-                                    },
-                                    {
-                                        "key_code": "s",
-                                        "modifiers": "left_control"
                                     }
                                 ],
                                 "type": "basic"
