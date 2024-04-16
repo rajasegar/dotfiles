@@ -134,6 +134,22 @@
 
 (setq next-line-add-newlines t)
 
+(defun mhtml-forward (arg)
+  (interactive "P")
+  (pcase (get-text-property (point) `mhtml-submode)
+    (`nil (sgml-skip-tag-forward 1))
+    (submode (forward-sexp))))
+
+(add-to-list 'hs-special-modes-alist
+             '(hbs-mode
+               "{\\|<[^/>]+?"
+               "}\\|</[^/>]*[^/]>"
+               "<!--"
+               mhtml-forward
+               nil))
+
+(add-hook 'prog-mode-hook (lambda () (hs-minor-mode)))
+
 (provide 'settings)
 
 ;;; settings.el ends here

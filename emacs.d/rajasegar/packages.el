@@ -29,12 +29,12 @@
 
 ;; Vim mode
 ;; (use-package evil
-;;   :ensure t
-;;   :init
-;;   (setq evil-want-keybinding nil)
-;;   :config
-;;   (evil-mode 1)
-;;   (setq-default evil-escape-delay 0.2))
+  ;; :ensure t
+  ;; :init
+  ;; (setq evil-want-keybinding nil)
+  ;; :config
+  ;; (evil-mode 1)
+  ;; (setq-default evil-escape-delay 0.2))
 
 ;; evil-collection
 ;; (use-package evil-collection
@@ -231,12 +231,6 @@
 (setq dashboard-center-content t)
 (setq dashboard-display-icons-p nil) ;; display icons on both GUI and terminal
 
-;; Surround
-(use-package evil-surround
-  :ensure t
-  :config
-  (global-evil-surround-mode 1))
-
 ;; plantuml
 (use-package plantuml-mode
   :mode "\\.pum\\'"
@@ -345,6 +339,17 @@
 
 (use-package eshell-extensions
   :load-path "elpa/eshell-extensions/")
+
+(setq highlight-indent-guides-method  'character)
+(setq  highlight-indent-guides-character ?¦)
+
+(use-package highlight-indent-guides
+  :ensure t
+  ;; git clone https://github.com/Dickby/highlight-indent-guides
+  :load-path "elpa/highlight-indent-guides"
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  )
 
 (provide 'packages)
 

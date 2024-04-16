@@ -77,6 +77,8 @@
 ;; Jump 
 (global-set-key (kbd "C-c j c") 'rajasegar/jump-to-component)
 (global-set-key (kbd "C-c j t") 'rajasegar/jump-to-template)
+(global-set-key (kbd "C-c j h") 'previous-buffer)
+(global-set-key (kbd "C-c j l") 'next-buffer)
 
 (global-set-key (kbd "C-c k") 'eval-expression)
 
