@@ -100,7 +100,7 @@
         ("d" "Technical Debt" entry (file+headline "~/Dropbox/org/fc-tech-debt.org" "Tasks")
          "* TODO %?\n")
         ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
-         "* %?\nEntered on %U\n  %i\n  %a")))
+         "* %?\nEntered on %U\n  %i")))
 
 (setq nov-text-width t)
 (setq visual-fill-column-center-text t)

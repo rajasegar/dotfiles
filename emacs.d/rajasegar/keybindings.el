@@ -13,9 +13,11 @@
 (global-set-key [f9] 'neotree-show)
 (global-set-key [f12] 'persp-next)
 
-(global-set-key "\C-s" 'swiper)
+;; (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "C-c /") 'counsel-rg)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
+
+(global-set-key (kbd "C-M-s-x") 'delete-other-windows)
 
 
 
@@ -79,6 +81,8 @@
 (global-set-key (kbd "C-c j t") 'rajasegar/jump-to-template)
 (global-set-key (kbd "C-c j h") 'previous-buffer)
 (global-set-key (kbd "C-c j l") 'next-buffer)
+(global-set-key (kbd "C-M-s-n") 'previous-buffer)
+(global-set-key (kbd "C-M-s-m") 'next-buffer)
 
 (global-set-key (kbd "C-c k") 'eval-expression)
 

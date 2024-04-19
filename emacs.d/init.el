@@ -12,10 +12,10 @@
 (load (concat user-emacs-directory "rajasegar/tab-line-config.el"))
 
 ;; Load emacs-lsp-mode config
-;; (load (concat user-emacs-directory "rajasegar/emacs-lsp-mode.el"))
+(load (concat user-emacs-directory "rajasegar/emacs-lsp-mode.el"))
 
 ;; Load eglot config
-(load (concat user-emacs-directory "rajasegar/eglot-config.el"))
+;; (load (concat user-emacs-directory "rajasegar/eglot-config.el"))
 
 ;; Load music config
 (load (concat user-emacs-directory "rajasegar/music.el"))

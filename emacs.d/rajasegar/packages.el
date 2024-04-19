@@ -117,12 +117,15 @@
 (use-package company
   :ensure t
   :config
-  (global-company-mode t)
+  ;; (global-company-mode t)
   (setq-default
    company-idle-delay 0.05
    company-minimum-prefix-length 0
    company-require-match nil))
 
+;; Enable company only for specific modes
+(add-hook 'elisp-mode-hook 'company-mode)
+(add-hook 'prog-mode-hook 'company-mode)
 
 
 ;; Treesitter install only for linux

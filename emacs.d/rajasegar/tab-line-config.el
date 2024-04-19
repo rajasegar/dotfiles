@@ -88,7 +88,7 @@
       (call-interactively #'project-switch-to-buffer)
     (call-interactively #'switch-to-buffer)))
 
-(global-set-key (kbd "C-x b") #'my/switch-to-tab-buffer)
+;; (global-set-key (kbd "C-x b") #'my/switch-to-tab-buffer)
 
 ;; Turn on tab bar mode after startup
 (tab-bar-mode 1)
