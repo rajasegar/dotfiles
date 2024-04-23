@@ -15,6 +15,7 @@
 
 ;; (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "C-c /") 'counsel-rg)
+(global-set-key (kbd "C-c ,") 'diff-buffer-with-file)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
 (global-set-key (kbd "C-M-s-x") 'delete-other-windows)

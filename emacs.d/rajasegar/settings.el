@@ -148,7 +148,12 @@
                mhtml-forward
                nil))
 
-(add-hook 'prog-mode-hook (lambda () (hs-minor-mode)))
+;; Enable hs-minor-mode for prog-mode
+(dolist (mode '(prog-mode-hook
+                ))
+  (add-hook mode (lambda () (hs-minor-mode))))
+
+
 
 (provide 'settings)
 
