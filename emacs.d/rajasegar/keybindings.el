@@ -18,7 +18,12 @@
 (global-set-key (kbd "C-c ,") 'diff-buffer-with-file)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
+;; Hyper key bindings
 (global-set-key (kbd "C-M-s-x") 'delete-other-windows)
+(global-set-key (kbd "C-M-s-t") 'rajasegar/open-alacritty)
+(global-set-key (kbd "C-M-s-f") 'rajasegar/open-firefox)
+(global-set-key (kbd "C-M-s-s") 'rajasegar/open-slack)
+(global-set-key (kbd "C-M-s-g") 'rajasegar/open-google-chrome)
 
 
 
@@ -88,9 +93,12 @@
 (global-set-key (kbd "C-c k") 'eval-expression)
 
 ;; Eglot
-(global-set-key (kbd "C-c l i") 'eglot-find-implementation)
-(global-set-key (kbd "C-c l t") 'eglot-find-typeDefinition)
-(global-set-key (kbd "C-c l d") 'eglot-find-declaration)
+;; (global-set-key (kbd "C-c l i") 'eglot-find-implementation)
+;; (global-set-key (kbd "C-c l t") 'eglot-find-typeDefinition)
+;; (global-set-key (kbd "C-c l d") 'eglot-find-declaration)
+(global-set-key (kbd "C-c l i") 'lsp-goto-implementation)
+(global-set-key (kbd "C-c l d") 'lsp-find-definition)
+(global-set-key (kbd "C-c l t") 'lsp-find-type-definition)
 
 ;; Emms
 (global-set-key (kbd "C-c m b") 'emms-browser)

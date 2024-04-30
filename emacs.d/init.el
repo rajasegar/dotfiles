@@ -39,7 +39,7 @@
 (load (concat user-emacs-directory "rajasegar/prodigy-services.el"))
 
 ;; Load centaur tabs
-(load (concat user-emacs-directory "rajasegar/centaur-tabs.el"))
+;; (load (concat user-emacs-directory "rajasegar/centaur-tabs.el"))
 
 ;; Load Freddy
 (load (concat user-emacs-directory "rajasegar/freddy-ai.el"))

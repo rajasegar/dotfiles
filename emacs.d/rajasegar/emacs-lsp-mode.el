@@ -1,15 +1,15 @@
 ;; LSP
 (use-package lsp-mode
   :ensure t
-   :init
+  :init
   (setq lsp-keymap-prefix "C-c l")
   :hook (
-	 (js-mode . lsp-deferred)
-	 (html-mode . lsp-deferred)
-	 (web-mode . lsp-deferred)
-	 (css-mode . lsp-deferred)
-   (typescript-mode . lsp-deferred)
-   (svelte-mode . lsp-deferred))
+         (js-mode . lsp-deferred)
+         (html-mode . lsp-deferred)
+         (web-mode . lsp-deferred)
+         (css-mode . lsp-deferred)
+         (typescript-mode . lsp-deferred)
+         (svelte-mode . lsp-deferred))
   :commands lsp-deferred)
 
 (with-eval-after-load 'lsp-mode

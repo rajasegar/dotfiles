@@ -27,27 +27,6 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-;; Vim mode
-;; (use-package evil
-  ;; :ensure t
-  ;; :init
-  ;; (setq evil-want-keybinding nil)
-  ;; :config
-  ;; (evil-mode 1)
-  ;; (setq-default evil-escape-delay 0.2))
-
-;; evil-collection
-;; (use-package evil-collection
-;;   :after evil
-;;   :ensure t
-;;   :config
-;;   (evil-collection-init))
-
-;; Surround
-;; (use-package evil-surround
-;;   :ensure t
-;;   :config
-;;   (global-evil-surround-mode 1))
 
 
 ;; Themes
@@ -117,15 +96,15 @@
 (use-package company
   :ensure t
   :config
-  ;; (global-company-mode t)
+  (global-company-mode t)
   (setq-default
    company-idle-delay 0.05
    company-minimum-prefix-length 0
    company-require-match nil))
 
-;; Enable company only for specific modes
-(add-hook 'elisp-mode-hook 'company-mode)
-(add-hook 'prog-mode-hook 'company-mode)
+;; Disable company mode for specific modes
+(setq company-global-modes '(not org-mode eshell-mode))
+
 
 
 ;; Treesitter install only for linux
@@ -136,6 +115,7 @@
   (use-package tree-sitter-langs
     :ensure t
     :commands (tree-sitter-hl-mode)))
+(add-hook 'prog-mode-hook 'tree-sitter-hl-mode)
 
 ;; yaml
 (use-package yaml-mode
@@ -233,6 +213,8 @@
                         (agenda . 5)))
 (setq dashboard-center-content t)
 (setq dashboard-display-icons-p nil) ;; display icons on both GUI and terminal
+;; Use project.el for  projects
+(setq dashboard-projects-backend 'project-el)
 
 ;; plantuml
 (use-package plantuml-mode
@@ -255,15 +237,6 @@
   (add-hook 'sgml-mode-hook 'emmet-mode)
   (add-hook 'css-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode))
-
-(use-package perspective
-  :demand t
-  :custom
-  (persp-initial-frame-name "Main")
-  :config
-  ;; Running `persp-mode' multiple times resets the perspective list...
-  (unless (equal persp-mode t)
-    (persp-mode)))
 
 
 (use-package visual-fill-column
@@ -299,7 +272,6 @@
                  (visual-line-mode 0)
                  (evil-mode 1)))))
 
-
 ;; yasnippet
 (use-package yasnippet
   :ensure t)
@@ -315,24 +287,6 @@
 (use-package diredfl
   :ensure t
   :hook (dired-mode . diredfl-mode))
-
-;; Project management
-(use-package projectile
-  :ensure t
-  :init
-  (setq projectile-completion-system 'ivy)
-  (setq projectile-indexing-method 'alien)
-  (setq projectile-sort-order 'recently-active)
-
-  ; Route errors to /dev/null
-  (setq projectile-git-submodule-command "git submodule --quiet foreach 'echo $path' 2>/dev/null | tr '\\n' '\\0'")
-  :config
-  (projectile-mode))
-
-(use-package counsel-projectile
-  :ensure t
-  :config
-  (counsel-projectile-mode))
 
 (use-package flymake-eslint
   :hook

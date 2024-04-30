@@ -272,8 +272,32 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (yank)
   (open-line 1)
   (next-line 1)
-  (yank)
-  )
+  (yank))
+
+(defun rajasegar/export-svg-as-png ()
+  "Export svg files as png using Inkscape"
+  (let ((svg-file ())))
+  (async-shell-command (concat )"/Applications/Inkscape.app/Contents/MacOS/inkscape --export-type png --export-filename output.png marketplace-adapter.svg "))
+
+(defun rajasegar/open-alacritty ()
+  "Open Alacritty terminal from Emacs"
+  (interactive)
+  (shell-command "open -a Alacritty.app"))
+
+(defun rajasegar/open-firefox ()
+  "Open Firefox browser from Emacs"
+  (interactive)
+  (shell-command "open -a Firefox.app"))
+
+(defun rajasegar/open-slack ()
+  "Open Slack app from Emacs"
+  (interactive)
+  (shell-command "open -a Slack.app"))
+
+(defun rajasegar/open-google-chrome ()
+  "Open Google Chrome browser from Emacs"
+  (interactive)
+  (shell-command "open -a 'Google Chrome.app'"))
 
 (provide 'functions)
 
