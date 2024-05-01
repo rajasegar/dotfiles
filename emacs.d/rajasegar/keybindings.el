@@ -93,9 +93,6 @@
 (global-set-key (kbd "C-c k") 'eval-expression)
 
 ;; Eglot
-;; (global-set-key (kbd "C-c l i") 'eglot-find-implementation)
-;; (global-set-key (kbd "C-c l t") 'eglot-find-typeDefinition)
-;; (global-set-key (kbd "C-c l d") 'eglot-find-declaration)
 (global-set-key (kbd "C-c l i") 'lsp-goto-implementation)
 (global-set-key (kbd "C-c l d") 'lsp-find-definition)
 (global-set-key (kbd "C-c l t") 'lsp-find-type-definition)
@@ -121,9 +118,16 @@
 (global-set-key (kbd "C-c o x") 'org-timer-stop)
 
 ;; Projects
-(global-set-key (kbd "C-c p f") 'counsel-projectile-find-file)
-(global-set-key (kbd "C-c p p") 'rajasegar/find-projects)
-(global-set-key (kbd "C-c p t") 'neotree-show)
+(global-set-key (kbd "C-x p t") 'neotree-show)
+
+;; React migration
+(global-set-key (kbd "C-c r a") 'rm/replace-and-helpers)
+(global-set-key (kbd "C-c r e") 'rm/replace-eq-helpers)
+(global-set-key (kbd "C-c r n") 'rm/replace-not-helpers)
+(global-set-key (kbd "C-c r o") 'rm/replace-or-helpers)
+(global-set-key (kbd "C-c r i") 'rm/replace-if-block)
+(global-set-key (kbd "C-c r u") 'rm/replace-unless-block)
+(global-set-key (kbd "C-c r c") 'rm/replace-each-block)
 
 ;; Slime
 (global-set-key (kbd "C-c s s") 'slime)
@@ -165,6 +169,7 @@
 (global-set-key (kbd "C-c ` r") 'freddy-ai/rephrase-from-region)
 (global-set-key (kbd "C-c ` l") 'freddy-ai/prompt-from-line)
 (global-set-key (kbd "C-c ` c") 'freddy-ai/write-code)
+(global-set-key (kbd "C-c ` e") 'freddy-ai/explain-code)
 (global-set-key (kbd "C-c ` t") 'freddy-ai/write-tests)
 
 (provide 'keybindings)
