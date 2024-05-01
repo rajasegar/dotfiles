@@ -299,6 +299,11 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (interactive)
   (shell-command "open -a 'Google Chrome.app'"))
 
+(defun raja/search-word-in-project ()
+  "Search the word under the cursor in  project"
+  (interactive)
+  (project-find-regexp (thing-at-point 'word t)))
+
 (provide 'functions)
 
 ;;; functions.el ends here

@@ -16,6 +16,7 @@
 ;; (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "C-c /") 'counsel-rg)
 (global-set-key (kbd "C-c ,") 'diff-buffer-with-file)
+(global-set-key (kbd "C-c '") 'raja/search-word-in-project)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
 ;; Hyper key bindings
