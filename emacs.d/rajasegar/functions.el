@@ -299,10 +299,21 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (interactive)
   (shell-command "open -a 'Google Chrome.app'"))
 
+(defun rajasegar/ember-plantuml ()
+  "Open Ember plantuml for Freshchat"
+  (interactive)
+  (async-shell-command "cd ~/www/ember-plantuml;./bin/ember-plantuml.js"))
+
 (defun raja/search-word-in-project ()
   "Search the word under the cursor in  project"
   (interactive)
   (project-find-regexp (thing-at-point 'word t)))
+
+(defun raja/plantuml-preview ()
+  "Preview plantuml"
+  (interactive)
+  (shell-command (concat "java -jar ~/plantuml.jar " (buffer-file-name)))
+  (find-file (string-replace ".pum" ".png" (buffer-file-name))))
 
 (provide 'functions)
 

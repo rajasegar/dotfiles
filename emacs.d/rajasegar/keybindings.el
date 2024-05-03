@@ -22,9 +22,11 @@
 ;; Hyper key bindings
 (global-set-key (kbd "C-M-s-x") 'delete-other-windows)
 (global-set-key (kbd "C-M-s-t") 'rajasegar/open-alacritty)
+(global-set-key (kbd "C-M-s-i") 'raja/open-iterm)
 (global-set-key (kbd "C-M-s-f") 'rajasegar/open-firefox)
 (global-set-key (kbd "C-M-s-s") 'rajasegar/open-slack)
 (global-set-key (kbd "C-M-s-g") 'rajasegar/open-google-chrome)
+;; (global-set-key (kbd "C-M-s-q") 'tab-close)
 
 
 
@@ -117,6 +119,9 @@
 (global-set-key (kbd "C-c o t") 'org-toggle-link-display)
 (global-set-key (kbd "C-c o s") 'org-timer-set-timer)
 (global-set-key (kbd "C-c o x") 'org-timer-stop)
+
+;; Plantuml preview
+(global-set-key (kbd "C-c p") 'raja/plantuml-preview)
 
 ;; Projects
 (global-set-key (kbd "C-x p t") 'neotree-show)
