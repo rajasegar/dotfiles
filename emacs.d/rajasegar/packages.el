@@ -35,30 +35,12 @@
   :config
   (load-theme 'doom-dracula t))
 
-;; Neotree
-(use-package neotree
-  :ensure t
-  :config
-  ;; Disable line-numbers minor mode for neotree
-  (add-hook 'neo-after-create-hook
-            (lambda (&rest _) (display-line-numbers-mode -1))))
-(setq neo-smart-open t)
-
-;; Ignore files in neotree
-(setq neo-hidden-regexp-list
-    '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" ;; defaults
-      ;; add yours:
-      "node_modules"))
-
 ;; all-the-icons
 (use-package all-the-icons
   :ensure t)
 (use-package all-the-icons-dired
   :ensure t)
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-
-;; Use icons in neotree
-(setq neo-theme 'icons)
 
 ;; Which Key
 (use-package which-key

@@ -124,7 +124,7 @@
 (global-set-key (kbd "C-c p") 'raja/plantuml-preview)
 
 ;; Projects
-(global-set-key (kbd "C-x p t") 'neotree-show)
+(global-set-key (kbd "C-x p t") 'treemacs)
 
 ;; React migration
 (global-set-key (kbd "C-c r a") 'rm/replace-and-helpers)
@@ -144,6 +144,7 @@
 ;; Toggles and tree sitter
 (global-set-key (kbd "C-c t c") 'rajasegar/add-codeium-completions)
 (global-set-key (kbd "C-c t e") 'treesit-explore-mode)
+(global-set-key (kbd "C-c t i") 'treesit-inspect-mode)
 (global-set-key (kbd "C-c t l") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c t q") 'tree-sitter-query-builder)
 
