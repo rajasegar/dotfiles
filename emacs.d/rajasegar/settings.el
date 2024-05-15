@@ -65,7 +65,8 @@
                 org-present-mode-hook
                 dashboard-mode-hook
                 nov-mode-hook
-                eww-mode-hook))
+                eww-mode-hook
+                treemacs-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Minimal UI
