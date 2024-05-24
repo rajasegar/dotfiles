@@ -185,6 +185,13 @@
 (global-set-key (kbd "C-c ` e") 'freddy-ai/explain-code)
 (global-set-key (kbd "C-c ` t") 'freddy-ai/write-tests)
 
+(defvar-keymap windmove-repeat-map
+  :repeat t
+  "h" #'windmove-left
+  "j" #'windmove-down
+  "k" #'windmove-up
+  "l" #'windmove-right)
+
 (provide 'keybindings)
 
 ;;; keybindings.el ends here
