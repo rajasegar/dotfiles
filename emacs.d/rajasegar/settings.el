@@ -133,7 +133,7 @@
 ;; Turn on abbrev mode globally
 (abbrev-mode 1)
 
-(setq next-line-add-newlines t)
+;; (setq next-line-add-newlines t)
 
 (defun mhtml-forward (arg)
   (interactive "P")

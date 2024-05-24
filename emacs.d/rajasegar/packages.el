@@ -286,9 +286,12 @@
   :ensure t
   ;; git clone https://github.com/Dickby/highlight-indent-guides
   :load-path "elpa/highlight-indent-guides"
+;; Treemacs
+(use-package treemacs
+  :defer t
   :config
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  )
+  (treemacs-hide-gitignored-files-mode))
+
 
 (provide 'packages)
 

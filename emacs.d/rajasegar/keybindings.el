@@ -156,6 +156,12 @@
 (global-set-key (kbd "C-c v v") 'eshell-extensions/eshell-vertical)
 (global-set-key (kbd "C-c v h") 'eshell-extensions/eshell-horizontal)
 
+;; Window movement
+(global-set-key (kbd "C-c w h") 'windmove-left)
+(global-set-key (kbd "C-c w j") 'windmove-down)
+(global-set-key (kbd "C-c w k") 'windmove-up)
+(global-set-key (kbd "C-c w l") 'windmove-right)
+
 
 (global-set-key (kbd "C-c x e") 'rajasegar/eval-print-last-sexp-no-truncation)
 (global-set-key (kbd "C-c x p") 'rajasegar/create-prodigy-service)
