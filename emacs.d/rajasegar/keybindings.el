@@ -148,6 +148,10 @@
 (global-set-key (kbd "C-c t l") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c t q") 'tree-sitter-query-builder)
 
+;; Text scale increase
+(global-set-key (kbd "C-c t -") 'text-scale-decrease)
+(global-set-key (kbd "C-c t =") 'text-scale-increase)
+
 ;; Eshell 
 (global-set-key (kbd "C-c v c") 'eshell-extensions/eshell-command-current-line)
 (global-set-key (kbd "C-c v r") 'eshell-command)
@@ -161,6 +165,7 @@
 (global-set-key (kbd "C-c w j") 'windmove-down)
 (global-set-key (kbd "C-c w k") 'windmove-up)
 (global-set-key (kbd "C-c w l") 'windmove-right)
+(global-set-key (kbd "C-c w d") 'delete-window)
 
 
 (global-set-key (kbd "C-c x e") 'rajasegar/eval-print-last-sexp-no-truncation)
@@ -191,6 +196,11 @@
   "j" #'windmove-down
   "k" #'windmove-up
   "l" #'windmove-right)
+
+(defvar-keymap text-scale-repeat-map
+  :repeat t
+  "-" #'text-scale-decrease
+  "=" #'text-scale-increase)
 
 (provide 'keybindings)
 
