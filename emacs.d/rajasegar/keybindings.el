@@ -125,15 +125,20 @@
 
 ;; Projects
 (global-set-key (kbd "C-x p t") 'treemacs)
+(global-set-key (kbd "C-x p a") 'treemacs-add-and-display-current-project)
 
 ;; React migration
 (global-set-key (kbd "C-c r a") 'rm/replace-and-helpers)
+(global-set-key (kbd "C-c r c") 'rm/rename-class-to-className)
 (global-set-key (kbd "C-c r e") 'rm/replace-eq-helpers)
 (global-set-key (kbd "C-c r n") 'rm/replace-not-helpers)
 (global-set-key (kbd "C-c r o") 'rm/replace-or-helpers)
 (global-set-key (kbd "C-c r i") 'rm/replace-if-block)
+(global-set-key (kbd "C-c r I") 'rm/replace-if-end-block)
+(global-set-key (kbd "C-c r t") 'rm/replace-t-helper)
 (global-set-key (kbd "C-c r u") 'rm/replace-unless-block)
-(global-set-key (kbd "C-c r c") 'rm/replace-each-block)
+(global-set-key (kbd "C-c r U") 'rm/replace-unless-inline)
+(global-set-key (kbd "C-c r E") 'rm/replace-each-block)
 
 ;; Slime
 (global-set-key (kbd "C-c s s") 'slime)
@@ -147,6 +152,7 @@
 (global-set-key (kbd "C-c t i") 'treesit-inspect-mode)
 (global-set-key (kbd "C-c t l") 'toggle-truncate-lines)
 (global-set-key (kbd "C-c t q") 'tree-sitter-query-builder)
+(global-set-key (kbd "C-c t r") 'raja/toggle-relative-line-number)
 
 ;; Text scale increase
 (global-set-key (kbd "C-c t -") 'text-scale-decrease)
@@ -175,6 +181,8 @@
 ;; Yasnippets
 ;; (global-set-key (kbd "C-c y n") 'yas-new-snippet)
 ;; (global-set-key (kbd "C-c y i") 'yas-insert-snippet)
+
+(global-set-key (kbd "C-c z") 'zap-up-to-char)
 
 ;; Quit
 (global-set-key (kbd "C-c q q") 'kill-emacs)

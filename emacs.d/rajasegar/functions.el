@@ -315,6 +315,35 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (shell-command (concat "java -jar ~/plantuml.jar " (buffer-file-name)))
   (find-file (string-replace ".pum" ".png" (buffer-file-name))))
 
+(defun raja/compile-c ()
+  "Compile c programs with cc"
+  (interactive)
+  (compile (format "cc -o %s %s" (file-name-base (buffer-file-name)) (buffer-file-name))))
+
+(defun raja/run-c ()
+  "Run the compiled C program"
+  (interactive)
+  (shell-command (format "./%s" (file-name-base (buffer-file-name)))))
+
+(defun raja/eno-fd ()
+  "Degit the ember-new-output repo for Freshdesk"
+  (interactive)
+  (async-shell-command (format "degit ember-cli/ember-new-output#v3.8.3 eno-%s" (make-temp-name "fd-"))))
+
+(defun raja/eno-fc ()
+  "Degit the ember-new-output repo for Freshchat"
+  (interactive)
+  (async-shell-command (format "degit ember-cli/ember-new-output#v3.20.2 eno-%s" (make-temp-name "fc-"))))
+
+(defun raja/toggle-relative-line-number ()
+  "Toggle relative line number mode"
+  (interactive)
+  (if (eq display-line-numbers-type 'relative)
+      (setq display-line-numbers-type t)
+    (setq display-line-numbers-type 'relative))
+  (display-line-numbers--turn-on)
+  )
+
 (provide 'functions)
 
 ;;; functions.el ends here
