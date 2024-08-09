@@ -150,11 +150,20 @@
                nil))
 
 ;; Enable hs-minor-mode for prog-mode
-(dolist (mode '(prog-mode-hook
-                ))
+(dolist (mode '(prog-mode-hook))
   (add-hook mode (lambda () (hs-minor-mode))))
 
 
+;; Ediff tweaks
+(setq ediff-split-window-function 'split-window-horizontally
+      ediff-window-setup-function 'ediff-setup-windows-plain)
+
+(defun raja-ediff-hook ()
+  (ediff-setup-keymap)
+  (define-key ediff-mode-map "j" 'ediff-next-difference)
+  (define-key ediff-mode-map "k" 'ediff-previous-difference))
+
+(add-hook 'ediff-mode-hook 'raja-ediff-hook)
 
 (provide 'settings)
 

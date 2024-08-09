@@ -23,7 +23,7 @@
 (global-set-key (kbd "C-M-s-x") 'delete-other-windows)
 (global-set-key (kbd "C-M-s-t") 'rajasegar/open-alacritty)
 (global-set-key (kbd "C-M-s-i") 'raja/open-iterm)
-(global-set-key (kbd "C-M-s-f") 'rajasegar/open-firefox)
+(global-set-key (kbd "C-M-s-f") 'project-find-file)
 (global-set-key (kbd "C-M-s-s") 'rajasegar/open-slack)
 (global-set-key (kbd "C-M-s-g") 'rajasegar/open-google-chrome)
 ;; (global-set-key (kbd "C-M-s-q") 'tab-close)
