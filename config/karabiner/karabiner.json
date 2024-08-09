@@ -161,31 +161,6 @@
                         ]
                     },
                     {
-                        "description": "Esc to Control-g in Emacs only",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^org\\.gnu\\.Emacs$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "escape"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "g",
-                                        "modifiers": "left_control"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Hyper mode rules",
                         "manipulators": [
                             {
@@ -1047,6 +1022,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Switch buffers with Ctrl-x b",
                                 "from": {
                                     "key_code": "b",
                                     "modifiers": {
@@ -1075,6 +1051,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Switch to other window with C-x o",
                                 "from": {
                                     "key_code": "o",
                                     "modifiers": {
@@ -1313,6 +1290,7 @@
                                         "value": 1
                                     }
                                 ],
+                                "description": "Delete current window with C-x 0",
                                 "from": {
                                     "key_code": "0",
                                     "modifiers": {
@@ -1490,6 +1468,30 @@
                                     {
                                         "key_code": "s",
                                         "modifiers": "left_control"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "modifier_f",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "description": "Delete indentation in Emacs with Alt+6",
+                                "from": {
+                                    "key_code": "6",
+                                    "modifiers": {}
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "6",
+                                        "modifiers": [
+                                            "left_shift",
+                                            "left_alt"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
