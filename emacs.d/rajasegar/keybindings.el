@@ -172,6 +172,7 @@
 (global-set-key (kbd "C-c w k") 'windmove-up)
 (global-set-key (kbd "C-c w l") 'windmove-right)
 (global-set-key (kbd "C-c w d") 'delete-window)
+(global-set-key (kbd "C-c w s") 'window-swap-states)
 
 
 (global-set-key (kbd "C-c x e") 'rajasegar/eval-print-last-sexp-no-truncation)

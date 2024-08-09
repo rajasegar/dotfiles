@@ -54,7 +54,8 @@
 (electric-pair-mode)
 
 ;; Set relative line numbers
-(setq display-line-numbers-type 'relative)
+;; (setq display-line-numbers-type 'relative)
+
 
 ;; Highlight current line
 (global-hl-line-mode 1)
