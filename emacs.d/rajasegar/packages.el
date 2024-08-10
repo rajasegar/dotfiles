@@ -78,26 +78,37 @@
 (use-package company
   :ensure t
   :config
-  (global-company-mode t)
-  (setq-default
-   company-idle-delay 0.05
-   company-minimum-prefix-length 0
-   company-require-match nil))
+  (global-company-mode t))
+
+(with-eval-after-load 'company
+  (define-key company-mode-map (kbd "<tab>") 'company-complete))
+
 
 ;; Disable company mode for specific modes
-(setq company-global-modes '(not org-mode eshell-mode))
-
-
+;; (setq company-global-modes '(not org-mode eshell-mode))
 
 ;; Treesitter install only for linux
 (when (string-equal system-type  "gnu/linux")
   (use-package  tree-sitter
     :ensure t
-    :commands (tree-sitter-hl-mode))
+    :commands (tree-sitter-hl-mode)
+    )
   (use-package tree-sitter-langs
     :ensure t
-    :commands (tree-sitter-hl-mode)))
-(add-hook 'prog-mode-hook 'tree-sitter-hl-mode)
+    :commands (tree-sitter-hl-mode)
+    )
+  )
+
+(setq treesit-language-source-alist
+      '((tsx        "https://github.com/tree-sitter/tree-sitter-typescript"
+                    "v0.20.3"
+                    "tsx/src")
+        (typescript "https://github.com/tree-sitter/tree-sitter-typescript"
+                    "v0.20.3"
+                    "typescript/src")))
+;; Enable Tree sitter modes
+(add-hook 'rjsx-mode-hook 'tree-sitter-hl-mode)
+(add-hook 'typescript-mode-hook 'tree-sitter-hl-mode)
 
 ;; yaml
 (use-package yaml-mode

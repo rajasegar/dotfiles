@@ -23,10 +23,6 @@
 (with-eval-after-load 'eglot
 ;; No event buffers, disable providers cause a lot of hover traffic. Shutdown unused servers.
   (setq eglot-events-buffer-size 0
-        ;; eglot-ignored-server-capabilities '(
-                                            ;; :hoverProvider
-                                            ;; :documentHighlightProvider
-                                            ;; :inlayHintProvider)
         eglot-autoshutdown t)
 
   (add-to-list 'eglot-server-programs
