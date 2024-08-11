@@ -80,6 +80,8 @@
 (global-set-key (kbd "C-c g x") 'github-prs-repo)
 (global-set-key (kbd "C-c g z") 'rajasegar/magit-stash-untracked)
 
+(global-set-key (kbd "C-c h") 'hs-toggle-hiding)
+
 
 
 (global-set-key (kbd "C-c i") 'ielm)
@@ -199,6 +201,10 @@
 (global-set-key (kbd "C-c ` e") 'freddy-ai/explain-code)
 (global-set-key (kbd "C-c ` t") 'freddy-ai/write-tests)
 
+;; hide show
+(global-set-key (kbd "C-c ]") 'hs-hide-block)
+(global-set-key (kbd "C-c [") 'hs-show-block)
+
 (defvar-keymap windmove-repeat-map
   :repeat t
   "h" #'windmove-left
@@ -210,6 +216,28 @@
   :repeat t
   "-" #'text-scale-decrease
   "=" #'text-scale-increase)
+
+(defvar-keymap flymake-repeat-map
+  :repeat t
+  "j" #'flymake-goto-next-error
+  "k" #'flymake-goto-prev-error)
+
+(defvar-keymap hs-repeat-map
+  :repeat t
+  "[" #'hs-show-block
+  "]" #'hs-hide-block
+  "h" #'hs-toggle-hiding)
+
+(defvar-keymap navigation-repeat-map
+  :repeat t
+  "n" #'next-line
+  "p" #'previous-line
+  "f" #'forward-word
+  "b" #'backward-word
+  "e" #'forward-sentence
+  "a" #'backward-sentence
+  "h" #'backward-char
+  "l" #'forward-char)
 
 (provide 'keybindings)
 
