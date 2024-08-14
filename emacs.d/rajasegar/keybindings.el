@@ -239,6 +239,11 @@
   "h" #'backward-char
   "l" #'forward-char)
 
+(defvar-keymap emms-repeat-map
+  :repeat t
+  "n" #'emms-next
+  "p" #'emms-previous)
+
 (provide 'keybindings)
 
 ;;; keybindings.el ends here
