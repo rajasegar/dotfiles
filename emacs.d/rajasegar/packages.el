@@ -109,6 +109,7 @@
 ;; Enable Tree sitter modes
 (add-hook 'rjsx-mode-hook 'tree-sitter-hl-mode)
 (add-hook 'typescript-mode-hook 'tree-sitter-hl-mode)
+(add-hook 'js-mode-hook 'tree-sitter-hl-mode)
 
 ;; yaml
 (use-package yaml-mode

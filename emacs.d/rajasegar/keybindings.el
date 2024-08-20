@@ -52,12 +52,15 @@
 
 
 (global-set-key (kbd "C-c c g") 'counsel-rg)
+(global-set-key (kbd "C-c c c") 'raja/compile-c)
+(global-set-key (kbd "C-c c r") 'raja/run-c)
 
 (global-set-key (kbd "C-c d") 'duplicate-line)
 
 ;; Files and Flymake
 (global-set-key (kbd "C-c f r") 'counsel-recentf)
-(global-set-key (kbd "C-c f n") 'flymake-goto-next-error)
+(global-set-key (kbd "C-c f j") 'flymake-goto-next-error)
+(global-set-key (kbd "C-c f k") 'flymake-goto-previous-error)
 (global-set-key (kbd "C-c f d") 'flymake-show-buffer-diagnostics)
    
 ;; Git
@@ -242,7 +245,8 @@
 (defvar-keymap emms-repeat-map
   :repeat t
   "n" #'emms-next
-  "p" #'emms-previous)
+  "p" #'emms-previous
+  "r" #'emms-random)
 
 (provide 'keybindings)
 
