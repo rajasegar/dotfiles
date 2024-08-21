@@ -143,6 +143,16 @@ Argument PRED predicate."
   (interactive)
   (shell-command (concat "open " (github-repository-url) "/compare/dev..." (car (vc-git-branches)))))
 
+(defun prodigy-port (task)
+  "Return port number for the respective task, otherwise 8080"
+  (cond
+    ((string= task "vite") 5173)
+    ((string= task "vite preview") 4173)
+    (t 8080)
+    )
+  )
+
+
 (defun rajasegar/create-prodigy-service (&optional package-manager)
   "Create new prodigy services based on current package.json.
 Optional argument PACKAGE-MANAGER The type of package manager to use (default: pnpm)."
@@ -162,6 +172,7 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
                     :tags '(temp)
                     :stop-signal 'sigkill
                     :kill-process-buffer-on-stop t
+                    :port (prodigy-port value)
                     ))) (gethash "scripts" pkg))
     ;; Open prodigy and refresh
     (prodigy)
