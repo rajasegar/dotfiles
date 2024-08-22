@@ -10,8 +10,6 @@
 (global-set-key [f6] 'emms-stop)
 (global-set-key [f7] 'emms-previous)
 (global-set-key [f8] 'emms-next)
-(global-set-key [f9] 'neotree-show)
-(global-set-key [f12] 'persp-next)
 
 ;; (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "C-c /") 'counsel-rg)
@@ -56,6 +54,7 @@
 (global-set-key (kbd "C-c c r") 'raja/run-c)
 
 (global-set-key (kbd "C-c d") 'duplicate-line)
+(global-set-key (kbd "C-c u") 'rajasegar/delete-current-line)
 
 ;; Files and Flymake
 (global-set-key (kbd "C-c f r") 'counsel-recentf)

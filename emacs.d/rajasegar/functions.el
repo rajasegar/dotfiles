@@ -276,6 +276,11 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (interactive)
   (copy-region-as-kill (point-at-bol) (point-at-eol)))
 
+(defun rajasegar/delete-current-line()
+  "Delete the current line under the cursor"
+  (interactive)
+  (kill-region (point-at-bol) (point-at-eol)))
+
 (defun rajasegar/duplicate-line()
   (interactive)
   (move-beginning-of-line 1)
