@@ -60,7 +60,7 @@
 ;; Files and Flymake
 (global-set-key (kbd "C-c f r") 'counsel-recentf)
 (global-set-key (kbd "C-c f j") 'flymake-goto-next-error)
-(global-set-key (kbd "C-c f k") 'flymake-goto-previous-error)
+(global-set-key (kbd "C-c f k") 'flymake-goto-prev-error)
 (global-set-key (kbd "C-c f d") 'flymake-show-buffer-diagnostics)
    
 ;; Git
@@ -98,7 +98,8 @@
 (global-set-key (kbd "C-M-s-n") 'previous-buffer)
 (global-set-key (kbd "C-M-s-m") 'next-buffer)
 
-(global-set-key (kbd "C-c k") 'eval-expression)
+(global-set-key (kbd "C-c e") 'eval-expression)
+(global-set-key (kbd "C-c k") 'rajasegar/kill-to-eof)
 
 ;; Eglot
 (global-set-key (kbd "C-c l i") 'eglot-find-implementation)

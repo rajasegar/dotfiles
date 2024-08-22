@@ -285,6 +285,11 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (next-line 1)
   (yank))
 
+(defun rajasegar/kill-to-eof ()
+  "Kill from the current cursor position to end of file"
+  (interactive)
+  (kill-region (point) (point-max)))
+
 (defun rajasegar/export-svg-as-png ()
   "Export svg files as png using Inkscape"
   (let ((svg-file ())))
