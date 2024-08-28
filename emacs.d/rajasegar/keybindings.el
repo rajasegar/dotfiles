@@ -11,21 +11,22 @@
 (global-set-key [f8] 'emms-next)
 
 ;; Hyper key bindings
-(global-set-key (kbd "C-M-s-x") 'delete-other-windows)
-(global-set-key (kbd "C-M-s-t") 'rajasegar/open-alacritty)
-(global-set-key (kbd "C-M-s-i") 'raja/open-iterm)
-(global-set-key (kbd "C-M-s-f") 'project-find-file)
-(global-set-key (kbd "C-M-s-s") 'rajasegar/open-slack)
-(global-set-key (kbd "C-M-s-g") 'rajasegar/open-google-chrome)
-;; (global-set-key (kbd "C-M-s-q") 'tab-close)
+(defvar-keymap my-hyperkey-map
+  :doc "Hyper key map C-M-s"
+  "f" #'project-find-file
+  "i" #'raja/open-iterm
+  "g" #'rajasegar/open-google-chrome
+  "m" #'next-buffer
+  "n" #'previous-buffer
+  "s" #'rajasegar/open-slack
+  "t" #'rajasegar/open-alacritty
+  "x" #'delete-other-windows)
 
-;; Jump 
-(global-set-key (kbd "C-M-s-n") 'previous-buffer)
-(global-set-key (kbd "C-M-s-m") 'next-buffer)
+(keymap-set global-map "C-M-s" my-hyperkey-map)
 
 ;; Projects
 (global-set-key (kbd "C-x p t") 'treemacs)
-(global-set-key (kbd "C-x p a") 'treemacs-add-and-display-current-project)
+(global-set-key (kbd "C-x p a") 'treemacs-add-project-to-workspace)
 
 ;; Yasnippets
 ;; (global-set-key (kbd "C-c y n") 'yas-new-snippet)
