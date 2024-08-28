@@ -10,12 +10,6 @@
 (global-set-key [f7] 'emms-previous)
 (global-set-key [f8] 'emms-next)
 
-;; (global-set-key "\C-s" 'swiper)
-(global-set-key (kbd "C-c /") 'counsel-rg)
-(global-set-key (kbd "C-c ,") 'diff-buffer-with-file)
-(global-set-key (kbd "C-c '") 'raja/search-word-in-project)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-
 ;; Hyper key bindings
 (global-set-key (kbd "C-M-s-x") 'delete-other-windows)
 (global-set-key (kbd "C-M-s-t") 'rajasegar/open-alacritty)
@@ -45,9 +39,6 @@
 (global-set-key (kbd "C-c ` e") 'freddy-ai/explain-code)
 (global-set-key (kbd "C-c ` t") 'freddy-ai/write-tests)
 
-;; hide show
-(global-set-key (kbd "C-c ]") 'hs-hide-block)
-(global-set-key (kbd "C-c [") 'hs-show-block)
 
 ;; Define key maps that will then be added to the prefix map
 (defvar-keymap my-prefix-applications-map
@@ -229,7 +220,13 @@
   "w" my-prefix-window-map
   "x" my-prefix-x-map
   "y" #'rajasegar/copy-line
-  "z" #'zap-up-to-char)
+  "z" #'zap-up-to-char
+  "/" #'counsel-rg
+  "," #'diff-buffer-with-file
+  "'" #'raja/search-word-in-project
+  "]" #'hs-hide-block
+  "[" #'hs-show-block
+  "C-r" #'ivy-resume)
 
 (keymap-set global-map "C-c" my-prefix-map)
 
