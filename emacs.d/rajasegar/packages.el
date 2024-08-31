@@ -27,13 +27,12 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
+;; Modus Themes
+(setq   modus-themes-subtle-line-numbers t
+        modus-themes-fringes nil ; {nil,'subtle,'intense}
+        modus-themes-mode-line '(accented borderless))
+(load-theme 'modus-vivendi)
 
-
-;; Themes
-(use-package doom-themes
-  :ensure t
-  :config
-  (load-theme 'doom-dracula t))
 
 ;; all-the-icons
 (use-package all-the-icons
@@ -67,12 +66,6 @@
 ;; Org-agenda customizations
 (setq org-agenda-start-on-weekday 0)
 (setq org-agenda-timegrid-use-ampm 1)
-
-;; Modeline
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
-(setq doom-modeline-workspace-name t)
 
 
 (use-package company
@@ -173,23 +166,19 @@
 	 ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
-;; Ivy & friends
-(use-package ivy
-  :ensure t)
-(ivy-mode)
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
-
-(use-package counsel
-  :ensure t)
-(counsel-mode)
+;; Ido
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
 ;; Magit
 (use-package magit
   :ensure t
   :commands (magit-mode))
-;(use-package git-gutter :ensure t)
-;(global-git-gutter-mode +1)
+
+;; Git gutter
+(use-package git-gutter :ensure t)
+(global-git-gutter-mode +1)
 
 ;; Git timemachine
 (use-package git-timemachine
@@ -266,27 +255,11 @@
                  (visual-line-mode 0)
                  (evil-mode 1)))))
 
-;; yasnippet
-(use-package yasnippet
-  :ensure t)
-(yas-global-mode 1)
-
-(use-package yasnippet-snippets
-  :ensure t)
-
 (use-package prodigy
   :ensure t)
 
-;; Colorful dired
-(use-package diredfl
-  :ensure t
-  :hook (dired-mode . diredfl-mode))
 
-(use-package flymake-eslint
-  :hook
-  (eglot-managed-mode . (lambda ()
-                          (when (derived-mode-p 'typescript-mode 'js-mode)
-                            (flymake-eslint-enable)))))
+(setq flymake-no-changes-timeout 0.5)
 
 (use-package eshell-extensions
   :load-path "elpa/eshell-extensions/")

@@ -46,13 +46,14 @@
 (blink-cursor-mode -1)
 (show-paren-mode t)
 
-(setq-default mode-line-format nil)
+;; (setq-default mode-line-format nil)
 
 (toggle-word-wrap)
 (global-auto-revert-mode t)
 (global-display-line-numbers-mode 1)
 (electric-pair-mode)
 
+(global-display-line-numbers-mode)
 ;; Set relative line numbers
 ;; (setq display-line-numbers-type 'relative)
 
