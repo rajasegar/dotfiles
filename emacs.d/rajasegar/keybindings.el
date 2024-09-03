@@ -11,18 +11,16 @@
 (global-set-key [f8] 'emms-next)
 
 ;; Hyper key bindings
-(defvar-keymap my-hyperkey-map
-  :doc "Hyper key map C-M-s"
-  "f" #'project-find-file
-  "i" #'raja/open-iterm
-  "g" #'rajasegar/open-google-chrome
-  "m" #'next-buffer
-  "n" #'previous-buffer
-  "s" #'rajasegar/open-slack
-  "t" #'rajasegar/open-alacritty
-  "x" #'delete-other-windows)
 
-(keymap-set global-map "C-M-s" my-hyperkey-map)
+(global-set-key (kbd "C-M-s-f") 'project-find-file)
+(global-set-key (kbd "C-M-s-i") 'raja/open-iterm)
+(global-set-key (kbd "C-M-s-g") 'rajasegar/open-google-chrome)
+(global-set-key (kbd "C-M-s-m") 'next-buffer)
+(global-set-key (kbd "C-M-s-n") 'previous-buffer)
+(global-set-key (kbd "C-M-s-s") 'rajasegar/open-slack)
+(global-set-key (kbd "C-M-s-t") 'rajasegar/open-alacritty)
+(global-set-key (kbd "C-M-s-x") 'delete-other-windows)
+
 
 ;; Projects
 (global-set-key (kbd "C-x p t") 'treemacs)
@@ -47,10 +45,12 @@
   "c" #'calendar
   "d" #'counsel-dired
   "e" #'elfeed
+  "f" #'rajasegar/open-firefox
   "m" #'emms
   "k" #'calc
   "h" #'rajasegar/open-hackernews
   "p" #'prodigy
+  "s" #'raja/startup
   "t" #'eshell-extensions/open-new-eshell
   "w" #'rajasegar/update-wallpaper)
 

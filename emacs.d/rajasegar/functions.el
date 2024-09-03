@@ -320,6 +320,13 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (interactive)
   (shell-command "open -a 'Google Chrome.app'"))
 
+(defun raja/startup ()
+  "Start apps in Mac in a bunch from Emacs"
+  (interactive)
+  (shell-command "open -a Firefox.app")
+  (shell-command "open -a Slack.app")
+    (shell-command "open -a 'Google Chrome.app'"))
+
 (defun rajasegar/ember-plantuml ()
   "Open Ember plantuml for Freshchat"
   (interactive)
