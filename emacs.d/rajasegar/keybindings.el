@@ -43,7 +43,7 @@
 (defvar-keymap my-prefix-applications-map
   :doc "My prefix key map for applications."
   "c" #'calendar
-  "d" #'counsel-dired
+  "d" #'dired
   "e" #'elfeed
   "f" #'rajasegar/open-firefox
   "m" #'emms
@@ -65,7 +65,7 @@
 
 (defvar-keymap my-prefix-c-map
   :doc "c prefix"
-  "g" #'counsel-rg
+  "g" #'rg
   "c" #'raja/compile-c
   "r" #'raja/run-c)
 
@@ -75,7 +75,7 @@
   "d" #'flymake-show-buffer-diagnostics
   "j" #'flymake-goto-next-error
   "k" #'flymake-goto-prev-error
-  "r" #'counsel-recentf)
+  "r" #'recentf-open-files)
 
 (defvar-keymap my-prefix-git-map
   :doc "Git and Magit"
@@ -158,7 +158,7 @@
   :doc "Slime C-c s"
   "l" #'slime-load-file
   "s" #'slime
-  "w" #'rajasegar/counsel-rg-word)
+  "w" #'rajasegar/rg-word)
 
 (defvar-keymap my-prefix-toggle-map
   :doc "Toggles and tree sitter C-c t"
@@ -174,7 +174,7 @@
 
 (defvar-keymap my-prefix-v-map
   :doc "Eshell extensions C-c v"
-  "c" #'eshell-extensions/eshell-command-current-line
+  "c" #'vite/create
   "h" #'eshell-extensions/eshell-horizontal
   "k" #'eshell-extensions/kill-buffer-eshell-command-output
   "l" #'eshell-extensions/run-previous-eshell-command
@@ -222,7 +222,7 @@
   "x" my-prefix-x-map
   "y" #'rajasegar/copy-line
   "z" #'zap-up-to-char
-  "/" #'counsel-rg
+  "/" #'rg
   "," #'diff-buffer-with-file
   "'" #'raja/search-word-in-project
   "]" #'hs-hide-block
