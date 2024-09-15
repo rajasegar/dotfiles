@@ -60,6 +60,7 @@
   "d" #'kill-this-buffer
   "e" #'eval-buffer
   "h" #'rajasegar/switch-to-dashboard
+  "i" #'raja/indent-whole-buffer
   "r" #'rename-buffer
   "s" #'scratch-buffer)
 

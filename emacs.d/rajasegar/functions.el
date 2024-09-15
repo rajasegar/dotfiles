@@ -372,6 +372,12 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (display-line-numbers--turn-on)
   )
 
+(defun raja/indent-whole-buffer ()
+  "Mark the current buffer entirely and indent it"
+  (interactive)
+  (indent-region (point-min) (point-max))
+  )
+
 (provide 'functions)
 
 ;;; functions.el ends here
