@@ -302,6 +302,30 @@
   :config
   (treemacs-hide-gitignored-files-mode))
 
+(use-package llm
+  :ensure t)
+
+
+(use-package ellama
+  :ensure t
+  :init
+  (setopt ellama-keymap-prefix "C-x c")
+  (setopt ellama-language "English")
+  (require 'llm-ollama)
+  (setopt ellama-provider
+		      (make-llm-ollama
+		       :chat-model "codellama" :embedding-model "codellama"))
+  (setopt ellama-providers
+		      '(("tiny" . (make-llm-ollama
+				               :chat-model "tinyllama"
+				               :embedding-model "tinyllama"))
+		        ("code" . (make-llm-ollama
+				               :chat-model "codellama"
+				               :embedding-model "codellama"))
+		        ("llama" . (make-llm-ollama
+				                :chat-model "llama3.1"
+				                :embedding-model "llama3.1"))))
+  )
 
 (provide 'packages)
 
