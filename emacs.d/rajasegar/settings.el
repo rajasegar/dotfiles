@@ -167,6 +167,20 @@
 
 (add-hook 'ediff-mode-hook 'raja-ediff-hook)
 
+;; Modus Themes
+(setq modus-themes-fringes nil
+      modus-themes-mode-line '(accented)
+      modus-themes-subtle-line-numbers t)
+(load-theme 'modus-vivendi)
+
+;; Ido
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+;; Dired human listing
+(setq dired-listing-switches "-alFh")
+
 (provide 'settings)
 
 ;;; settings.el ends here

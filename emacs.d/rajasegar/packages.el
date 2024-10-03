@@ -8,7 +8,8 @@
 ;;; Code:
 
 (setq package-enable-at-startup nil)
-(setq package-archives '(("org"       . "http://orgmode.org/elpa/")
+(setq package-archives
+      '(("org"       . "http://orgmode.org/elpa/")
 			 ("gnu"       . "http://elpa.gnu.org/packages/")
 			 ("melpa"     . "https://melpa.org/packages/")))
 (package-initialize)
@@ -27,13 +28,6 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-;; Modus Themes
-(setq   modus-themes-subtle-line-numbers t
-        modus-themes-fringes nil ; {nil,'subtle,'intense}
-        modus-themes-mode-line '(accented borderless))
-(load-theme 'modus-vivendi)
-
-
 ;; all-the-icons
 (use-package all-the-icons
   :ensure t)
@@ -47,6 +41,7 @@
   :init
   (setq which-key-separator " ")
   (setq which-key-prefix-prefix "+")
+  (setq which-key-compute-remaps t)
   :config
   (which-key-mode))
 
@@ -66,15 +61,6 @@
 ;; Org-agenda customizations
 (setq org-agenda-start-on-weekday 0)
 (setq org-agenda-timegrid-use-ampm 1)
-
-
-;; (use-package company
-  ;; :ensure t
-  ;; :config
-  ;; (global-company-mode t))
-
-;; (with-eval-after-load 'company
-  ;; (define-key company-mode-map (kbd "<tab>") 'company-complete))
 
 (use-package corfu
   :ensure t
@@ -101,9 +87,6 @@
   :init
   (global-corfu-mode))
 
-
-;; Disable company mode for specific modes
-;; (setq company-global-modes '(not org-mode eshell-mode))
 
 ;; Treesitter install only for linux
 (when (string-equal system-type  "gnu/linux")
@@ -144,19 +127,11 @@
   (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode)))
 
 
-;; Typescript
-(use-package typescript-mode
-  :mode "\\.tsx\\'"
-  :config
-  (setq typescript-indent-level 2)
-  (add-hook 'typescript-mode-hook 'tree-sitter-hl-mode))
-
-(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
-
 ;; Web mode
 (use-package web-mode
   :ensure t)
 
+(setq web-mode-code-indent-offset 2)
 (setq web-mode-markup-indent-offset 2)
 
 (use-package add-node-modules-path
@@ -190,11 +165,6 @@
 	 ("\\.md\\'" . markdown-mode)
 	 ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
-
-;; Ido
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
 
 ;; Magit
 (use-package magit
@@ -231,10 +201,15 @@
 
 ;; Sample jar configuration
 (setq plantuml-jar-path "~/plantuml.jar")
-(setq org-plantuml-jar-path "~/plantuml.jar")
 (setq plantuml-default-exec-mode 'jar)
 
+;; (setq plantuml-jar-args '("-tpng"))
+;; (setq plantuml-output-type "png")
+;; (setq plantuml-java-args (list "-Djava.awt.headless=true" "-jar"))
+;; (add-to-list 'auto-mode-alist '("\\.pum\\'" . plantuml-mode))
+
 ;; Enable plantuml for org-mode
+;; (setq org-plantuml-jar-path "~/plantuml.jar")
 ;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
 ;; (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
@@ -289,18 +264,49 @@
 (use-package eshell-extensions
   :load-path "elpa/eshell-extensions/")
 
-(setq highlight-indent-guides-method  'character)
-(setq  highlight-indent-guides-character ?¦)
+(use-package freshrelease
+  :load-path "elpa/freshrelease/")
 
-(use-package highlight-indent-guides
-  :ensure t
-  ;; git clone https://github.com/Dickby/highlight-indent-guides
-  :load-path "elpa/highlight-indent-guides"
+(use-package github
+  :load-path "elpa/github")
+
+
+(use-package multiple-cursors
+  :ensure t)
+
+
+;; (use-package ipl
+  ;; :load-path "elpa/ipl")
+
+
+;; For reading epub files 
+;; (use-package nov
+  ;; :ensure t
+  ;; :mode "\\.nov\\'"
+  ;; :init
+  ;; (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+;; (setq nov-text-width t)
+;; (setq visual-fill-column-center-text t)
+;; (add-hook 'nov-mode-hook 'visual-line-mode)
+;; (add-hook 'nov-mode-hook 'visual-fill-column-mode)
+
 ;; Treemacs
 (use-package treemacs
   :defer t
   :config
   (treemacs-hide-gitignored-files-mode))
+
+(setq highlight-indent-guides-method  'character)
+(setq  highlight-indent-guides-character ?¦)
+
+(use-package react-migration
+  :load-path "elpa/react-migration")
+
+;; (use-package glimmer-ast
+  ;; :load-path "elpa/glimmer-ast")
+
+;; (use-package freddy-ai
+  ;; :load-path "elpa/freddy-ai")
 
 (use-package llm
   :ensure t)
@@ -314,7 +320,7 @@
   (require 'llm-ollama)
   (setopt ellama-provider
 		      (make-llm-ollama
-		       :chat-model "codellama" :embedding-model "codellama"))
+		       :chat-model "llama3.2" :embedding-model "llama3.2"))
   (setopt ellama-providers
 		      '(("tiny" . (make-llm-ollama
 				               :chat-model "tinyllama"
@@ -323,10 +329,24 @@
 				               :chat-model "codellama"
 				               :embedding-model "codellama"))
 		        ("llama" . (make-llm-ollama
-				                :chat-model "llama3.1"
-				                :embedding-model "llama3.1"))))
+				                :chat-model "llama3.2"
+				                :embedding-model "llama3.2"))
+            ("deepseek-coder" . (make-llm-ollama
+				                        :chat-model "deepseek-coder"
+				                        :embedding-model "deepseek-coder"))
+            ("gemma2" . (make-llm-ollama
+				                        :chat-model "gemma2"
+				                        :embedding-model "gemma2"))
+            ("phi3" . (make-llm-ollama
+                       :chat-model "phi3"
+                       :embedding-model "phi3"))
+            )
+          )
   )
+  
+
 
 (provide 'packages)
 
 ;;; packages.el ends here
+
