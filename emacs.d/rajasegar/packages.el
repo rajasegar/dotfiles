@@ -296,6 +296,17 @@
   :config
   (treemacs-hide-gitignored-files-mode))
 
+;; hide node modules in treemacs
+(with-eval-after-load 'treemacs
+  (defun treemacs-ignore-example (filename absolute-path)
+    (or (string-equal filename "node_modules")
+        (string-prefix-p "/x/y/z/" absolute-path)))
+  (add-to-list 'treemacs-ignored-file-predicates #'treemacs-ignore-example))
+
+(use-package treemacs-evil
+  :ensure t
+  :after treemacs evil)
+
 (setq highlight-indent-guides-method  'character)
 (setq  highlight-indent-guides-character ?¦)
 
@@ -344,7 +355,40 @@
           )
   )
   
+;; Themes
+ (use-package doom-themes
+   :ensure t
+   :config
+   (load-theme 'doom-dracula t))
 
+;; Modeline
+(use-package doom-modeline
+  :ensure t
+  :config
+  (doom-modeline-mode 1))
+
+;; (setq doom-modeline-workspace-name t)
+
+;; Vim mode
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1)
+  (setq-default evil-escape-delay 0.2))
+
+;; evil-collection
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
+
+(use-package evil-surround
+  :load-path "elpa/evil-surround/"
+  :config
+  (global-evil-surround-mode 1))
 
 (provide 'packages)
 
