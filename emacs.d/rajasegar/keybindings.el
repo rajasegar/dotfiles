@@ -18,6 +18,11 @@
   "]" #'hs-hide-block
   "h" #'hs-toggle-hiding)
 
+(defvar-keymap tab-line-repeat-map
+  :repeat t
+  "j" #'tab-line-switch-to-next-tab
+  "k" #'tab-line-switch-to-prev-tab)
+
 ;;; Leader
 (define-prefix-command 'my-leader-map)
 
@@ -35,6 +40,8 @@
     "[" #'hs-show-block
     "C-r" #'ivy-resume
     "u" #'undo
+    "j" #'tab-line-switch-to-next-tab
+    "k" #'tab-line-switch-to-prev-tab
     
     ;; "My prefix key map for config"
     ".." #'(lambda () (interactive) (find-file user-init-file))
@@ -43,6 +50,11 @@
     ".p" #'my/edit-emacs-packages
     ".f" #'my/edit-emacs-functions
     ".s" #'my/edit-emacs-settings
+
+    ;; Gptel
+    "``" #'gptel
+    "`r" #'gptel-rewrite
+    "`s" #'gptel-send
     
   ;; My prefix key map for applications
   "ac" #'calendar
