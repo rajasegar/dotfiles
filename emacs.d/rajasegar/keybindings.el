@@ -18,10 +18,14 @@
   "]" #'hs-hide-block
   "h" #'hs-toggle-hiding)
 
-(defvar-keymap tab-line-repeat-map
-  :repeat t
-  "j" #'tab-line-switch-to-next-tab
-  "k" #'tab-line-switch-to-prev-tab)
+(defvar tab-line-switch-repeat-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "j") #'tab-line-switch-to-next-tab)
+    (define-key map (kbd "k") #'tab-line-switch-to-prev-tab)
+    map))
+
+(dolist (cmd '(tab-line-switch-to-next-tab tab-line-switch-to-prev-tab))
+  (put cmd 'repeat-map 'tab-line-switch-repeat-map))
 
 ;;; Leader
 (define-prefix-command 'my-leader-map)
@@ -184,6 +188,8 @@
 (define-key evil-normal-state-map (kbd "SPC p a") 'treemacs-add-project-to-workspace)
 (define-key evil-normal-state-map (kbd "SPC v") vc-prefix-map)
 
+(define-key evil-normal-state-map (kbd "[ t") 'tab-line-switch-to-prev-tab)
+(define-key evil-normal-state-map (kbd "] t") 'tab-line-switch-to-next-tab)
 
 (provide 'keybindings)
 
