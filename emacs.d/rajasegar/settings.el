@@ -43,6 +43,8 @@
 
 ;; https://github.com/danielmai/.emacs.d/blob/master/config.org
 (defalias 'yes-or-no-p 'y-or-n-p)
+;; Ask yes or no instead of y or n
+(setq use-short-answers t)
 (blink-cursor-mode -1)
 (show-paren-mode t)
 
