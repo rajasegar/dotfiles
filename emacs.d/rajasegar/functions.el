@@ -229,8 +229,7 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
 (defun rajasegar/update-wallpaper ()
   "Fetch a new wallpaper from Upsplash and update it."
   (interactive)
-  (eshell-command (concat "wallpaper.sh")))
-
+  (url-copy-file "https://unsplash.it/1366/768/?random" "~/Pictures/random/wallpaper.jpg" t))
 
 (defun rajasegar/apt-get-install ()
   "Read a package name from minibuffer and install it with apt-get."
