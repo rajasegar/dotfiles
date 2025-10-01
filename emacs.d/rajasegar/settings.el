@@ -57,7 +57,7 @@
 
 (global-display-line-numbers-mode)
 ;; Set relative line numbers
-;; (setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type 'relative)
 
 
 ;; Highlight current line

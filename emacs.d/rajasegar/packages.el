@@ -229,46 +229,11 @@
 (setq visual-fill-column-width 110)
 (setq-default visual-fill-column-center-text t)
 
-(use-package org-present
-  :ensure t)
-
-(setq org-image-actual-width nil)
-
-(eval-after-load "org-present"
-  '(progn
-     (add-hook 'org-present-mode-hook
-               (lambda ()
-                 (org-present-big)
-                 (org-display-inline-images)
-                 (org-present-hide-cursor)
-                 (org-present-read-only)
-                 (visual-fill-column-mode 1)
-                 (visual-line-mode 1)
-                 (evil-mode 0)))
-     (add-hook 'org-present-mode-quit-hook
-               (lambda ()
-                 (org-present-small)
-                 (org-remove-inline-images)
-                 (org-present-show-cursor)
-                 (org-present-read-write)
-                 (visual-fill-column-mode 0)
-                 (visual-line-mode 0)
-                 (evil-mode 1)))))
-
 (use-package prodigy
   :ensure t)
 
 
 (setq flymake-no-changes-timeout 0.5)
-
-(use-package eshell-extensions
-  :load-path "elpa/eshell-extensions/")
-
-(use-package freshrelease
-  :load-path "elpa/freshrelease/")
-
-(use-package github
-  :load-path "elpa/github")
 
 
 (use-package multiple-cursors
@@ -310,50 +275,6 @@
 (setq highlight-indent-guides-method  'character)
 (setq  highlight-indent-guides-character ?¦)
 
-(use-package react-migration
-  :load-path "elpa/react-migration")
-
-;; (use-package glimmer-ast
-  ;; :load-path "elpa/glimmer-ast")
-
-;; (use-package freddy-ai
-  ;; :load-path "elpa/freddy-ai")
-
-(use-package llm
-  :ensure t)
-
-
-(use-package ellama
-  :ensure t
-  :init
-  (setopt ellama-keymap-prefix "C-x c")
-  (setopt ellama-language "English")
-  (require 'llm-ollama)
-  (setopt ellama-provider
-		      (make-llm-ollama
-		       :chat-model "llama3.2" :embedding-model "llama3.2"))
-  (setopt ellama-providers
-		      '(("tiny" . (make-llm-ollama
-				               :chat-model "tinyllama"
-				               :embedding-model "tinyllama"))
-		        ("code" . (make-llm-ollama
-				               :chat-model "codellama"
-				               :embedding-model "codellama"))
-		        ("llama" . (make-llm-ollama
-				                :chat-model "llama3.2"
-				                :embedding-model "llama3.2"))
-            ("deepseek-coder" . (make-llm-ollama
-				                        :chat-model "deepseek-coder"
-				                        :embedding-model "deepseek-coder"))
-            ("gemma2" . (make-llm-ollama
-				                        :chat-model "gemma2"
-				                        :embedding-model "gemma2"))
-            ("phi3" . (make-llm-ollama
-                       :chat-model "phi3"
-                       :embedding-model "phi3"))
-            )
-          )
-  )
   
 ;; Themes
  (use-package doom-themes

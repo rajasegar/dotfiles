@@ -18,7 +18,7 @@
 ;; (load (concat user-emacs-directory "rajasegar/eglot-config.el"))
 
 ;; Load music config
-(load (concat user-emacs-directory "rajasegar/music.el"))
+;; (load (concat user-emacs-directory "rajasegar/music.el"))
 
 ;; Load user defined functions
 (load (concat user-emacs-directory "rajasegar/functions.el"))
@@ -30,22 +30,22 @@
 ;; (load (concat user-emacs-directory "rajasegar/copilot.el"))
 
 ;; Load codeium
-(load (concat user-emacs-directory "rajasegar/codeium.el"))
+;; (load (concat user-emacs-directory "rajasegar/codeium.el"))
 
 ;; Load dashboard footer messages
 (load (concat user-emacs-directory "rajasegar/dashboard-footer-messages.el"))
 
 ;; Load prodigy services
-(load (concat user-emacs-directory "rajasegar/prodigy-services.el"))
+;; (load (concat user-emacs-directory "rajasegar/prodigy-services.el"))
 
 ;; Load centaur tabs
 ;; (load (concat user-emacs-directory "rajasegar/centaur-tabs.el"))
 
 ;; Load Freddy
-(load (concat user-emacs-directory "rajasegar/freddy-ai.el"))
+;; (load (concat user-emacs-directory "rajasegar/freddy-ai.el"))
 
 ;; Load ChatGPT Shell
-(load (concat user-emacs-directory "rajasegar/chatgpt-shell.el"))
+;; (load (concat user-emacs-directory "rajasegar/chatgpt-shell.el"))
 
 
 (custom-set-variables
