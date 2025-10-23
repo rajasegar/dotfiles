@@ -100,10 +100,6 @@
          "* TODO %?\n  %i\n  %a")
         ("e" "Emacs Todo" entry (file+headline "~/Dropbox/org/rajasegar.org" "Emacs")
          "* TODO %?\n  %i\n  %a")
-        ("f" "Freshchat Todo" entry (file+headline "~/Dropbox/org/freshdesk.org" "Tasks")
-         "* TODO %?\n  %i\n  %a")
-        ("d" "Technical Debt" entry (file+headline "~/Dropbox/org/fc-tech-debt.org" "Tasks")
-         "* TODO %?\n")
         ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
          "* %?\nEntered on %U\n  %i")))
 
@@ -170,10 +166,10 @@
 (add-hook 'ediff-mode-hook 'raja-ediff-hook)
 
 ;; Modus Themes
-(setq modus-themes-fringes nil
-      modus-themes-mode-line '(accented)
-      modus-themes-subtle-line-numbers t)
-(load-theme 'modus-vivendi)
+;; (setq modus-themes-fringes nil
+      ;; modus-themes-mode-line '(accented)
+      ;; modus-themes-subtle-line-numbers t)
+;; (load-theme 'modus-vivendi)
 
 ;; Ido
 (setq ido-enable-flex-matching t)
@@ -182,6 +178,7 @@
 
 ;; Dired human listing
 (setq dired-listing-switches "-alFh")
+
 
 (provide 'settings)
 

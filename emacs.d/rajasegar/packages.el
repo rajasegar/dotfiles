@@ -28,12 +28,10 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-;; all-the-icons
-(use-package all-the-icons
-  :ensure t)
-(use-package all-the-icons-dired
-  :ensure t)
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+
+(use-package nerd-icons
+  :ensure t
+  )
 
 ;; Which Key
 (use-package which-key
@@ -45,8 +43,7 @@
   :config
   (which-key-mode))
 
-(setq org-agenda-files (list "~/Dropbox/org/freshdesk.org"
-                             "~/Dropbox/org/rajasegar.org"
+(setq org-agenda-files (list "~/Dropbox/org/rajasegar.org"
                              "~/Dropbox/org/birthdays.org"
                              "~/Dropbox/org/anniversaries.org"))
 (setq org-default-notes-file "~/Dropbox/org/tasks.org")
@@ -151,12 +148,6 @@
   "--trailing-comma" "none"
 ))
 
-;; Slime
-(use-package slime
-  :ensure t
-  :commands (slime-mode))
-(setq inferior-lisp-program "sbcl")
-
 ;; Markdown
 (use-package markdown-mode
   :ensure t
@@ -175,11 +166,6 @@
 (use-package git-gutter :ensure t)
 (global-git-gutter-mode +1)
 
-;; Git timemachine
-(use-package git-timemachine
-  :ensure t
-  :commands (git-timemachine))
-
 ;; Startup screen with dashboard
 (use-package dashboard
   :ensure t
@@ -188,30 +174,12 @@
 
 (setq dashboard-items '((recents  . 5)
                         (projects . 5)
-                        (agenda . 5)))
+                        (agenda . 5)
+                        (bookmarks . 5)))
 (setq dashboard-center-content t)
 (setq dashboard-display-icons-p nil) ;; display icons on both GUI and terminal
 ;; Use project.el for  projects
 (setq dashboard-projects-backend 'project-el)
-
-;; plantuml
-(use-package plantuml-mode
-  :mode "\\.pum\\'"
-  :ensure t)
-
-;; Sample jar configuration
-(setq plantuml-jar-path "~/plantuml.jar")
-(setq plantuml-default-exec-mode 'jar)
-
-;; (setq plantuml-jar-args '("-tpng"))
-;; (setq plantuml-output-type "png")
-;; (setq plantuml-java-args (list "-Djava.awt.headless=true" "-jar"))
-;; (add-to-list 'auto-mode-alist '("\\.pum\\'" . plantuml-mode))
-
-;; Enable plantuml for org-mode
-;; (setq org-plantuml-jar-path "~/plantuml.jar")
-;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-;; (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
 ;; emmet-mode
 (use-package emmet-mode
@@ -234,26 +202,6 @@
 
 
 (setq flymake-no-changes-timeout 0.5)
-
-
-(use-package multiple-cursors
-  :ensure t)
-
-
-;; (use-package ipl
-  ;; :load-path "elpa/ipl")
-
-
-;; For reading epub files 
-;; (use-package nov
-  ;; :ensure t
-  ;; :mode "\\.nov\\'"
-  ;; :init
-  ;; (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
-;; (setq nov-text-width t)
-;; (setq visual-fill-column-center-text t)
-;; (add-hook 'nov-mode-hook 'visual-line-mode)
-;; (add-hook 'nov-mode-hook 'visual-fill-column-mode)
 
 ;; Treemacs
 (use-package treemacs
@@ -306,10 +254,12 @@
   :config
   (evil-collection-init))
 
-(use-package evil-surround
-  :load-path "elpa/evil-surround/"
-  :config
-  (global-evil-surround-mode 1))
+(use-package gimp
+  :load-path "elpa/gimp.el")
+
+(use-package shell-command-queue
+  :load-path "elpa/shell-command-queue")
+
 
 (provide 'packages)
 

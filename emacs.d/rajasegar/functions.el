@@ -7,82 +7,67 @@
 
 ;;; Code:
 
-(defun rajasegar/edit-emacs-configuration ()
+(defun my/edit-emacs-configuration ()
   "Edit Emacs configuration."
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
-(defun rajasegar/edit-emacs-settings ()
+(defun my/edit-emacs-settings ()
   "Open common settings file."
   (interactive)
   (find-file "~/.emacs.d/rajasegar/settings.el"))
 
-(defun rajasegar/edit-emacs-packages ()
+(defun my/edit-emacs-packages ()
   "Open  packages file."
   (interactive)
   (find-file "~/.emacs.d/rajasegar/packages.el"))
 
-(defun rajasegar/edit-emacs-keybindings ()
+(defun my/edit-emacs-keybindings ()
   "Open  keybindings file."
   (interactive)
   (find-file "~/.emacs.d/rajasegar/keybindings.el"))
 
-(defun rajasegar/edit-emacs-functions ()
+(defun my/edit-emacs-functions ()
   "Open  keybindings file."
   (interactive)
   (find-file "~/.emacs.d/rajasegar/functions.el"))
 
-(defun rajasegar/open-emacs-config-folder ()
+(defun my/open-emacs-config-folder ()
   "Open Emacs config folder."
   (interactive)
   (dired "~/.emacs.d/rajasegar"))
 
-(defun rajasegar/toggle-buffers ()
+(defun my/toggle-buffers ()
   "Toggle buffers."
   (interactive)
   (switch-to-buffer nil))
 
-(defun rajasegar/switch-to-dashboard ()
+(defun my/switch-to-dashboard ()
  "Switch to dashboard buffer."
   (interactive)
   (switch-to-buffer dashboard-buffer-name))
 
-(defun rajasegar/switch-git-personal ()
-  "Switch to personal Github profile."
-  (interactive)
-  (shell-command "ssh-add -D && ssh-add ~/.ssh/id_ed25519 && ssh -T git@github.com"))
-
-(defun rajasegar/switch-git-work ()
-  "Switch to work Github profile."
-  (interactive)
-  (shell-command "ssh-add -D && ssh-add ~/.ssh/freshworks && ssh -T git@github.com"))
-
-(defun rajasegar/play-favs-folder ()
+(defun my/play-favs-folder ()
   "Play the Favs directory in EMMS."
   (interactive)
   (emms-play-directory-tree "~/Music/Favs"))
 
-(defun rajasegar/play-college-folder ()
+(defun my/play-college-folder ()
   "Play the College directory in EMMS."
   (interactive)
   (emms-play-directory-tree "~/Music/College"))
 
-(defun rajasegar/play-latest-folder ()
+(defun my/play-latest-folder ()
   "Play the 2023 directory in EMMS."
   (interactive)
   (emms-play-directory-tree "~/Music/2023"))
 
-(defun rajasegar/open-hackernews ()
+(defun my/open-hackernews ()
   "OPen hacker news website in eww."
   (interactive)
   (eww "hackernews.com"))
 
 
-(defun rajasegar/add-codeium-completions ()
-  "Add codeium completions to the current buffer."
-  (interactive)
-  ;; (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
-  (setq completion-at-point-functions (list 'codeium-completion-at-point)))
 
 (defun get-projects ()
   "Get the list of recently visited projects."
@@ -94,7 +79,7 @@
             (add-to-list 'props p))
       props)))
 
-(defun rajasegar/find-projects-function (str pred _)
+(defun my/find-projects-function (str pred _)
   "Callback function for `ivy-read' for projects list.
 Argument STR string.
 Argument PRED predicate."
@@ -106,17 +91,17 @@ Argument PRED predicate."
 
   
 
-(defun rajasegar/find-projects ()
+(defun my/find-projects ()
   "Find the projects."
   (interactive)
   (tab-bar-new-tab)
   (ivy-read "Find projects: "
-            #'rajasegar/find-projects-function
+            #'my/find-projects-function
             :action (lambda (x)
                       (project-switch-project (get-text-property 0 'property x))
                       (tab-bar-rename-tab x))))
 
-(defun rajasegar/open-project ()
+(defun my/open-project ()
   "Create a new tab and switch project."
   (interactive)
   (tab-bar-new-tab)
@@ -133,12 +118,12 @@ Argument PRED predicate."
     (string-replace  ":" "/" (vc-git-repository-url (buffer-file-name))))))
 
 
-(defun rajasegar/open-new-pull-request ()
+(defun my/open-new-pull-request ()
   "Open new pull request url for current branch in browser."
   (interactive)
   (shell-command (concat "open " (github-repository-url) "/pull/new/" (car (vc-git-branches)))))
 
-(defun rajasegar/compare-git-branches ()
+(defun my/compare-git-branches ()
   "Open compare branches page in github in the browser."
   (interactive)
   (shell-command (concat "open " (github-repository-url) "/compare/dev..." (car (vc-git-branches)))))
@@ -153,7 +138,7 @@ Argument PRED predicate."
   )
 
 
-(defun rajasegar/create-prodigy-service (&optional package-manager)
+(defun my/create-prodigy-service (&optional package-manager)
   "Create new prodigy services based on current package.json.
 Optional argument PACKAGE-MANAGER The type of package manager to use (default: pnpm)."
   (interactive)
@@ -178,7 +163,7 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
     (prodigy)
     (prodigy-refresh)))
 
-(defun rajasegar/stage-file-in-current-line ()
+(defun my/stage-file-in-current-line ()
   "Magit Stage the file name in the current line."
   (interactive)
   (let ((filename (string-trim (buffer-substring-no-properties (+ 2 (line-beginning-position)) (line-end-position)))))
@@ -186,7 +171,7 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
     (magit-stage-file filename)
     (message "File staged successfully: %s !!" filename)))
 
-(defun rajasegar/magit-stash-untracked ()
+(defun my/magit-stash-untracked ()
   "Stash include untracked files using magit."
   (interactive)
   (magit-stash-both (read-string "Enter stash name: ") t))
@@ -195,92 +180,79 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   "Find the project root."
     (locate-dominating-file (file-name-directory (buffer-file-name)) "package.json"))
 
-(defun rajasegar/jump-to-component ()
-  "Jump to the corresponding Ember component file from test file."
-  (interactive)
-  (let ((root-dir (my-project-root))
-        (component (string-replace "-test" "" (file-name-base (buffer-file-name)))))
-  (find-file (concat root-dir "/app/components/" component "/component.js"))))
 
-(defun rajasegar/jump-to-template ()
-  "Jump to the corresponding Ember component hbs file from test file."
-  (interactive)
-  (let ((root-dir (my-project-root))
-        (component (string-replace "-test" "" (file-name-base (buffer-file-name)))))
-  (find-file (concat root-dir "/app/components/" component "/template.hbs"))))
-
-(defun rajasegar/counsel-rg-word ()
+(defun my/counsel-rg-word ()
   "Search word under cursor using `counsel-rg'."
   (interactive)
   (counsel-rg (word-at-point)))
 
-(defun rajasegar/run-rcup ()
+(defun my/run-rcup ()
   "Run rcup -v to update dotfiles."
   (interactive)
   (async-shell-command "rcup -v")
   (switch-to-buffer-other-window "*Async Shell Command*"))
 
 
-(defun rajasegar/create-gist ()
+(defun my/create-gist ()
   "Create gist from current buffer."
   (interactive)
   (eshell-command (concat "gh gist create "  (file-name-base (buffer-file-name)) "." (file-name-extension (buffer-file-name)) )))
 
-(defun rajasegar/update-wallpaper ()
+(defun my/update-wallpaper ()
   "Fetch a new wallpaper from Upsplash and update it."
   (interactive)
   (url-copy-file "https://unsplash.it/1366/768/?random" "~/Pictures/random/wallpaper.jpg" t))
 
-(defun rajasegar/apt-get-install ()
+(defun my/apt-get-install ()
   "Read a package name from minibuffer and install it with apt-get."
   (interactive)
   (eshell-command (concat "sudo apt-get -y install " (read-string "Enter the package name: "))))
 
-(defun rajasegar/open-project-in-github ()
+(defun my/open-project-in-github ()
   "Open the github url of the current project"
   (interactive)
   (shell-command (concat "open " (github-repository-url))))
 
-(defun rajasegar/open-github-pull-requests ()
+(defun my/open-github-pull-requests ()
   "Open the github pull requests url of the current project"
   (interactive)
   (shell-command (concat "open " (github-repository-url) "/pulls")))
 
-(defun rajasegar/open-github-issues ()
+(defun my/open-github-issues ()
   "Open the github issues url of the current project"
   (interactive)
   (shell-command (concat "open " (github-repository-url) "/issues")))
 
-(defun rajasegar/dired-sort-size ()
+(defun my/dired-sort-size ()
   "Dired sort by size."
   (interactive)
   (dired-sort-other  "-lS"))
 
-(defun rajasegar/dired-sort-size-reverse ()
+(defun my/dired-sort-size-reverse ()
   "Dired sort by size."
   (interactive)
   (dired-sort-other  "-lrS"))
 
-(defun rajasegar/eval-print-last-sexp-no-truncation ()
+(defun my/eval-print-last-sexp-no-truncation ()
   "Eval sexp and print without truncating the output"
   (interactive)
   (eval-print-last-sexp 0))
 
-(defun rajasegar/copy-buffer ()
+(defun my/copy-buffer ()
   (interactive)
   ;; (mark-whole-buffer)
   (copy-region-as-kill (point-min) (point-max)))
 
-(defun rajasegar/copy-line ()
+(defun my/copy-line ()
   (interactive)
   (copy-region-as-kill (point-at-bol) (point-at-eol)))
 
-(defun rajasegar/delete-current-line()
+(defun my/delete-current-line()
   "Delete the current line under the cursor"
   (interactive)
   (kill-region (point-at-bol) (point-at-eol)))
 
-(defun rajasegar/duplicate-line()
+(defun my/duplicate-line()
   (interactive)
   (move-beginning-of-line 1)
   (kill-line)
@@ -289,93 +261,97 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (next-line 1)
   (yank))
 
-(defun rajasegar/kill-to-eof ()
+(defun my/kill-to-eof ()
   "Kill from the current cursor position to end of file"
   (interactive)
   (kill-region (point) (point-max)))
 
-(defun rajasegar/export-svg-as-png ()
-  "Export svg files as png using Inkscape"
-  (let ((svg-file ())))
-  (async-shell-command (concat )"/Applications/Inkscape.app/Contents/MacOS/inkscape --export-type png --export-filename output.png marketplace-adapter.svg "))
 
-(defun rajasegar/open-alacritty ()
-  "Open Alacritty terminal from Emacs"
-  (interactive)
-  (shell-command "open -a Alacritty.app"))
-
-(defun rajasegar/open-firefox ()
-  "Open Firefox browser from Emacs"
-  (interactive)
-  (shell-command "open -a Firefox.app"))
-
-(defun rajasegar/open-slack ()
-  "Open Slack app from Emacs"
-  (interactive)
-  (shell-command "open -a Slack.app"))
-
-(defun rajasegar/open-google-chrome ()
-  "Open Google Chrome browser from Emacs"
-  (interactive)
-  (shell-command "open -a 'Google Chrome.app'"))
-
-(defun raja/startup ()
+(defun my/startup ()
   "Start apps in Mac in a bunch from Emacs"
   (interactive)
   (shell-command "open -a Firefox.app")
   (shell-command "open -a Slack.app")
     (shell-command "open -a 'Google Chrome.app'"))
 
-(defun rajasegar/ember-plantuml ()
-  "Open Ember plantuml for Freshchat"
-  (interactive)
-  (async-shell-command "cd ~/www/ember-plantuml;./bin/ember-plantuml.js"))
 
-(defun raja/search-word-in-project ()
+(defun my/search-word-in-project ()
   "Search the word under the cursor in  project"
   (interactive)
   (project-find-regexp (thing-at-point 'word t)))
 
-(defun raja/plantuml-preview ()
+(defun my/plantuml-preview ()
   "Preview plantuml"
   (interactive)
   (shell-command (concat "java -jar ~/plantuml.jar " (buffer-file-name)))
   (find-file (string-replace ".pum" ".png" (buffer-file-name))))
 
-(defun raja/compile-c ()
+(defun my/compile-c ()
   "Compile c programs with cc"
   (interactive)
   (compile (format "cc -o %s %s" (file-name-base (buffer-file-name)) (buffer-file-name))))
 
-(defun raja/run-c ()
+(defun my/run-c ()
   "Run the compiled C program"
   (interactive)
   (shell-command (format "./%s" (file-name-base (buffer-file-name)))))
 
-(defun raja/eno-fd ()
-  "Degit the ember-new-output repo for Freshdesk"
-  (interactive)
-  (async-shell-command (format "degit ember-cli/ember-new-output#v3.8.3 eno-%s" (make-temp-name "fd-"))))
 
-(defun raja/eno-fc ()
-  "Degit the ember-new-output repo for Freshchat"
-  (interactive)
-  (async-shell-command (format "degit ember-cli/ember-new-output#v3.20.2 eno-%s" (make-temp-name "fc-"))))
 
-(defun raja/toggle-relative-line-number ()
-  "Toggle relative line number mode"
-  (interactive)
-  (if (eq display-line-numbers-type 'relative)
-      (setq display-line-numbers-type t)
-    (setq display-line-numbers-type 'relative))
-  (display-line-numbers--turn-on)
-  )
-
-(defun raja/indent-whole-buffer ()
+(defun my/indent-whole-buffer ()
   "Mark the current buffer entirely and indent it"
   (interactive)
   (indent-region (point-min) (point-max))
   )
+
+(defun my/insta-prepare-images ()
+  "Resize and crop images to Insta reel format 1080x1920 px"
+  (interactive)
+  (let ((folder (read-directory-name "Choose directory:")))
+  (async-shell-command 
+   (format "gimp -i -c -b '(script-fu-resize-insta-reel \"*.png\"  \"%s\")' -b '(gimp-quit 0)'  --batch-interpreter plug-in-script-fu-eval"  folder))))
+
+
+(defun my/ffmpeg-create-video ()
+  "Create a video from images"
+  (interactive)
+  (let ((folder (read-directory-name "Choose directory:" "~/Videos")))
+    (setq default-directory folder)
+  (async-shell-command "ffmpeg -r 1/5 -pattern_type glob -i '*.jpg' -c:v libx264 -r 30 -pix_fmt yuv420p input.mp4" ))
+  )
+
+(defun my/ffmpeg-add-audio ()
+  "Add audio to input videos"
+  (interactive)
+  (let ((video (read-file-name "Choose video file: "))
+        (audio (read-file-name "Choose audio file: " "~/Zazzle/Audio-Clips")))
+    (setq default-directory (file-name-directory video))
+  (async-shell-command (format "ffmpeg -i %s -i %s -shortest -c:v copy -map 0:v -map 1:a output.mp4" video audio))))
+
+(defun my/create-insta-reel ()
+  "Create instagram reel from images"
+  (interactive)
+
+  (let ((folder (read-directory-name "Choose directory:"))
+        (audio (read-file-name "Choose audio file: " "~/Zazzle/Audio-Clips")))
+    (setq default-directory folder)
+    (shell-command-queue-clear)
+
+    (shell-command-queue-add
+     "Preparing Images"
+     (format "gimp -i -c -b '(script-fu-resize-insta-reel \"*.png\"  \"%s\")' -b '(gimp-quit 0)'  --batch-interpreter plug-in-script-fu-eval"  folder))
+
+    (shell-command-queue-add
+     "Creating Input Video"
+     "ffmpeg -r 1/5 -pattern_type glob -i '*.jpg' -c:v libx264 -r 30 -pix_fmt yuv420p input.mp4"
+     )
+
+    (shell-command-queue-add
+     "Adding audio"
+     (format "ffmpeg -i input.mp4 -i %s -shortest -c:v copy -map 0:v -map 1:a output.mp4" audio))
+
+    (shell-command-queue-run)))
+
 
 (provide 'functions)
 

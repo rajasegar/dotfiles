@@ -56,9 +56,9 @@
     ".s" #'my/edit-emacs-settings
 
     ;; Gptel
-    "``" #'gptel
-    "`r" #'gptel-rewrite
-    "`s" #'gptel-send
+    "`a" #'my/ffmpeg-add-audio
+    "`i" #'my/create-insta-reel
+    "`v" #'my/ffmpeg-create-video
     
   ;; My prefix key map for applications
   "ac" #'calendar
@@ -76,7 +76,7 @@
   ;; "My prefix key map for buffers."
   "bb" #'switch-to-buffer
   "bc" #'rajasegar/copy-buffer
-  "bd" #'evil-delete-buffer
+  "bd" #'(lambda () (interactive) (kill-current-buffer))
   "be" #'eval-buffer
   "bh" #'rajasegar/switch-to-dashboard
   "bi" #'raja/indent-whole-buffer
@@ -92,6 +92,7 @@
   ;; Eglot
   "ed" #'eglot-find-declaration
   "ei" #'eglot-find-implementation
+  "el" #'eval-last-sexp
   "et" #'eglot-find-typeDefinition
 
   ;; "Files and flymake"
