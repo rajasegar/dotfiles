@@ -50,6 +50,7 @@
     ;; "My prefix key map for config"
     ".." #'(lambda () (interactive) (find-file user-init-file))
     ".d" #'my/open-emacs-config-folder
+    ".e" #'my/open-eglot-config
     ".k" #'my/edit-emacs-keybindings
     ".p" #'my/edit-emacs-packages
     ".f" #'my/edit-emacs-functions
@@ -57,8 +58,14 @@
 
     ;; Gptel
     "`a" #'my/ffmpeg-add-audio
+    "`d" #'my/run-download-task
     "`i" #'my/create-insta-reel
+    "`p" #'my/run-printify-task
+    "`r" #'my/insta-prepare-images
+    "`s" #'my/whatsapp-story
+    "`u" #'my/run-upload-task
     "`v" #'my/ffmpeg-create-video
+    "`w" #'my/run-woocommerce-task
     
   ;; My prefix key map for applications
   "ac" #'calendar
@@ -111,10 +118,10 @@
   "gh" #'rajasegar/switch-git-personal
   "gi" #'rajasegar/open-github-issues
   "gl" #'github-list-pr-files
-  "gm" #'github-merge-pr
+  "gm" #'gimp-migrate
   "gn" #'rajasegar/open-new-pull-request
   "go" #'rajasegar/open-project-in-github
-  "gp" #'magit-push-current-to-upstream
+  "gp" #'gimp-create-palette
   "gr" #'rajasegar/git-reverse-merge-dev-branch
   "gs" #'magit-status
   "gt" #'git-timemachine
@@ -137,6 +144,7 @@
   ;; Org mode
   "oa" #'org-agenda
   "oc" #'org-capture
+  "oi" #'org-toggle-inline-images
   "op" #'org-present
   "os" #'org-timer-set-timer
   "ot" #'org-toggle-link-display
@@ -186,7 +194,7 @@
 (define-key evil-normal-state-map (kbd "SPC x") ctl-x-map)
 (define-key evil-normal-state-map (kbd "SPC p") project-prefix-map)
 (define-key evil-normal-state-map (kbd "SPC p t") 'treemacs)
-(define-key evil-normal-state-map (kbd "SPC p a") 'treemacs-add-project-to-workspace)
+(define-key evil-normal-state-map (kbd "SPC p a") 'treemacs-add-and-display-current-project-exclusively)
 (define-key evil-normal-state-map (kbd "SPC v") vc-prefix-map)
 
 (define-key evil-normal-state-map (kbd "[ t") 'tab-line-switch-to-prev-tab)
