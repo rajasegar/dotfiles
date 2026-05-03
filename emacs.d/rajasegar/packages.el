@@ -254,6 +254,9 @@
   :config
   (evil-collection-init))
 
+(evil-set-initial-state 'prodigy-mode 'emacs)
+(evil-set-initial-state 'image-mode 'emacs)
+
 (use-package gimp
   :load-path "elpa/gimp.el")
 
