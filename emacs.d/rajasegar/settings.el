@@ -100,6 +100,12 @@
          "* TODO %?\n  %i\n  %a")
         ("e" "Emacs Todo" entry (file+headline "~/Dropbox/org/rajasegar.org" "Emacs")
          "* TODO %?\n  %i\n  %a")
+        ("s" "Investing Todo" entry (file+headline "~/Dropbox/org/investing.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("i" "Inkscape Todo" entry (file+headline "~/Dropbox/org/inkscape.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("g" "Gimp Todo" entry (file+headline "~/Dropbox/org/gimp.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
         ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
          "* %?\nEntered on %U\n  %i")))
 
@@ -150,8 +156,8 @@
                nil))
 
 ;; Enable hs-minor-mode for prog-mode
-(dolist (mode '(prog-mode-hook))
-  (add-hook mode (lambda () (hs-minor-mode))))
+;; (dolist (mode '(prog-mode-hook))
+  ;; (add-hook mode (lambda () (hs-minor-mode))))
 
 
 ;; Ediff tweaks
@@ -177,7 +183,7 @@
 (ido-mode 1)
 
 ;; Dired human listing
-(setq dired-listing-switches "-alFh")
+(setq dired-listing-switches "-lFh")
 
 
 (provide 'settings)
