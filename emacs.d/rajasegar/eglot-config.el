@@ -19,13 +19,18 @@
 
 
 (with-eval-after-load 'eglot
-;; No event buffers, disable providers cause a lot of hover traffic. Shutdown unused servers.
+  ;; No event buffers, disable providers cause a lot of hover traffic. Shutdown unused servers.
   (setq eglot-events-buffer-size 0
         eglot-autoshutdown t)
 
-    ;; (add-to-list 'eglot-server-programs
-             ;; '((scheme-mode) . ("/home/rajasegar/Downloads/scheme-langserver-x86_64-linux-glibc" )))
+  ;; (add-to-list 'eglot-server-programs
+  ;; '((scheme-mode) . ("/home/rajasegar/Downloads/scheme-langserver-x86_64-linux-glibc" )))
 
+  (add-to-list 'eglot-server-programs
+  '(scheme-mode . ("node" "/media/hdd/home/boot/Public/www/gimp-lsp-server/dist/server.js" "--stdio")))
+
+  ;; (add-to-list 'eglot-server-programs
+               ;; '(scheme-mode . ("/media/hdd/home/boot/Public/www/tiny-scheme-lsp/server.js" "--stdio")))
 
   )
 

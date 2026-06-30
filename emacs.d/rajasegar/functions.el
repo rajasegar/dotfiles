@@ -37,6 +37,11 @@
   (interactive)
   (find-file "~/.emacs.d/rajasegar/eglot-config.el"))
 
+(defun my/edit-emms-config ()
+  "Open emms config file."
+  (interactive)
+  (find-file "~/.emacs.d/rajasegar/music.el"))
+
 
 (defun my/open-emacs-config-folder ()
   "Open Emacs config folder."
@@ -64,9 +69,9 @@
   (emms-play-directory-tree "~/Music/College"))
 
 (defun my/play-latest-folder ()
-  "Play the 2023 directory in EMMS."
+  "Play the Latest directory in EMMS."
   (interactive)
-  (emms-play-directory-tree "~/Music/2023"))
+  (emms-play-directory-tree "~/Music/Latest"))
 
 (defun my/open-hackernews ()
   "OPen hacker news website in eww."
@@ -208,8 +213,12 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   "Fetch a new wallpaper from Upsplash and update it."
   (interactive)
   (url-copy-file "https://picsum.photos/1920/1080/?random" "~/Pictures/random/wallpaper.jpg" t)
-  (async-shell-command "xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorHDMI-1/workspace0/last-image -s ~/Pictures/random/wallpaper.jpg")
-  )
+  (mapcar (lambda (str)
+            (async-shell-command (format "xfconf-query -c xfce4-desktop -p \"%s\" -s ~/Pictures/random/wallpaper.jpg" str)))
+          (string-split 
+           (shell-command-to-string "xfconf-query -c xfce4-desktop -p /backdrop -l | grep last-image"))))
+
+
 
 (defun my/apt-get-install ()
   "Read a package name from minibuffer and install it with apt-get."
@@ -305,185 +314,57 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (shell-command (format "./%s" (file-name-base (buffer-file-name)))))
 
 
-
 (defun my/indent-whole-buffer ()
   "Mark the current buffer entirely and indent it"
   (interactive)
   (indent-region (point-min) (point-max))
   )
 
-(defun my/insta-prepare-images ()
-  "Resize and crop images to Insta reel format 1080x1920 px"
+(defun my/run-with-node ()
+  "Run the current js file with Node"
   (interactive)
-  (let ((folder (read-directory-name "Choose directory:" "~/Videos/test"))
-        (ext (read-string "Enter extension: " "jpg")))
-  (async-shell-command 
-   (format "gimp -i -c -b '(script-fu-resize-insta-reel \"*.%s\"  \"%s\")' -b '(gimp-quit 0)'  --batch-interpreter plug-in-script-fu-eval" ext  folder))))
+  (async-shell-command (format "node %s" (buffer-file-name))))
 
-
-(defun my/ffmpeg-create-video ()
-  "Create a video from images"
+(defun my/run-with-tsc ()
+  "Run the current TS file with Typescript"
   (interactive)
-  (let ((folder (read-directory-name "Choose directory:" "~/Videos"))
-        (interval (read-number "Enter time interval: " 5))
-        (ext (read-string "Enter extension: " "jpg")))
-    (setq default-directory folder)
-  (async-shell-command (format "ffmpeg -r 1/%d -pattern_type glob -i '*.%s' -c:v libx264 -r 30 -pix_fmt yuv420p input.mp4" interval ext))))
+  (async-shell-command (format "tsc %s && node %s" (buffer-file-name) (concat (file-name-base (buffer-file-name)) ".js"))))
 
-(defun my/ffmpeg-add-audio ()
-  "Add audio to input videos"
+(defun my/make-temp-el ()
+  "Create a temporary Emacs Lisp file to evaluate"
   (interactive)
-  (let ((video (read-file-name "Choose video file: "))
-        (audio (random-element-of-list (directory-files  "~/Zazzle/Audio-Clips" t "\\`[^.]")))
-        ;; (audio (read-file-name "Choose audio file: " "~/Zazzle/Audio-Clips"))
-        )
-    (setq default-directory (file-name-directory video))
-  (async-shell-command (format "ffmpeg -i %s -i %s -shortest -c:v copy -map 0:v -map 1:a output.mp4" video audio))))
+  (let ((temp-dir (make-temp-file "emacs-lisp-" t )))
+    (find-file (concat temp-dir "/temp.el")))
+  )
 
-(defun delete-all-files-in-directory (dir)
-  "Delete all files in the specified DIR."
-  (let ((files (directory-files dir t "\\`[^.]")))  ; Exclude '.' and '..'
-    (dolist (file files)
-      (when (file-regular-p file)  ; Check if it's a regular file
-        (delete-file file)))))  ; Delete the file
-
-(defun snake-case (str)
-(string-join (mapcar #'downcase (split-string str)) "-"))
-
-(defun copy-reel-files (mockup)
-  (mapcar (lambda (file)
-            (let ((name (file-name-base file))
-                  (ext (file-name-extension file)))
-              (if (or (string-search "Generated" name) (string-search "generated" name))
-                  (copy-file file (format "~/Videos/insta-reel/001.%s" ext)))
-              (if (string-search "person-3" name)
-                  (copy-file file (format "~/Videos/insta-reel/002.%s" ext)))
-              (if (string-search "person-4" name)
-                  (copy-file file (format "~/Videos/insta-reel/003.%s" ext)))
-              (if (string-search "hanging" name)
-                  (copy-file file (format "~/Videos/insta-reel/004.%s" ext)))
-              (if (string-search "front" name)
-                  (copy-file file (format "~/Videos/insta-reel/005.%s" ext)))
-              (if (string-search "person-2" name)
-                  (copy-file file (format "~/Videos/insta-reel/006.%s" ext)))
-            ))
-          
-          (seq-filter (lambda (name) (not (or
-                                           (string-search "back" name)
-                                           (string-search "person-1" name)
-                                           (string-search "person-5" name))))
-                      (directory-files  (format "~/Printify/Mockups/%s" mockup) t "\\`[^.]"))))
-
-
-
-
-
-(defun my/create-insta-reel ()
-  "Create instagram reel from images"
+(defun my/wordpress-rider-tshirt ()
+  "Run rcup -v to update dotfiles."
   (interactive)
+  (async-shell-command "node wordpress/rider-tshirt.js")
+  (switch-to-buffer-other-window "*Async Shell Command*"))
 
-  (let ((folder  "/home/rajasegar/Videos/insta-reel/" )
-        (audio (random-element-of-list (directory-files  "~/Zazzle/Audio-Clips" t "\\`[^.]")))
-        (mockup (format "%s Tote Bag" (read-string "Mockup name: ")))
-        (reel-name (format "Totefy-Reel-%s.mp4" (format-time-string "%d-%b-%Y-%H-%M-%S"))))
-    (setq default-directory folder)
-    (shell-command-queue-clear)
+(defun hex-to-rgb (hex)
+  "Convert HEX color to RGB."
+  (let* ((hex (if (string-prefix-p "#" hex) (substring hex 1) hex))
+         (r (string-to-number (substring hex 0 2) 16))
+         (g (string-to-number (substring hex 2 4) 16))
+         (b (string-to-number (substring hex 4 6) 16)))
+    (format "%d %d %d" r g b)))
 
-    (delete-all-files-in-directory folder)
+(defun replace-word-at-point (new-word)
+  "Replace the word at point with NEW-WORD, preserving case pattern."
+  (save-match-data
+    (let ((bounds (bounds-of-thing-at-point 'word)))
+      (if bounds
+          (progn
+            (set-match-data (list (car bounds) (cdr bounds)))
+            (replace-match new-word))
+        (message "No word at point")))))   
 
-    (copy-reel-files mockup)
-
-    (copy-file "~/GIMP/follow-us-instagram-1920.png" (format "%s/007.png" folder))
-
-    (shell-command-queue-add
-     "Preparing Images"
-     (format "gimp -i -c -b '(script-fu-batch-export-png-to-jpg \"*.png\"  \"%s\")' -b '(gimp-quit 0)'  --batch-interpreter plug-in-script-fu-eval"  folder))
-
-    (shell-command-queue-add
-     "Cropping Images"
-     (format "gimp -i -c -b '(script-fu-resize-insta-reel \"*.jpg\"  \"%s\")' -b '(gimp-quit 0)'  --batch-interpreter plug-in-script-fu-eval"  folder))
-
-    (shell-command-queue-add
-     "Change directory"
-     "cd /home/rajasegar/Videos/insta-reel")
-
-    (shell-command-queue-add
-     "Creating Input Video"
-     "ffmpeg -r 1/5 -pattern_type glob -i '*.jpg' -c:v libx264 -r 30 -pix_fmt yuv420p input.mp4")
-
-    (shell-command-queue-add
-     "Adding audio"
-     (format "ffmpeg -i input.mp4 -i %s -shortest -c:v copy -map 0:v -map 1:a %s" audio reel-name))
-
-    (shell-command-queue-add
-     "Copy reel to the mockup folder"
-     (format "cp ~/Videos/insta-reel/%s '/home/rajasegar/Printify/Mockups/%s/%s'" reel-name mockup reel-name))
-
-    (shell-command-queue-run)
-    (pop-to-buffer "*shell-command-queue-output*")
-
-    ))
-
-(defun my/run-printify-task ()
-  "Run the printify task in node to create tote bags and download mockups"
+(defun my/replace-hex-with-rgb ()
+  "Replace the HEX value with RGB at cursor position"
   (interactive)
-  (setq default-directory "~/www/woocommerce")
-  (async-shell-command "node printify.js"))
-
-(defun my/run-woocommerce-task ()
-  "Run the printify task in node to create tote bags and download mockups"
-  (interactive)
-  (setq default-directory "~/www/woocommerce")
-  (async-shell-command "node woocom.js"))
-
-(defun my/run-upload-task ()
-  "Copy and prepare images for wordpress upload"
-  (interactive)
-  (setq default-directory "~/www/woocommerce")
-  (async-shell-command "node upload.js"))
-
-(defun my/run-download-task ()
-  "Copy and prepare images for wordpress upload"
-  (interactive)
-  (setq default-directory "~/www/woocommerce")
-  (async-shell-command "node download-mockups.js"))
-
-(defun my/whatsapp-story ()
-  "Create Whatsapp/Instagram story from images"
-  (interactive)
-
-  (let ((folder  "/home/rajasegar/Videos/whatsapp-story/" )
-        (audio (random-element-of-list (directory-files  "~/Zazzle/Audio-Clips" t "\\`[^.]")))
-        (reel-name (format "Whatsapp-Story-%s.mp4" (format-time-string "%d-%b-%Y-%H-%M-%S")))
-        )
-    (setq default-directory folder)
-    (shell-command-queue-clear)
-
-    (shell-command-queue-add
-     "Preparing Images"
-     (format "gimp -i -c -b '(script-fu-batch-export-png-to-jpg \"*.png\"  \"%s\")' -b '(gimp-quit 0)'  --batch-interpreter plug-in-script-fu-eval"  folder))
-
-    (shell-command-queue-add
-     "Cropping Images"
-     (format "gimp -i -c -b '(script-fu-resize-insta-reel \"*.jpg\"  \"%s\")' -b '(gimp-quit 0)'  --batch-interpreter plug-in-script-fu-eval"  folder))
-
-    (shell-command-queue-add
-     "Creating Input Video"
-     "ffmpeg -r 1/4 -pattern_type glob -i '*.jpg' -c:v libx264 -r 30 -pix_fmt yuv420p input.mp4")
-
-    (shell-command-queue-add
-     "Adding audio"
-     (format "ffmpeg -i input.mp4 -i %s -shortest -c:v copy -map 0:v -map 1:a %s" audio reel-name))
-
-    (shell-command-queue-add
-     "Copy reel to the Stories folder"
-     (format "cp ~/Videos/whatsapp-story/%s '/home/rajasegar/Zazzle/Whatsapp-Story/%s'" reel-name reel-name))
-
-
-    (shell-command-queue-run)
-    (pop-to-buffer "*shell-command-queue-output*")
-
-    ))
+  (replace-word-at-point (hex-to-rgb (word-at-point))))
 
 (provide 'functions)
 

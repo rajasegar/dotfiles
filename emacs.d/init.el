@@ -11,14 +11,11 @@
 ;; Load tab line config
 (load (concat user-emacs-directory "rajasegar/tab-line-config.el"))
 
-;; Load emacs-lsp-mode config
-(load (concat user-emacs-directory "rajasegar/emacs-lsp-mode.el"))
-
 ;; Load eglot config
-;; (load (concat user-emacs-directory "rajasegar/eglot-config.el"))
+(load (concat user-emacs-directory "rajasegar/eglot-config.el"))
 
 ;; Load music config
-;; (load (concat user-emacs-directory "rajasegar/music.el"))
+(load (concat user-emacs-directory "rajasegar/music.el"))
 
 ;; Load user defined functions
 (load (concat user-emacs-directory "rajasegar/functions.el"))
@@ -29,35 +26,35 @@
 ;; Load copilot
 ;; (load (concat user-emacs-directory "rajasegar/copilot.el"))
 
-;; Load codeium
-;; (load (concat user-emacs-directory "rajasegar/codeium.el"))
-
 ;; Load dashboard footer messages
 (load (concat user-emacs-directory "rajasegar/dashboard-footer-messages.el"))
 
 ;; Load prodigy services
-;; (load (concat user-emacs-directory "rajasegar/prodigy-services.el"))
-
-;; Load centaur tabs
-;; (load (concat user-emacs-directory "rajasegar/centaur-tabs.el"))
-
-;; Load Freddy
-;; (load (concat user-emacs-directory "rajasegar/freddy-ai.el"))
-
-;; Load ChatGPT Shell
-;; (load (concat user-emacs-directory "rajasegar/chatgpt-shell.el"))
-
+(load (concat user-emacs-directory "rajasegar/prodigy-services.el"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(codeium/metadata/api_key "55c40452-3c40-46a6-bdbb-8610ea1e13d5")
  '(css-indent-offset 2)
+ '(ellama-blueprints
+   '((:act "Warren Buffett Stock Analysis" :prompt
+           "---\12name: warren-buffett-stock-analysis\12description: Research Indian stocks and companies based on the approaches and methodologies used by the renowned investor Warren Buffett. \12---\12\12## Warren Buffett Stock Analysis Skill\12Frameworks and methodologies for researching stocks, comparing , and identifying stock market buying opportunities.\12\12\12### Business Tenets\12- Is the business simple and understandable?\12- Does the business have a consistent operating history?\12- Does the business have favorable long-term prospects?\12\12### Management Tenets\12- Is management rational?\12- Is management candid with its shareholders?\12- Does the management resist the institutional imperative?\12\12### Financial Tenets\12- Focus on RoE not EPS\12- Calculate “owner earnings”\12- Look for companies with high profit margins\12- For every dollar retained, make sure the company has created at least one dollar of market value\12\12### Market Tenets\12- What is the value of the business?\12- Can the business be purchased at a significant discount to its value?\12\12"
+           :for-devs nil)))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(eshell-git-prompt flymake-eslint nerd-icons-dired diredfl prodigy doom-modeline git-timemachine nova-theme svelte-mode visual-fill-column org-present lsp-ui yasnippet org-tempo all-the-icons-dired nov typescript-mode neotree airline-themes linum-relative olivetti which-key use-package ranger prettier-js multi-term js2-mode general exec-path-from-shell evil doom-themes counsel-projectile))
+   '(add-node-modules-path copilot corfu dashboard deflate doom-modeline
+                           doom-themes emmet-mode emms evil-collection
+                           exec-path-from-shell git-gutter
+                           git-timemachine gptel json-mode magit
+                           markdown-mode mcp minuet org-bullets
+                           plz-event-source prettier-js prodigy slime
+                           spinner tree-sitter-langs treemacs-evil
+                           visual-fill-column web-mode yaml-mode))
+ '(package-vc-selected-packages
+   '((copilot :url "https://github.com/copilot-emacs/copilot.el" :branch
+              "main")))
  '(safe-local-variable-values '((lsp-enabled-clients quote (bun-lsp-server))))
  '(web-mode-css-indent-offset 2))
 (custom-set-faces

@@ -45,7 +45,11 @@
 
 (setq org-agenda-files (list "~/Dropbox/org/rajasegar.org"
                              "~/Dropbox/org/birthdays.org"
-                             "~/Dropbox/org/anniversaries.org"))
+                             "~/Dropbox/org/anniversaries.org"
+                             "~/Dropbox/org/exchange-holidays.org"
+                             "~/Dropbox/org/investing.org"
+                             "~/Dropbox/org/90-day-seo.org"
+                             ))
 (setq org-default-notes-file "~/Dropbox/org/tasks.org")
 
 
@@ -58,6 +62,9 @@
 ;; Org-agenda customizations
 (setq org-agenda-start-on-weekday 0)
 (setq org-agenda-timegrid-use-ampm 1)
+(setq org-agenda-log-mode-items '(closed clock state))
+(setq org-agenda-start-with-log-mode '(closed clock state))
+
 
 (use-package corfu
   :ensure t
@@ -181,14 +188,6 @@
 ;; Use project.el for  projects
 (setq dashboard-projects-backend 'project-el)
 
-;; emmet-mode
-(use-package emmet-mode
-  :ensure t
-  :init
-  (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'css-mode-hook 'emmet-mode)
-  (add-hook 'web-mode-hook 'emmet-mode))
-
 
 (use-package visual-fill-column
   :ensure t)
@@ -248,11 +247,16 @@
   (setq-default evil-escape-delay 0.2))
 
 ;; evil-collection
-(use-package evil-collection
-  :after evil
-  :ensure t
-  :config
-  (evil-collection-init))
+;; (use-package evil-collection
+;;   :after evil
+;;   :ensure t
+;;   :config
+;;   (evil-collection-init))
+
+(evil-set-initial-state 'prodigy-mode 'emacs)
+(evil-set-initial-state 'image-mode 'emacs)
+(evil-set-initial-state 'dired-mode 'emacs)
+(evil-set-initial-state 'dashboard-mode 'emacs)
 
 (evil-set-initial-state 'prodigy-mode 'emacs)
 (evil-set-initial-state 'image-mode 'emacs)
@@ -262,6 +266,146 @@
 
 (use-package shell-command-queue
   :load-path "elpa/shell-command-queue")
+
+(use-package totefy
+  :load-path "elpa/totefy")
+
+(use-package gptel
+  :load-path "elpa/gptel"
+  :ensure t
+  :config
+  (setq
+   gptel-model 'gemma3
+   gptel-backend (gptel-make-openai "Llama-cpp"
+                   :host "localhost:11434"
+                   :protocol "http"
+                   :stream t
+                   :models '(gemma3)))
+  )
+
+;; Add a tool to gptel-tools
+(add-to-list 'gptel-tools
+             (gptel-make-tool
+              :function (lambda (url)
+                          (with-current-buffer (url-retrieve-synchronously url)
+                            (goto-char (point-min))
+                            (forward-paragraph)
+                            (let ((dom (libxml-parse-html-region (point) (point-max))))
+                              (run-at-time 0 nil #'kill-buffer (current-buffer))
+                              (with-temp-buffer
+                                (shr-insert-document dom)
+                                (buffer-substring-no-properties (point-min) (point-max))))))
+              :name "read_url"
+              :description "Fetch and read the contents of a URL"
+              :args (list '(:name "url"
+                                  :type string
+                                  :description "The URL to read"))
+              :category "web")
+
+             (gptel-make-tool
+              :name "summarize_webpage"
+              :function (lambda (url)
+                          (let ((content (my/fetch-url-main-text url)))
+                            ;; Keep it within reasonable size
+                            (setq content (substring content 0 (min (length content) 12000)))
+                            (format "Summarize this article clearly and concisely:\n\n%s" content)))
+              :description "Fetch a webpage, extract the main article text, and summarize it."
+              :args '((url :type string :description "The URL of the webpage"))
+              :category "summarize"))
+
+             
+
+(defun my/extract-main-text (html)
+  "Extract main readable text from HTML using libxml."
+  (with-temp-buffer
+    (insert html)
+    (let* ((dom (libxml-parse-html-region (point-min) (point-max)))
+
+           ;; Common article-like tags
+           (candidates
+            (append
+             (dom-by-tag dom 'article)
+             (dom-by-tag dom 'main)
+             (dom-by-tag dom 'section)
+             (dom-by-tag dom 'div)))
+
+           ;; Extract text from a node
+           (extract-text
+            (lambda (node)
+              (string-trim
+               (replace-regexp-in-string
+                "[ \n\t]+"
+                " "
+                (dom-texts node)))))
+
+           ;; Score nodes by text length
+           (scored
+            (mapcar (lambda (node)
+                      (let ((text (funcall extract-text node)))
+                        (cons text (length text))))
+                    candidates))
+
+           ;; Pick the longest chunk
+           (best (car (sort scored (lambda (a b) (> (cdr a) (cdr b)))))))
+
+      ;; Return cleaned text (fallback to full doc if nothing useful)
+      (if (and best (> (cdr best) 200))
+          (car best)
+        (string-trim
+         (replace-regexp-in-string
+          "[ \n\t]+"
+          " "
+          (dom-texts dom)))))))
+
+
+(defun my/fetch-url-main-text (url)
+  "Fetch URL and return extracted main article text."
+  (with-current-buffer (url-retrieve-synchronously url t t 10)
+    (goto-char (point-min))
+    (re-search-forward "\n\n" nil t)
+    (let* ((html (buffer-substring-no-properties (point) (point-max)))
+           (text (my/extract-main-text html)))
+      (kill-buffer (current-buffer))
+      text)))
+
+
+;; (use-package mcp
+  ;; :ensure t
+  ;; :after gptel
+  ;; :custom (mcp-hub-servers
+           ;; `(
+             ;; ("filesystem" . (:command "npx" 
+                              ;; :args ("-y" "@modelcontextprotocol/server-filesystem")
+                              ;; :roots ("/home/rajasegar/Zazzle/")))
+             ;; ("woocommerce" . (:command "node"
+             ;;                            :args ("/media/hdd/home/boot/Public/www/woocommerce-mcp-server/build/index.js")
+             ;;                    :env (:WORDPRESS_SITE_URL "https://totefy.in"
+             ;;                          :WOOCOMMERCE_CONSUMER_KEY "ck_c57e930a843e6f10e62b92c3b4a26c0cf1377df9"
+             ;;                          :WOOCOMMERCE_CONSUMER_SECRET "cs_d7c00486a200d785097c825ae0709f8e5dafed09")))
+             ;; ("inkscape-mcp-server" . (:command "/home/rajasegar/.config/inkscape/extensions/inkmcp-extension/inkmcp/run_inkscape_mcp.sh"))
+             ;; ))
+  ;; :config (require 'mcp-hub)
+  ;; :hook (after-init . mcp-hub-start-all-server))
+
+;; (require 'gptel-integrations)
+
+
+(use-package eshell-extensions
+  :load-path "elpa/eshell-extensions/")
+
+
+(use-package printify-api
+  :load-path "elpa/printify-api/")
+
+(use-package gmic-mode
+  :load-path "elpa/gmic-mode/")
+
+
+   
+
+
+
+
 
 
 (provide 'packages)
