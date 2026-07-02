@@ -21,17 +21,8 @@
 ;; Startup time
 (setq use-package-compute-statistics t)
 
-;; Path management
-(use-package exec-path-from-shell
-  :ensure t
-  :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
-
-
 (use-package nerd-icons
-  :ensure t
-  )
+  :ensure t)
 
 ;; Which Key
 (use-package which-key
@@ -48,8 +39,8 @@
                              "~/Dropbox/org/anniversaries.org"
                              "~/Dropbox/org/exchange-holidays.org"
                              "~/Dropbox/org/investing.org"
-                             "~/Dropbox/org/90-day-seo.org"
-                             ))
+                             "~/Dropbox/org/90-day-seo.org"))
+
 (setq org-default-notes-file "~/Dropbox/org/tasks.org")
 
 
@@ -246,20 +237,10 @@
   (evil-mode 1)
   (setq-default evil-escape-delay 0.2))
 
-;; evil-collection
-;; (use-package evil-collection
-;;   :after evil
-;;   :ensure t
-;;   :config
-;;   (evil-collection-init))
-
 (evil-set-initial-state 'prodigy-mode 'emacs)
 (evil-set-initial-state 'image-mode 'emacs)
 (evil-set-initial-state 'dired-mode 'emacs)
 (evil-set-initial-state 'dashboard-mode 'emacs)
-
-(evil-set-initial-state 'prodigy-mode 'emacs)
-(evil-set-initial-state 'image-mode 'emacs)
 
 (use-package gimp
   :load-path "elpa/gimp.el")
@@ -313,99 +294,14 @@
               :args '((url :type string :description "The URL of the webpage"))
               :category "summarize"))
 
-             
+;; (use-package eshell-extensions
+  ;; :load-path "elpa/eshell-extensions/")
 
-(defun my/extract-main-text (html)
-  "Extract main readable text from HTML using libxml."
-  (with-temp-buffer
-    (insert html)
-    (let* ((dom (libxml-parse-html-region (point-min) (point-max)))
-
-           ;; Common article-like tags
-           (candidates
-            (append
-             (dom-by-tag dom 'article)
-             (dom-by-tag dom 'main)
-             (dom-by-tag dom 'section)
-             (dom-by-tag dom 'div)))
-
-           ;; Extract text from a node
-           (extract-text
-            (lambda (node)
-              (string-trim
-               (replace-regexp-in-string
-                "[ \n\t]+"
-                " "
-                (dom-texts node)))))
-
-           ;; Score nodes by text length
-           (scored
-            (mapcar (lambda (node)
-                      (let ((text (funcall extract-text node)))
-                        (cons text (length text))))
-                    candidates))
-
-           ;; Pick the longest chunk
-           (best (car (sort scored (lambda (a b) (> (cdr a) (cdr b)))))))
-
-      ;; Return cleaned text (fallback to full doc if nothing useful)
-      (if (and best (> (cdr best) 200))
-          (car best)
-        (string-trim
-         (replace-regexp-in-string
-          "[ \n\t]+"
-          " "
-          (dom-texts dom)))))))
-
-
-(defun my/fetch-url-main-text (url)
-  "Fetch URL and return extracted main article text."
-  (with-current-buffer (url-retrieve-synchronously url t t 10)
-    (goto-char (point-min))
-    (re-search-forward "\n\n" nil t)
-    (let* ((html (buffer-substring-no-properties (point) (point-max)))
-           (text (my/extract-main-text html)))
-      (kill-buffer (current-buffer))
-      text)))
-
-
-;; (use-package mcp
-  ;; :ensure t
-  ;; :after gptel
-  ;; :custom (mcp-hub-servers
-           ;; `(
-             ;; ("filesystem" . (:command "npx" 
-                              ;; :args ("-y" "@modelcontextprotocol/server-filesystem")
-                              ;; :roots ("/home/rajasegar/Zazzle/")))
-             ;; ("woocommerce" . (:command "node"
-             ;;                            :args ("/media/hdd/home/boot/Public/www/woocommerce-mcp-server/build/index.js")
-             ;;                    :env (:WORDPRESS_SITE_URL "https://totefy.in"
-             ;;                          :WOOCOMMERCE_CONSUMER_KEY "ck_c57e930a843e6f10e62b92c3b4a26c0cf1377df9"
-             ;;                          :WOOCOMMERCE_CONSUMER_SECRET "cs_d7c00486a200d785097c825ae0709f8e5dafed09")))
-             ;; ("inkscape-mcp-server" . (:command "/home/rajasegar/.config/inkscape/extensions/inkmcp-extension/inkmcp/run_inkscape_mcp.sh"))
-             ;; ))
-  ;; :config (require 'mcp-hub)
-  ;; :hook (after-init . mcp-hub-start-all-server))
-
-;; (require 'gptel-integrations)
-
-
-(use-package eshell-extensions
-  :load-path "elpa/eshell-extensions/")
-
-
-(use-package printify-api
-  :load-path "elpa/printify-api/")
+;; (use-package printify-api
+  ;; :load-path "elpa/printify-api/")
 
 (use-package gmic-mode
   :load-path "elpa/gmic-mode/")
-
-
-   
-
-
-
-
 
 
 (provide 'packages)

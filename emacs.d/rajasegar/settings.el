@@ -141,24 +141,6 @@
 
 ;; (setq next-line-add-newlines t)
 
-(defun mhtml-forward (arg)
-  (interactive "P")
-  (pcase (get-text-property (point) `mhtml-submode)
-    (`nil (sgml-skip-tag-forward 1))
-    (submode (forward-sexp))))
-
-(add-to-list 'hs-special-modes-alist
-             '(hbs-mode
-               "{\\|<[^/>]+?"
-               "}\\|</[^/>]*[^/]>"
-               "<!--"
-               mhtml-forward
-               nil))
-
-;; Enable hs-minor-mode for prog-mode
-;; (dolist (mode '(prog-mode-hook))
-  ;; (add-hook mode (lambda () (hs-minor-mode))))
-
 
 ;; Ediff tweaks
 (setq ediff-split-window-function 'split-window-horizontally
