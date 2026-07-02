@@ -238,6 +238,7 @@
   (setq-default evil-escape-delay 0.2))
 
 (evil-set-initial-state 'prodigy-mode 'emacs)
+(evil-set-initial-state 'prodigy-view-mode 'emacs)
 (evil-set-initial-state 'image-mode 'emacs)
 (evil-set-initial-state 'dired-mode 'emacs)
 (evil-set-initial-state 'dashboard-mode 'emacs)
