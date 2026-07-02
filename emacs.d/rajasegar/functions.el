@@ -283,15 +283,6 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (interactive)
   (kill-region (point) (point-max)))
 
-
-(defun my/startup ()
-  "Start apps in Mac in a bunch from Emacs"
-  (interactive)
-  (shell-command "open -a Firefox.app")
-  (shell-command "open -a Slack.app")
-    (shell-command "open -a 'Google Chrome.app'"))
-
-
 (defun my/search-word-in-project ()
   "Search the word under the cursor in  project"
   (interactive)
@@ -334,8 +325,7 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   "Create a temporary Emacs Lisp file to evaluate"
   (interactive)
   (let ((temp-dir (make-temp-file "emacs-lisp-" t )))
-    (find-file (concat temp-dir "/temp.el")))
-  )
+    (find-file (concat temp-dir "/temp.el"))))
 
 (defun my/wordpress-rider-tshirt ()
   "Run rcup -v to update dotfiles."

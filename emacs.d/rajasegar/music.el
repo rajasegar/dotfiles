@@ -11,6 +11,4 @@
 (setq emms-player-list '(emms-player-mplayer)
       emms-info-functions '(emms-info-native))
 
-
 (emms-history-load)
-;; (emms-librefm-scrobbler-enable)
