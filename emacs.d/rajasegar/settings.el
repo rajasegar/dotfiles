@@ -100,9 +100,9 @@
          "* TODO %?\n  %i\n  %a")
         ("e" "Emacs Todo" entry (file+headline "~/Dropbox/org/rajasegar.org" "Emacs")
          "* TODO %?\n  %i\n  %a")
-        ("s" "Investing Todo" entry (file+headline "~/Dropbox/org/investing.org" "Tasks")
+        ("i" "Investing Todo" entry (file+headline "~/Dropbox/org/investing.org" "Tasks")
          "* TODO %?\n  %i\n  %a")
-        ("i" "Inkscape Todo" entry (file+headline "~/Dropbox/org/inkscape.org" "Tasks")
+        ("v" "Inkscape Todo" entry (file+headline "~/Dropbox/org/inkscape.org" "Tasks")
          "* TODO %?\n  %i\n  %a")
         ("g" "Gimp Todo" entry (file+headline "~/Dropbox/org/gimp.org" "Tasks")
          "* TODO %?\n  %i\n  %a")
@@ -166,6 +166,19 @@
 
 ;; Dired human listing
 (setq dired-listing-switches "-lFh")
+
+;; Newsticker urls
+(setq newsticker-url-list
+      '(("Planet Emacslife" "https://planet.emacslife.com/atom.xml")
+        ("OpenAI News"	"https://openai.com/news/rss.xml")
+        ("Hugging Face Blog"	"https://huggingface.co/blog/feed.xml")
+        ("MIT Technology Review (AI)"	"https://www.technologyreview.com/topic/artificial-intelligence/feed/")
+        ("Google AI Blog"	"https://blog.google/technology/ai/rss/")
+        ("MarkTechPost"	"https://www.marktechpost.com/feed/")
+        ("arXiv cs.AI"	"https://rss.arxiv.org/rss/cs.AI")
+        ("GitHub curated AI RSS lists"	"https://github.com/vishalshar/awesome_ML_AI_RSS_feed")
+        ("Reddit AI RSS curation thread"	"https://www.reddit.com/r/rss/comments/1ezcwdh/large_collection_of_rss_feeds_in_the_ai_space/")
+        ))
 
 
 (provide 'settings)
