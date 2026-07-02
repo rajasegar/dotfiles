@@ -6,10 +6,10 @@
 
 ;;; Code:
      
-(global-set-key [f5] 'emms-start)
-(global-set-key [f6] 'emms-stop)
-(global-set-key [f7] 'emms-previous)
-(global-set-key [f8] 'emms-next)
+(global-set-key [f9] 'emms-start)
+(global-set-key [f7] 'emms-stop)
+(global-set-key [f8] 'emms-previous)
+(global-set-key [f10] 'emms-next)
 
 
 (defvar-keymap hs-repeat-map
