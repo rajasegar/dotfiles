@@ -344,13 +344,15 @@
 (defvar-keymap my-prefix-music-map
   :doc "Music and Emms"
   :repeat t
+  "a" #'emms-add-dired
   "b" #'emms-browser
-  "c" #'rajasegar/play-college-folder
+  "c" #'my/play-college-folder
   "d" #'emms-play-directory-tree
-  "f" #'rajasegar/play-favs-folder
-  "l" #'rajasegar/play-latest-folder
+  "e" #'emms-play-dired
+  "f" #'my/play-favs-folder
+  "l" #'my/play-latest-folder
   "n" #'emms-next
-  "o" #'emms-show
+  "o" #'emms-playlist-mode-go
   "p" #'emms-previous
   "s" #'emms-shuffle
   "x" #'emms-pause)
