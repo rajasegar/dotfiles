@@ -91,8 +91,9 @@
   ;; "My prefix key map for buffers."
   "bb" #'switch-to-buffer
   "bc" #'my/copy-buffer
-  "bd" #'(lambda () (interactive) (kill-current-buffer))
+  "bd" #'(lambda () (interactive) (kill-this-buffer))
   "be" #'eval-buffer
+  "bg" #'my/run-scheme-with-gimp
   "bh" #'my/switch-to-dashboard
   "bi" #'raja/indent-whole-buffer
   "bj" #'my/run-with-node
@@ -300,7 +301,7 @@
   "h" #'rajasegar/open-hackernews
   "p" #'prodigy
   "s" #'raja/startup
-  "t" #'eshell-extensions/open-new-eshell
+  "t" #'eshell-extensions-new
   "w" #'rajasegar/update-wallpaper)
 
 (defvar-keymap my-prefix-buffers-map
@@ -409,6 +410,17 @@
   "e" #'rajasegar/eval-print-last-sexp-no-truncation
   "p" #'rajasegar/create-prodigy-service)
 
+  ;; Gptel
+(defvar-keymap my-gptel-map
+  :doc "C-c g"
+  "g" #'gptel
+  "r" #'gptel-rewrite
+  "s" #'gptel-send
+  "t" #'gptel-tools
+  "m" #'gptel-menu
+  "x" #'gptel-abort
+  )
+
 (defvar-keymap my-prefix-map
   :doc "My C-c prefix key map."
   "." my-prefix-dot-map 
@@ -418,7 +430,7 @@
   "d" #'duplicate-line
   "e" #'rajasegar/kill-to-eof
   "f" my-prefix-files-map
-  ;; "g" my-prefix-git-map
+  "g" my-gptel-map
   "h" #'hs-toggle-hiding
   "i" #'ielm
   "j" my-prefix-jump-map

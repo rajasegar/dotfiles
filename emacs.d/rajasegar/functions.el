@@ -356,6 +356,30 @@ Optional argument PACKAGE-MANAGER The type of package manager to use (default: p
   (interactive)
   (replace-word-at-point (hex-to-rgb (word-at-point))))
 
+(defun my/run-with-gimp ()
+  "Run current buffer as script for gimp"
+  (interactive)
+  (async-shell-command
+   (format
+    "gimp-console --batch-interpreter=plug-in-script-fu-eval --batch='%s' --batch='(gimp-quit 0)'"
+    (buffer-substring-no-properties (point-min) (point-max))
+    )))
+
+(defun my/run-scheme-with-gimp ()
+  "Load and execute a scheme file (current buffer) with gimp"
+  (interactive)
+  (async-shell-command
+   (format
+    "gimp-console --batch-interpreter=plug-in-script-fu-eval --batch='(load \"%s\")' --batch='(gimp-quit 0)'"
+    (buffer-file-name)
+    )))
+
+
+;; gimp-console --batch-interpreter=plug-in-script-fu-eval --batch="(gimp-message \"foo\")"
+;; gimp-console --batch-interpreter=plug-in-script-fu-eval --batch="(load \"my.scm\")"
+
+
+
 (provide 'functions)
 
 ;;; functions.el ends here
